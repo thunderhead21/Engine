@@ -1,0 +1,13 @@
+<MyDocs>
+    <MyMembers name="Entity">
+        <summary>
+        Base class for "Assets" to be used by the engine and game. Has an in-game representation.
+        Visible by default.
+        </summary>
+    </MyMembers>
+    <MyMembers name="test2">
+        <summary>
+        The summary for this other type.
+        </summary>
+    </MyMembers>
+</MyDocs>

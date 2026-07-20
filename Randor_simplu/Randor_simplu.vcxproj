@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{6eb36cd0-e219-428d-b132-d20c8a0ef235}</ProjectGuid>
+    <RootNamespace>Randorsimplu</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Vigineer</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseDynamicDebugging>true</UseDynamicDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseDynamicDebugging>true</UseDynamicDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)D:\SDL_LIBS\SDL3-3.2.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)D:\SDL_LIBS\SDL3-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level1</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions> /utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+      <ShowIncludes>false</ShowIncludes>
+      <UseDynamicDebugging>false</UseDynamicDebugging>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_ttf.lib;  SDL3main.lib$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL_LIBS\SDL3-3.4.10\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateMapFile>true</GenerateMapFile>
+      <AdditionalOptions>/VERBOSE %(AdditionalOptions)</AdditionalOptions>
+      <UseDynamicDebugging>false</UseDynamicDebugging>
+    </Link>
+    <Xdcmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Xdcmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level1</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions> /utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_ttf.lib;  SDL3main.lib$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL_LIBS\SDL3-3.4.10\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level1</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions> /utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+      <ShowIncludes>false</ShowIncludes>
+      <UseDynamicDebugging>false</UseDynamicDebugging>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_ttf.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL_LIBS\SDL3-3.4.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateMapFile>true</GenerateMapFile>
+      <AdditionalOptions>/VERBOSE %(AdditionalOptions)</AdditionalOptions>
+      <UseDynamicDebugging>false</UseDynamicDebugging>
+    </Link>
+    <Xdcmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Xdcmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level1</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL_image-main\SDL_image-main\include;D:\SDL_LIBS\SDL_ttf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions> /utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_ttf.lib;%(AdditionalDependencies);</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL_LIBS\SDL3-3.4.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Conversion.inl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Keybind.cpp" />
+    <ClCompile Include="main.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
+      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ClCompile Include="Matrix.inl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="MatrixTest.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Perspective_Projection.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="rectangle.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="triangle.cpp" />
+    <ClCompile Include="vec2d.cpp" />
+    <ClCompile Include="vec3d.cpp" />
+    <ClCompile Include="Vector.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Vec2dTest.cpp" />
+    <ClCompile Include="Vec3dTest.cpp" />
+    <ClCompile Include="Vec4dTest.cpp" />
+    <ClCompile Include="Vector_functions.cpp" />
+    <ClCompile Include="Weak_Perspective_Projection.cpp" />
+    <ClCompile Include="Window.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)</ObjectFileName>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="Core.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Keybind.h" />
+    <ClInclude Include="Conversion.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Matrix.hpp" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Perspective_Projection.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="rectangle.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="triangle.h" />
+    <ClInclude Include="vec2d.h" />
+    <ClInclude Include="vec3d.h" />
+    <ClInclude Include="Vector.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="UTests.h" />
+    <ClInclude Include="Weak_Perspective_Projection.h" />
+    <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\SDL_LIBS\SDL3-3.4.10\VisualC\SDL\SDL.vcxproj">
+      <Project>{81ce8daf-ebb2-4761-8e45-b71abcca8c68}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="doc.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Randor_simplu.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Ideas.txt" />
+    <Text Include="TODO.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Icon.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

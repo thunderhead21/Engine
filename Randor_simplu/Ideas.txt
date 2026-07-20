@@ -1,0 +1,5 @@
+Never forget that the initial motivation for this was making a TDU style game
+Remember what you learned from TopGear
+
+Heroes-style game with treaties and diplomacy (Hearts of Iron 4 inspired)
+Total world control strategy game, aka Israel simulator

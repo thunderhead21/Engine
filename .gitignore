@@ -1,0 +1,29 @@
+# Visual Studio
+.vs/
+*.VC.db
+*.VC.opendb
+*.suo
+*.user
+
+# Build folders
+Debug/
+Release/
+x64/
+x86/
+bin/
+obj/
+
+# CMake
+build/
+CMakeFiles/
+CMakeCache.txt
+
+# Logs
+*.log
+
+# Temporary
+*.tmp
+
+# Windows
+Thumbs.db
+Desktop.ini

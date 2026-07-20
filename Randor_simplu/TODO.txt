@@ -1,0 +1,267 @@
+﻿Created - 02.07.2026, 00:00
+NEXT STEP - Create pipeline :
+
+!!<DON'T DELETE COMPLETED TASKS. MOVE THEM TO THE COMPLETED SECTION WITH A CONCLUSION>!!
+
+TASK:
+Implement valid conversion from Vec2d to vertex 
+
+Current Problem:
+Conversion copies manually in a loop near shader()
+
+Goal:
+Single conversion function. Provide raw vec2d to SDL_Vertex() and one that takes a colour component
+
+Observations:
+[02.07.2026, 13:50]
+1. While implementing this feature, omitting marking functions as inline and a few operator definition lead to entire hours of bug hunting
+2. Always make sure the function is declared in one place and implemented in one place. Always mark implementations in header as inline.
+3. Entity.h - Triangle.end() gave points[4], instead of points[3]. Refactoring fixed vertex roaming.
+
+
+
+TASK:
+Implement operator[] for vecXd and, if useful, matX
+
+Current problem:
+Vector has no array-like syntax, and as such cannot be directly iterated through
+
+Goal:
+Access vecXd using char or const char index specifying dimension - v['x'], v['y'], v['z'], v['w'], v['n']
+
+Observations:
+[04.07.2026, 6:25] - Math.h was changed to Vector.h to separate mathematical concepts. Process required 30 minutes
+
+
+
+TASK:
+Use unit testing to determine whether critical elements of the library work as expected.
+
+Current problem:
+Testing manually different vector operations, matrix operations and mixed operations is unsustainable
+
+Goal:
+Obtain a list of input values for the components to be tested and check whether the output is on par
+
+Observations:
+[20.07.2026, 00:38] After an entire, tiring day of refactoring with the aid of different AIs such that the matrices
+can now be instantiated as mat<double> m(2, 5) or m(rows, columns), which could NOT be done in a template like mat<size_t, s> m.
+This decision was made after discovering this specific thing when implementing unit tests for the matrices. 
+Refactoring process needed ~8 hours.
+After refactoring the variable size matrix was obtained. However, having both versions of the matrix is recommended, 
+as per Eigen for completeness.
+
+Conclusions:
+- Templates have strict compile-time limitations, if templates cannot be deduced from contants when compiling, they fail!
+- Testing exposed API weaknesses.
+- Generality has implementation costs.
+
+
+
+TASK:
+Create colour helpers  
+
+Current Problem:
+Managing colour seems highly cumbersome
+
+Goal:
+Add colour to vertices elegantly
+
+Observations:
+There is no elegant way to do this at the moment. It was hardcoded for the purpose of testing near shader()
+
+
+
+
+TASK:
+vec3d - > vec2d{x/z, y/z} - > SDL_Vertex  
+
+Current problem:
+There is no implicit conversion from vec3d to vertex. One can be obtained by dividing the first two components by the third
+
+Goal:
+Obtain a vec3d_to_SDL_Vertex()
+
+Observations:
+I realised this because modifying each SDL_Vertex depth leads to a certain vertex roaming around the screen.
+Vertex roaming was caused by tris.end() returning tris[4] instead of tris[3]
+vec3d::vertex() was implemented as alias for make_vertex(*this)
+vec2d::vertex() was implemented as alias for make_vertex(*this)
+The completion state depends on the projection type:
+Weak projection (dividing X, Y by Z) uses the Z component. Could be Wea
+Perspective projection discards Z in the end after matrix transformations
+
+
+
+TASK:
+Implement easy ways to change projection types on the fly
+
+Current problem:
+vec3d - > vec2d - > SDL_Vertex is different depending on projection type, as per above observation
+
+Goal:
+Obtain a flexible vec3d_to_SDL_Vertex() framework such as project_weakly() or perspective_project()
+
+Observations:
+This task is a spawn of the above one
+Weakly_project() should take a vec3d
+Perspective Projection should take vec4d
+
+
+
+TASK: Vec4d - > [? Vec3d ?] - > SDL_Vertex
+
+Current Problem:
+There is no current use to the vec4d class
+
+Goal:
+Have a meaningful use for vec4d
+
+Observations:
+It part of the World Transform
+
+
+
+
+TASK: Implement window text display
+
+Current Problem:
+There is no way to display strings of text at all at the time of writing
+
+Goal:
+Have easy to use functions to display text with as little headache as possible
+
+Observations:
+USEFUL FUNCTIONS:
+TTF_INIT()
+TTF_OpenFont()
+TTF_Create_Renderer_Text_Engine()
+TTF_CreateText()
+TTF_SetTextColor()
+
+
+
+TASK: 
+Create High-level functions 
+
+Current Problem:
+The entire pipeline is manually managed and unsustainable
+
+Goal:
+Obtain working and intuitive abstractions for library provided functionality
+
+Observations:
+This is critical for ANY library
+
+
+TASK:
+Implement simple pipeline (ie Vec4d_to_Vertex()) 
+
+Current Problem:
+Components are all used manually at the moment
+
+Goal:
+Have a clear flow of the workload
+
+Observations:
+!! < Build bottom up, and higher level is an arrangement of the lower level > !!
+
+
+
+
+TASK:
+Label each step in the pipeline
+
+Current Problem:
+It is not clear what belongs to what step in the pipeline. It would be neat if it were
+
+Goal:
+Have components clarified if they belon to rasterization, shading, post-processing, etc.
+
+Observation:
+This is simply a matter of labeling or oragnization, not anything mission-critical, but could help in the way of documentation and educational potential
+
+
+
+
+
+!TEST AT EACH STEP!
+
+--------------------------------------------------
+[ ] Vec2d -> SDL_Vertex
+Draw one point.
+
+[ ] Color helpers
+Verify colors render correctly.
+
+[ ] Vec3d -> Vec2d
+Confirm points shrink as z increases.
+
+[ ] Vec4d -> Vec3d
+Verify the perspective divide behaves as expected.
+
+[ ] Vec4d_to_Vertex()
+Draw a complete point through the full pipeline.
+--------------------------------------------------
+Render something after every stage
+
+Continue the math library - Matrix implementation, vector multiplications, matrix multiplication
+
+Finish the transform class
+
+Projection Matrix
+Perspective Divide
+Viewport Transform
+
+Transformation queuing
+
+Re-run through the comments
+
+***************************** TIP - Keep identifiers close to what you have here
+
+Object Space (Vec4d)
+        ↓
+World Transform
+        ↓
+View Transform
+        ↓
+Projection
+        ↓
+Perspective Divide
+        ↓
+NDC (Vec3d)
+        ↓
+Viewport Transform
+        ↓
+Screen (Vec2d)
+        ↓
+SDL_Vertex
+
+
+
+======================================================== Finished Tasks ========================================================
+
+TASK:
+Use the new keybinding system [COMPLETED]
+
+Current Problem:
+Processing input events is clunky and cumbersome. The new system was, in theory, done and is ready to be implemented.
+
+Goal:
+Port the input management component to the newly created keybind ing system that is ready to use.
+
+Observation:
+This should be easy enough to do in something like one hour maximum.
+[04.07.2026, 8:50] It is not really that easy, as per usual.
+There are a few bridges between Keybind and InputManager to gap.
+The code is scattered
+[08.07.2026, 18:40] The implementation is, presumably, done.
+It now includes support for binding a key to a function pointer,
+ignoring certain modifiers by leveraging bitwise operations,
+marking modifiers as ignored or not
+getting individual key states
+[09.07.2026, 15:50] InputManager could not provide state of individual keys.
+Error was that the kb_state member was declared as `bool* kb_state[SDL_SCANCODE_COUNT]` as opposed to plain `bool* kb_state`
+
+
+[09.07.2026, 15:00] - The program was renamed Vigineer, a word combination between 'View' and 'Engineer'. Initial name was 'Randor_simplu' for both the solution and the project
