@@ -80,3 +80,41 @@ void TEST_matrix_creation(){
 	std::cout << '\n' << v4 << std::endl;
 
 }
+
+void TEST_matrix_rotation(){
+
+	auto I = mat4::identity();
+	std::cout << "IDENTITY:" << std::endl;
+	(I * I).print();
+	std::cout << std::endl;
+
+	auto r1 = mat4::rotation_x(45);
+	std::cout << "ROT_X:" << std::endl;
+	r1.print();
+	std::cout << std::endl;
+
+	auto r2 = mat4::rotation_y(45);
+	std::cout << "ROT_Y:" << std::endl;
+	r2.print();
+	std::cout << std::endl;
+
+	auto r3 = mat4::rotation_z(45);
+	std::cout << "ROT_Z:" << std::endl;
+	r3.print();
+	std::cout << std::endl;
+
+	auto r4 = mat4::rotation({ 45, 0, 0 });
+
+	std::cout << "ROTATION MATRIX:" << std::endl;
+	(I * r1 * r2 * r3 * r4).print();
+	std::cout << std::endl;
+
+	vec3d x{ 1,0,0 };
+	std::cout << "X ROT_X(90)" << mat4::rotation_z(90) * x << '\n';
+
+	vec3d y{ 0,1,0 };
+	std::cout << "Y X_ROT(90)" << mat4::rotation_x(90) * y << '\n';
+
+	vec3d z{ 0,0,1 };
+	std::cout << "Z ROT_Y(90)" << mat4::rotation_y(90) * z << '\n';
+}

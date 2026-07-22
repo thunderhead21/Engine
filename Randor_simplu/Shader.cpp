@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "Projection.h"
 
 /* Click to add line to render queue. Nice little demo
 float r = 220, g = 230, b = 225;
@@ -36,53 +37,61 @@ void Mesh_to_vertices(Mesh& m) {
 
 	float base = (1.0f / 255.0f);
 
-	for (auto &t : m.tris) {	//For each triangle of the Mesh
-		for (int i = 0; i < 3; i++) {	//Store the coordinates of each point
-			SDL_Vertex v = t.points[i].vertex();
+	for (auto &t : m.get_vertices()) {	//For each vertex of the Mesh
 
-			/*
-			const vec3d& p = t.points[i];
+		SDL_Vertex v = t.vertex();
 
-			v.tex_coord.x = v.position.x = p.x / p.z;
-			v.tex_coord.y = v.position.y = p.y / p.z;
-			*/
-			
-			
+		v.color.a = base * (a % 255);
+		v.color.r = base * (r % 255);
+		v.color.g = base * (g % 255);
+		v.color.b = base * (b % 255);
 
-			v.color.a = base * (a % 255);
-			v.color.r = base * (r % 255);
-			v.color.g = base * (g % 255);
-			v.color.b = base * (b % 255);
-
-			a += 15;
-			r += 30;
-			g += 52;
-			b += 15;
+		a += 15;
+		r += 30;
+		g += 52;
+		b += 15;
 
 
-			vertices.push_back(v);
+		vertices.push_back(v);
 		
-		}
+		
 		
 	}
 }
 
 void Window::shader() {
 
-	if (!converted) {
 
-		for (auto& i : entities) {
-				Mesh_to_vertices(i->get_Mesh());
-				//i->apply_transform();
+	for (auto& entity : entities) {
+		std::vector<vec4d> world_vertices = entity->get_transform() * entity->get_Mesh();
 
+		std::vector<SDL_Vertex> render_vertices;
+		render_vertices.reserve(world_vertices.size());
+
+		for (const auto& vertex : world_vertices) {
+			SDL_Vertex sdl_vertex = flat_projection({vertex.x, vertex.y, vertex.z});
+			sdl_vertex.color.r = 1.0f;
+			sdl_vertex.color.g = 1.0f;
+			sdl_vertex.color.b = 1.0f;
+			sdl_vertex.color.a = 1.0f;
+			
+			render_vertices.push_back(sdl_vertex);
 		}
+
+		if (SDL_RenderGeometry(
+			renderer, 
+			nullptr, 
+			render_vertices.data(), 
+			render_vertices.size(), 
+			(const int*)entity->get_Mesh().get_indices().data(), 
+			entity->get_Mesh().get_indices().size()) == false) {
+			std::cout << SDL_GetError() << '\n';
+		};
+				
+					
+
 	}
 
-
-
-	if (SDL_RenderGeometry(renderer, nullptr, vertices.data(), (int)vertices.size(), nullptr, 0) == false) {
-		std::cout << SDL_GetError() << '\n';
-	};
 
 }
 

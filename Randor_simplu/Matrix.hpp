@@ -23,6 +23,7 @@ protected:
 public:
 	//Constructors
 	mat(size_t rows = 4, size_t columns = 0);
+	mat(const mat<T>& other);
 
 	//Destructor
 	~mat();
@@ -58,9 +59,10 @@ public:
 	const T& operator[](size_t index) const ;
 
 	//Assignment operator
-	void operator=(const mat& other);
+	mat<T>& operator=(const mat& other);
+
 	//Equality operator
-	bool operator==(const mat& other);
+	bool operator==(const mat& other) const;
 
 	//OPERATOR* NEVER changes the matrix, it returns a new one.
 	//OPERATOR*= does that

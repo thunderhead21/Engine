@@ -30,28 +30,28 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseDynamicDebugging>true</UseDynamicDebugging>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseDynamicDebugging>true</UseDynamicDebugging>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -208,7 +208,7 @@
     </ClCompile>
     <ClCompile Include="MatrixTest.cpp" />
     <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="Perspective_Projection.cpp" />
+    <ClCompile Include="Projection.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="rectangle.cpp" />
     <ClCompile Include="Transform.cpp" />
@@ -224,7 +224,6 @@
     <ClCompile Include="Vec3dTest.cpp" />
     <ClCompile Include="Vec4dTest.cpp" />
     <ClCompile Include="Vector_functions.cpp" />
-    <ClCompile Include="Weak_Perspective_Projection.cpp" />
     <ClCompile Include="Window.cpp">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)</ObjectFileName>
@@ -244,7 +243,7 @@
     </ClInclude>
     <ClInclude Include="Matrix.hpp" />
     <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Perspective_Projection.h" />
+    <ClInclude Include="Projection.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="rectangle.h" />
     <ClInclude Include="Transform.h" />
@@ -259,7 +258,6 @@
     </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="UTests.h" />
-    <ClInclude Include="Weak_Perspective_Projection.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

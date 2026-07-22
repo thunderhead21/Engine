@@ -2,10 +2,10 @@
 #include <vector>
 #include "Mesh.h"
 
-struct rectangle : public Mesh {
-	float x, y, z; //Center position
-	float w, h, d; //Width, height, and SUPPOSED dZ
+class rectangle : public Mesh {
 
-	std::vector<triangle> to_tris() const;
+public:
+	rectangle(float width, float height);
+	rectangle(vec3d& a, vec3d& b, vec3d& c, vec3d& d);
 
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Matrix.hpp"
+#include "Mesh.h"
 
 //Describes the object in the world - TRS
 class Transform {
@@ -14,13 +15,7 @@ public:
 	vec3d& position() { return _position; };
 	vec3d& rotation() { return _rotation; };
 	vec3d& scale() { return _scale; };
-	mat4 matrix() const { 
-		auto t = mat4::translation(_position);
-		auto r = mat4::rotation(_rotation);
-		auto s = mat4::scale(_scale);
-		//return mat4::translation(_position) * mat4::rotation(_rotation) * mat4::scale(_scale); 
-		return (t * (r * s));
-	} ;
+	mat4 matrix() const;
 
 
 	//Incrementors
@@ -35,7 +30,7 @@ public:
 	void set_rotation(const vec3d& rotation) { _rotation = rotation; };
 	void set_scale(const vec3d& scale) { _scale = scale; };
 
-
+	std::vector<vec4d> operator*(const Mesh&  mesh);
 
 };
 

@@ -36,9 +36,6 @@ protected:
 public:
 
 	Transform& get_transform() { return transform; };
-	/*No.... Just... no....
-	void apply_transform();
-	*/
 
 	/**
 	* @brief Changes the visibility of the entity

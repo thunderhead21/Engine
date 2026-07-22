@@ -129,8 +129,11 @@ struct vec2d {
 struct vec3d {
 	float x, y, z;
 
-	float& operator[](char dimension);
-	const float& operator[](char dimension) const;
+	float& component(char component);
+	const float& component(char component) const;
+	
+	float& operator[](size_t dimension);
+	const float& operator[](size_t dimension) const;
 
 	vec3d operator+(const vec3d& other) const;
 	vec3d operator-(const vec3d& other) const;

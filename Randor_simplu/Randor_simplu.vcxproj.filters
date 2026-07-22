@@ -81,9 +81,6 @@
     <Filter Include="Components\Geometry\Primitives\3D">
       <UniqueIdentifier>{9b8d9fca-7aa3-4faa-9fe0-b9b1d36c04ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\Rendering\Projection\Weak">
-      <UniqueIdentifier>{258048cf-9a62-4cd4-971a-f5284c55db6a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components\Rendering\Projection\Perspective">
       <UniqueIdentifier>{e1c483d9-3276-4fa3-b4b1-17efc24df887}</UniqueIdentifier>
     </Filter>
@@ -147,10 +144,7 @@
     <ClCompile Include="Plane.cpp">
       <Filter>Components\Geometry\Primitives\3D</Filter>
     </ClCompile>
-    <ClCompile Include="Weak_Perspective_Projection.cpp">
-      <Filter>Components\Rendering\Projection\Weak</Filter>
-    </ClCompile>
-    <ClCompile Include="Perspective_Projection.cpp">
+    <ClCompile Include="Projection.cpp">
       <Filter>Components\Rendering\Projection\Perspective</Filter>
     </ClCompile>
     <ClCompile Include="Conversion.inl">
@@ -215,10 +209,7 @@
     <ClInclude Include="Plane.h">
       <Filter>Components\Geometry\Primitives\3D</Filter>
     </ClInclude>
-    <ClInclude Include="Weak_Perspective_Projection.h">
-      <Filter>Components\Rendering\Projection\Weak</Filter>
-    </ClInclude>
-    <ClInclude Include="Perspective_Projection.h">
+    <ClInclude Include="Projection.h">
       <Filter>Components\Rendering\Projection\Perspective</Filter>
     </ClInclude>
     <ClInclude Include="Core.h">

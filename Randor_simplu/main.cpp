@@ -8,6 +8,8 @@
 #include "Window.h"
 #include "InputManager.h"
 #include "Matrix.hpp"
+#include "rectangle.h"
+#include "triangle.h"
 
 /*
 NEXT STEP - Create pipeline :
@@ -68,6 +70,10 @@ void print_mat(mat<T>& m) {
 //Now you have to pass the input manager to the window as function parameter for topical usage
 int main(int argc, char* argv[])
 {
+	
+
+	//std::cin.get();
+
 	bool run_tests = 0;
 	if (run_tests) {
 		TEST_vec2d_length();
@@ -87,11 +93,9 @@ int main(int argc, char* argv[])
 
 	InputManager i;
 
-	rectangle r = { 200, 200, 3.5, 110, 300, 0.2 };
-	//triangle t = { 100, 800, 500 };
-	Mesh m;
-	m = r;
-	Entity e(m);
+	rectangle r(100.0f, 100.0f);
+	triangle t({600, 300, 0}, { 300, 900, 0 }, { 900, 900, 0 });
+	Entity e1(r);
 	Window w(i);
 	//w.load_entity_Mesh(e);
 	
@@ -102,9 +106,9 @@ int main(int argc, char* argv[])
 	i.register_keybind(SDL_SCANCODE_E, SHIFT_UP);
 	i.register_keybind(SDL_SCANCODE_BACKSLASH, []{__debugbreak(); });
 
-	//std::cout << "ENTITIY TFORM: " << '\n'; e.get_transform().matrix().print();
+	e1.get_transform().set_position({ 0.5,0.5,1 });
 
-	w.enroll_entity(e);
+	w.enroll_entity(e1);
 
 	while (w.get_validity()) {
 		SDL_PollEvent(&event);	///Event is the hooker you pass around O.O

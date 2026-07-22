@@ -79,29 +79,53 @@ vec3d vec3d::operator*(const float scalar) const
 }
 void vec3d::operator+=(const vec3d& other)
 {
-	x + other.x;
-	y + other.y;
-	z + other.z;
+	x += other.x;
+	y += other.y;
+	z += other.z;
 
 }
-float& vec3d::operator[](char dimension){
-	switch (SDL_tolower(dimension)) {
+float& vec3d::component(char component){
+	switch (SDL_tolower(component)) {
 	case 'x': return x;
 	case 'y': return y;
 	case 'z': return z;
+	default: throw "invalid component: " + component;
+
+	}
+}
+const float& vec3d::component(char component) const {
+	switch (SDL_tolower(component)) {
+	case 'x': return x;
+	case 'y': return y;
+	case 'z': return z;
+	default: throw "invalid component: " + component;
+
+	}
+}
+
+float& vec3d::operator[](size_t dimension)
+{
+	switch (dimension) {
+	case 0: return x;
+	case 1: return y;
+	case 2: return z;
 	default: throw "invalid dimension: " + dimension;
 
 	}
 }
-const float& vec3d::operator[](char dimension) const {
-	switch (SDL_tolower(dimension)) {
-	case 'x': return x;
-	case 'y': return y;
-	case 'z': return z;
+
+const float& vec3d::operator[](size_t dimension) const
+{
+	switch (dimension) {
+	case 0: return x;
+	case 1: return y;
+	case 2: return z;
 	default: throw "invalid dimension: " + dimension;
 
 	}
 }
+
+
 
 SDL_Vertex vec2d::vertex() const
 {

@@ -14,6 +14,13 @@ inline mat<T>::mat(size_t rows, size_t columns):
 	if(this->rows == 0 || this->columns == 0) throw std::invalid_argument("Matrix dimensions cannot be zero");
 }
 
+template<typename T>
+inline mat<T>::mat(const mat<T>& other):
+	rows(other.rows), columns(other.columns), data(new T[other.size]), size(other.size), is_square(rows == (columns == 0 ? rows : columns))
+{
+	copyDataFrom(other);
+}
+
 //////////////////// DESTRUCTORS ////////////////////
 template<typename T>
 inline mat<T>::~mat()
@@ -24,31 +31,31 @@ inline mat<T>::~mat()
 /////////////////// OPERATORS ///////////////////
 template <typename T>
 inline T& mat<T>::operator[](size_t index) { 
-	if (index >= size ) throw "Invalid index requested";
+	if (index >= size ) throw std::out_of_range("Invalid index requested");
 	
 	return data[index];
 }
 
 template <typename T>
 inline const T& mat<T>::operator[](size_t index) const {
-	if (index >= size) throw "Invalid index requested";
+	if (index >= size) throw std::out_of_range("Invalid index requested");
 
 	return data[index];
 }
 
 template<typename T>
-inline void mat<T>::operator=(const mat& other)
+inline mat<T>& mat<T>::operator=(const mat& other)
 {
-	size_t elems = sizeof(data) / sizeof(T);
-	if (sizeof(other.data ) / sizeof(T) != sizeof(data) / sizeof(T)) throw "Matrices have to be of equal size to assign";
+	if (this == &other) return *this;
+	else if (rows != other.rows || columns != other.columns) throw "Matrices have to be of equal size to assign";
 
-	for (int i = 0; i < elems; i++) {
-		data[i] = other.data[i];
-	}
+	copyDataFrom(other);
+
+	return *this;
 }
 
 template<typename T>
-inline bool mat<T>::operator==(const mat& other)
+inline bool mat<T>::operator==(const mat& other) const 
 {
 	//If one of the dimensions is different, the matrices are NOT equal
 	if(size != other.size || rows != other.rows || columns != other.columns) return false;
@@ -70,7 +77,7 @@ template<typename T>
 inline vec4d mat<T>::operator*(const vec4d& v) const
 {
 	vec4d result{0,0,0,0};
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < rows; i++) {
 		
 		result[i] = (v[0] * at(i, 0)) + (v[1] * at(i, 1)) + (v[2] * at(i, 2)) + (v[3] * at(i, 3));
 		//result[i] = (v[i] * at(0, i)) + (v[i] * at(1, i)) + (v[i] * at(2, i)) + (v[i] * at(3, i));
@@ -83,20 +90,25 @@ template<typename T>
 inline vec4d mat<T>::operator*(const vec3d& v) const
 {
 	
-	vec4d result{ v.x,v.y, v.z, 1 };
+	vec4d result{ v.x, v.y, v.z, 1 };
+	//std::cout<< "START: " << result << std::endl;
 	for (int i = 0; i < rows; i++) {
 
-		result[i] = (result[0] * at(i, 0)) + (result[1] * at(i, 1)) + (result[2] * at(i, 2)) + (result[3] * at(i, 3));
+		result[i] = (v[0] * at(i, 0)) + (v[1] * at(i, 1)) + (v[2] * at(i, 2)) + (1 * at(i, 3));
 		//result[i] = (v[i] * at(0, i)) + (v[i] * at(1, i)) + (v[i] * at(2, i)) + (v[i] * at(3, i));
 
 	}
-	std::cout << result;
+	//std::cout <<"END:" << result << std::endl;
 	return result;
 }
 
 template<typename T>
 inline mat<T> mat<T>::operator*(const mat<T>& other) const
 {
+	assert(columns == other.rows);
+
+	if (columns != other.rows) throw std::invalid_argument("Incompatible matrix dimensions");
+
 	mat<T> result(rows, other.columns);
 	//	IF square matrix with side of 4
 	if( is_square && columns == 4 ) {
@@ -220,16 +232,17 @@ inline T& mat<T>::at(size_t row, size_t column)
 template<typename T>
 inline const T& mat<T>::at(size_t row, size_t column) const
 {
-	return data[column * row + row];
+	return data[column * rows + row];
 }
 
 template<typename T>
 inline void mat<T>::print()
 {
-	for (int i = 0; i < columns; i++) {		//Column
-		for (int j = 0; j < rows ; j++) {	//Rows
-			std::cout << at(i, j)<<' ';				//Get each row of the column
-		}
+	for (size_t row = 0; row < rows; ++row)	//For each row
+	{
+		for (size_t col = 0; col < columns; ++col)	//Print each column
+			std::cout << at(row, col) << ' ';
+
 		std::cout << '\n';
 	}
 }
@@ -247,7 +260,6 @@ inline mat<T> mat<T>::identity()
 		id[i] = T(1);
 
 	}
-
 	return id;
 }
 
