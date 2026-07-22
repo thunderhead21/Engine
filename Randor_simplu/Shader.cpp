@@ -59,24 +59,68 @@ void Mesh_to_vertices(Mesh& m) {
 	}
 }
 
+float sx=0, sy=0, sz=0;
+bool ascending = 1;
+
 void Window::shader() {
 
 
 	for (auto& entity : entities) {
+
+		entity->get_transform().set_scale({ sx, sy, sz });
+		entity->get_transform().rotate({ 0.1f, 0.5f, 2.0f });
+
+		if (entity->get_transform().scale().x + entity->get_transform().scale().y + entity->get_transform().scale().z > 15.0f) {
+			ascending = 0;
+		}
+		else if (entity->get_transform().scale().x + entity->get_transform().scale().y + entity->get_transform().scale().z < 0.01f) {
+			ascending = 1;
+		}
+
+		if(controller.is_active(SDL_SCANCODE_PERIOD)) {
+			
+			sx += 0.01f;
+			sy += 0.01f;
+			sz += 0.01f;
+			
+		}
+
+		if (controller.is_active(SDL_SCANCODE_COMMA)) {
+			
+			sx -= 0.01f;
+			sy -= 0.01f;
+			sz -= 0.01f;
+		
+		}
+
+		/*
+		std::cout << "MESH COORDINATES:" << std::endl;
+		for (const auto& vertex : entity->get_Mesh()) {
+			std::cout << vertex.x << ", " << vertex.y << std::endl;
+		}
+		std::cout << std::endl << std::endl << std::endl;
+		*/
 		std::vector<vec4d> world_vertices = entity->get_transform() * entity->get_Mesh();
 
 		std::vector<SDL_Vertex> render_vertices;
 		render_vertices.reserve(world_vertices.size());
-
+		//std::cout << "VERTICES" << std::endl;
 		for (const auto& vertex : world_vertices) {
 			SDL_Vertex sdl_vertex = flat_projection({vertex.x, vertex.y, vertex.z});
-			sdl_vertex.color.r = 1.0f;
-			sdl_vertex.color.g = 1.0f;
-			sdl_vertex.color.b = 1.0f;
+			sdl_vertex.color.r = 0.2f;
+			sdl_vertex.color.g = 0.8f;
+			sdl_vertex.color.b = 0.9f;
 			sdl_vertex.color.a = 1.0f;
 			
 			render_vertices.push_back(sdl_vertex);
+			//std::cout << vertex.x << ", " << vertex.y << std::endl;
 		}
+		/*
+		std::cout << std::endl << std::endl << "INDICES" << std::endl;
+		for (auto& i : entity->get_Mesh().get_indices()) {
+			std::cout << i << ' ';
+		}
+		*/
 
 		if (SDL_RenderGeometry(
 			renderer, 

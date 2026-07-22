@@ -27,15 +27,15 @@ rectangle::rectangle(float width, float height) {
 	float hy = height * 0.5f;
 
 	vertices = {
-		{-hx, hy, 0},
-		{ hx,-hy, 0},
-		{ hx, hy, 0},
-		{-hx, hy, 0}
+		{-hx, -hy, 0},
+		{-hx,  hy, 0},
+		{ hx,  hy, 0},
+		{ hx, -hy, 0}
 	};
 
 	indices = {
 		0, 1, 2,
-		2, 3, 0
+		0, 2, 3
 	};
 
 }

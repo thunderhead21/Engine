@@ -6,9 +6,9 @@
 //Describes the object in the world - TRS
 class Transform {
 private:
-	vec3d _position;
-	vec3d _rotation;
-	vec3d _scale;
+	vec3d _position{ 0,0,0 };
+	vec3d _rotation{ 0,0,0 };
+	vec3d _scale{ 1,1,1 };
 
 public:
 	//Getters

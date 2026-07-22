@@ -6,12 +6,6 @@ mat4 Transform::matrix() const
 	auto r = mat4::rotation(_rotation);
 	auto s = mat4::scale(_scale);
 
-	t.print();
-	std::cout << std::endl;
-	r.print();
-	std::cout << std::endl;
-	s.print();
-
 	//return mat4::translation(_position) * mat4::rotation(_rotation) * mat4::scale(_scale); 
 	return (t * (r * s));
 }

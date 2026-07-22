@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
 	i.register_keybind(SDL_SCANCODE_E, SHIFT_UP);
 	i.register_keybind(SDL_SCANCODE_BACKSLASH, []{__debugbreak(); });
 
-	e1.get_transform().set_position({ 0.5,0.5,1 });
+	e1.get_transform().set_position({ 500, 300, 00 });
 
 	w.enroll_entity(e1);
 
