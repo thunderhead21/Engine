@@ -10,6 +10,6 @@ public:
 
 	static Triangle Equilateral(const float& side);
 	static Triangle Isosceles(const float& base, const float& height);
-	static Triangle Right(const float& width, const float& height);
+	static Triangle right(const float& width, const float& height);
 };
 

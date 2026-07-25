@@ -8,8 +8,7 @@
 #include "Window.h"
 #include "InputManager.h"
 #include "Matrix.hpp"
-#include "rectangle.h"
-#include "triangle.h"
+#include "Geometry.h"
 
 /*
 NEXT STEP - Create pipeline :
@@ -93,9 +92,9 @@ int main(int argc, char* argv[])
 
 	InputManager i;
 
-	rectangle r(100.0f, 100.0f);
-	Triangle t = Triangle::Right(199,300);
-	Entity e1(t);
+	Cube c(150);
+	
+	Entity e1(c);
 	Window w(i);
 	w.set_fps(130);
 	//w.load_entity_Mesh(e);

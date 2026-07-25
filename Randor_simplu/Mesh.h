@@ -8,6 +8,9 @@ protected:
 	std::vector<vec3d> vertices;
 	std::vector<uint32_t> indices;
 
+	void append_triangle(const vec3d& a, const vec3d& b, const vec3d& c);
+	void append_quad(const vec3d& a, const vec3d& b, const vec3d& c, const vec3d& d);
+
 public:
 
 	//    |-----------------Auto------------------|

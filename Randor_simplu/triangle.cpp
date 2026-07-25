@@ -42,7 +42,7 @@ Triangle Triangle::Isosceles(const float& base, const float& height) {
 	
 }
 
-Triangle Triangle::Right(const float& width, const float& height) {
+Triangle Triangle::right(const float& width, const float& height) {
 	float hw = width * 0.5f;
 	float hh = height * 0.5f;
 

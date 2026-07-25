@@ -141,9 +141,6 @@
     <ClCompile Include="vec3d.cpp">
       <Filter>Components\Math\Vector\Unused\vec3d</Filter>
     </ClCompile>
-    <ClCompile Include="Plane.cpp">
-      <Filter>Components\Geometry\Primitives\3D</Filter>
-    </ClCompile>
     <ClCompile Include="Conversion.inl">
       <Filter>Components\Core\Conversion</Filter>
     </ClCompile>
@@ -162,7 +159,12 @@
     <ClCompile Include="Projection.cpp">
       <Filter>Components\Rendering\Projection</Filter>
     </ClCompile>
-    <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="Cube.cpp">
+      <Filter>Components\Geometry\Primitives\3D\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry.h">
+      <Filter>Components\Geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -207,9 +209,6 @@
     <ClInclude Include="vec3d.h">
       <Filter>Components\Math\Vector\Unused\vec3d</Filter>
     </ClInclude>
-    <ClInclude Include="Plane.h">
-      <Filter>Components\Geometry\Primitives\3D</Filter>
-    </ClInclude>
     <ClInclude Include="Core.h">
       <Filter>Components\Core</Filter>
     </ClInclude>
@@ -223,7 +222,7 @@
       <Filter>Components\Rendering\Projection</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Geometry\Primitives\3D\Cube</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
