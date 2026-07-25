@@ -20,16 +20,7 @@ void Window::register_own_keybindings()
 	controller.register_keybind(SDL_SCANCODE_ESCAPE, [&] {valid = 0; });	//Quit by pressing ESC
 }
 
-Mesh& Window::load_entity_mesh(Entity& ent) {
 
-	throw "load_entity_mesh() called. UNUSED!";
-
-	///Temporarily unused. Does the window care about entities or just meshes?
-	/// 
-	///meshes.push_back(ent.get_Mesh());
-	///return meshes.at(meshes.size()-1);
-
-}	//Only cares about the Mesh component of the entity
 
 Entity* Window::enroll_entity(Entity& ent)
 {
@@ -86,10 +77,6 @@ void Window::handle_events() {	// Window related event handling
 		case SDL_EVENT_QUIT:
 			valid = 0;
 			spdlog::warn("X pressed. Quitting.");
-
-			break;
-
-		case SDL_EVENT_KEY_DOWN:	// Process key presses. Since that was off-loaded, do nothing
 
 			break;
 
@@ -153,7 +140,9 @@ void Window::update(){
 
 	// Present the frame
 	SDL_RenderPresent(renderer);
-		
+	
+	// Wait as long as the framerate requires
+	SDL_Delay(1000/fps);
 	
 }
 

@@ -81,9 +81,6 @@
     <Filter Include="Components\Geometry\Primitives\3D">
       <UniqueIdentifier>{9b8d9fca-7aa3-4faa-9fe0-b9b1d36c04ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\Rendering\Projection\Perspective">
-      <UniqueIdentifier>{e1c483d9-3276-4fa3-b4b1-17efc24df887}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components\Core\Global">
       <UniqueIdentifier>{9510b8a5-1a4f-43e8-af6a-5e28c2650d7b}</UniqueIdentifier>
     </Filter>
@@ -95,6 +92,9 @@
     </Filter>
     <Filter Include="Tests\Matrix">
       <UniqueIdentifier>{b895e574-dc3e-4392-8237-37d0859a6e69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Geometry\Primitives\3D\Cube">
+      <UniqueIdentifier>{6f24c157-fec1-48fa-9f08-2aae4e2c3e64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -144,9 +144,6 @@
     <ClCompile Include="Plane.cpp">
       <Filter>Components\Geometry\Primitives\3D</Filter>
     </ClCompile>
-    <ClCompile Include="Projection.cpp">
-      <Filter>Components\Rendering\Projection\Perspective</Filter>
-    </ClCompile>
     <ClCompile Include="Conversion.inl">
       <Filter>Components\Core\Conversion</Filter>
     </ClCompile>
@@ -162,6 +159,10 @@
     <ClCompile Include="MatrixTest.cpp">
       <Filter>Tests\Matrix</Filter>
     </ClCompile>
+    <ClCompile Include="Projection.cpp">
+      <Filter>Components\Rendering\Projection</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -209,9 +210,6 @@
     <ClInclude Include="Plane.h">
       <Filter>Components\Geometry\Primitives\3D</Filter>
     </ClInclude>
-    <ClInclude Include="Projection.h">
-      <Filter>Components\Rendering\Projection\Perspective</Filter>
-    </ClInclude>
     <ClInclude Include="Core.h">
       <Filter>Components\Core</Filter>
     </ClInclude>
@@ -220,6 +218,12 @@
     </ClInclude>
     <ClInclude Include="Conversion.hpp">
       <Filter>Components\Core\Conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="Projection.h">
+      <Filter>Components\Rendering\Projection</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

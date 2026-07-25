@@ -10,5 +10,5 @@ SDL_Vertex flat_projection(const vec3d& v);
 
 
 
-//
+//Divides the X and Y components by Z
 SDL_Vertex weak_projection(const vec3d& v);

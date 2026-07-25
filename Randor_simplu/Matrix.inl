@@ -95,7 +95,6 @@ inline vec4d mat<T>::operator*(const vec3d& v) const
 	for (int i = 0; i < rows; i++) {
 
 		result[i] = (v[0] * at(i, 0)) + (v[1] * at(i, 1)) + (v[2] * at(i, 2)) + (1 * at(i, 3));
-		//result[i] = (v[i] * at(0, i)) + (v[i] * at(1, i)) + (v[i] * at(2, i)) + (v[i] * at(3, i));
 
 	}
 	//std::cout <<"END:" << result << std::endl;

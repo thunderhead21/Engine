@@ -59,7 +59,7 @@ void Mesh_to_vertices(Mesh& m) {
 	}
 }
 
-float sx=0, sy=0, sz=0;
+float sx=0.85f, sy=0.85f, sz=0.85f;
 bool ascending = 1;
 
 void Window::shader() {
@@ -68,7 +68,7 @@ void Window::shader() {
 	for (auto& entity : entities) {
 
 		entity->get_transform().set_scale({ sx, sy, sz });
-		entity->get_transform().rotate({ 0.1f, 0.5f, 2.0f });
+		entity->get_transform().rotate({ 0.3f, 0.5f, 0.4f });
 
 		if (entity->get_transform().scale().x + entity->get_transform().scale().y + entity->get_transform().scale().z > 15.0f) {
 			ascending = 0;
@@ -107,9 +107,9 @@ void Window::shader() {
 		//std::cout << "VERTICES" << std::endl;
 		for (const auto& vertex : world_vertices) {
 			SDL_Vertex sdl_vertex = flat_projection({vertex.x, vertex.y, vertex.z});
-			sdl_vertex.color.r = 0.2f;
+			sdl_vertex.color.r = 0.99f;
 			sdl_vertex.color.g = 0.8f;
-			sdl_vertex.color.b = 0.9f;
+			sdl_vertex.color.b = 0.0f;
 			sdl_vertex.color.a = 1.0f;
 			
 			render_vertices.push_back(sdl_vertex);

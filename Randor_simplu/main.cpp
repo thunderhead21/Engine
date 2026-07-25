@@ -94,9 +94,10 @@ int main(int argc, char* argv[])
 	InputManager i;
 
 	rectangle r(100.0f, 100.0f);
-	triangle t({600, 300, 0}, { 300, 900, 0 }, { 900, 900, 0 });
-	Entity e1(r);
+	Triangle t = Triangle::Right(199,300);
+	Entity e1(t);
 	Window w(i);
+	w.set_fps(130);
 	//w.load_entity_Mesh(e);
 	
 	SDL_Event event;
@@ -121,7 +122,6 @@ int main(int argc, char* argv[])
 
 		
 
-		SDL_Delay(10);
 	}
 
 
