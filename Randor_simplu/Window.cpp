@@ -20,6 +20,13 @@ void Window::register_own_keybindings()
 	controller.register_keybind(SDL_SCANCODE_ESCAPE, [&] {valid = 0; });	//Quit by pressing ESC
 }
 
+int Window::set_fps(unsigned int fps) noexcept
+{
+	this->fps = fps;
+	if (fps > 0) target_frame_time_s = 1.0f / fps;
+	return fps;
+}
+
 
 
 Entity* Window::enroll_entity(Entity& ent)
@@ -56,6 +63,8 @@ Window::Window(InputManager& controller, int w, int h, bool VSync, bool fullscre
 		SDL_SetRenderVSync(renderer, 0);  // Disable vsync
 		fps = 0;
 	}
+
+	if (fps > 0) target_frame_time_s = 1.0f / fps;
 
 	register_own_keybindings();
 }
@@ -125,7 +134,7 @@ void Window::handle_events() {	// Window related event handling
 		}
 	}
 }
-
+#include <iomanip>
 void Window::update(){
 	
 	//handle_events();
@@ -142,7 +151,16 @@ void Window::update(){
 	SDL_RenderPresent(renderer);
 	
 	// Wait as long as the framerate requires
-	SDL_Delay(1000/fps);
+	float elapsed;
+		
+		
+	do{
+		elapsed = timer.elapsed() ;
+	} while (elapsed < target_frame_time_s);
+
+	std::cout<< std::setprecision(9)<< timer.elapsed() << '\n';
+
+	timer.reset();
 	
 }
 

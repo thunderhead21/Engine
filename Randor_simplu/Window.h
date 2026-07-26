@@ -26,7 +26,7 @@ struct vec3d;
 
 class Window
 {
-
+	Timer timer;
 	
 	SDL_Window* window;
 	SDL_Renderer* renderer;
@@ -41,6 +41,7 @@ class Window
 	bool valid;
 	static bool init_success, init_attempted;
 	double aspect_ratio;
+	double target_frame_time_s;
 
 	bool init();
 	void register_own_keybindings();
@@ -57,7 +58,7 @@ public:
 
 	void shader();
 	inline const bool get_validity() const noexcept  { return valid; }
-	inline int set_fps(unsigned int fps) noexcept { this->fps = fps; return this->fps; }
+	int set_fps(unsigned int fps) noexcept;
 
 	/// <summary>
 	/// Get dimensions of the window

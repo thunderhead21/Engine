@@ -19,11 +19,15 @@ public:
 
 
 		end = clock.now();
-		std::chrono::milliseconds dt = std::chrono::duration_cast<std::chrono::milliseconds>((end - start));
+		float dt = std::chrono::duration<float>(end - start).count();
 
-		start = clock.now();
+		start = end;
 
-		return dt.count()/1000.0f;
+		return dt;
 	}
+
+	inline float elapsed() const { return std::chrono::duration<float>(clock.now() - start).count(); }
+
+	void reset() { end = start = clock.now(); }
 };
 

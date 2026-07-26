@@ -87,11 +87,11 @@ int main(int argc, char* argv[])
 		TEST_vec3d_vertex();
 		TEST_vec4d_vertex();
 
+		TEST_platform_scheduler_precision(10, 1000);
 
 		//std::cin.get();
 	}
 
-	TEST_platform_scheduler_precision(10, 1000);
 
 
 
@@ -105,7 +105,7 @@ int main(int argc, char* argv[])
 	Entity e1(c1);
 	Entity e2(c2);
 	Entity e3(c3);
-	Window w(i);
+	Window w(i, 1280, 720, true);
 	w.set_fps(60);
 	
 	SDL_Event event;

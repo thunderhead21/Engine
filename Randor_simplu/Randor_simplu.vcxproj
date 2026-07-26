@@ -277,6 +277,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Ideas.txt" />
+    <Text Include="Regression text.txt" />
     <Text Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>

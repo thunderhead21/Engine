@@ -1,6 +1,6 @@
 #include "Timer.h"
 
-Timer::Timer(): start(clock.now()), end(clock.now())
+Timer::Timer(): start(clock.now()), end(start)
 {
 }
 

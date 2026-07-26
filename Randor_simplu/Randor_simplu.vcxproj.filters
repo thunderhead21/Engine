@@ -257,6 +257,9 @@
     <Text Include="Ideas.txt">
       <Filter>Documentation</Filter>
     </Text>
+    <Text Include="Regression text.txt">
+      <Filter>Documentation</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Icon.ico">
