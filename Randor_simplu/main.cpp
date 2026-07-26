@@ -69,7 +69,7 @@ void print_mat(mat<T>& m) {
 //Now you have to pass the input manager to the window as function parameter for topical usage
 int main(int argc, char* argv[])
 {
-	
+	Timer t;
 
 	//std::cin.get();
 
@@ -87,17 +87,26 @@ int main(int argc, char* argv[])
 		TEST_vec3d_vertex();
 		TEST_vec4d_vertex();
 
-		std::cin.get();
+
+		//std::cin.get();
 	}
+
+	TEST_platform_scheduler_precision(10, 1000);
+
+
+
 
 	InputManager i;
 
-	Cube c(150);
+	Cube c1(150);
+	Cube c2(50);
+	Cube c3(80);
 	
-	Entity e1(c);
+	Entity e1(c1);
+	Entity e2(c2);
+	Entity e3(c3);
 	Window w(i);
-	w.set_fps(130);
-	//w.load_entity_Mesh(e);
+	w.set_fps(60);
 	
 	SDL_Event event;
 	
@@ -106,9 +115,13 @@ int main(int argc, char* argv[])
 	i.register_keybind(SDL_SCANCODE_E, SHIFT_UP);
 	i.register_keybind(SDL_SCANCODE_BACKSLASH, []{__debugbreak(); });
 
-	e1.get_transform().set_position({ 500, 300, 00 });
+	e1.get_transform().set_position({ 500, 300, -02 });
+	e2.get_transform().set_position({ 800, 600, 10 });
+	e3.get_transform().set_position({ -100, 500, 00 });
 
 	w.enroll_entity(e1);
+	w.enroll_entity(e2);
+	w.enroll_entity(e3);
 
 	while (w.get_validity()) {
 		SDL_PollEvent(&event);	///Event is the hooker you pass around O.O

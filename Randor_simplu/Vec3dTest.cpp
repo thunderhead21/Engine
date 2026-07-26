@@ -1,7 +1,7 @@
 #include "UTests.h"
 
 bool TEST_vec3d_length() {
-	auto start = Timer::now();
+	auto start = Watch::now();
 	std::cout << "Testing vec3d magnitude..." << std::endl;
 
 	int tests = 0, fails = 0, passes = 0;
@@ -32,7 +32,7 @@ bool TEST_vec3d_length() {
 
 		}
 	}
-	auto end = Timer::now();
+	auto end = Watch::now();
 	auto runtime = std::chrono::duration<double>(end - start);
 
 	std::cout <<  tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
@@ -43,7 +43,7 @@ bool TEST_vec3d_length() {
 
 
 bool TEST_vec3d_square() {
-	auto start = Timer::now();
+	auto start = Watch::now();
 	std::cout << "Testing vec3d magnitude_square()..." << std::endl;
 
 	int tests = 0, fails = 0, passes = 0;
@@ -75,7 +75,7 @@ bool TEST_vec3d_square() {
 
 		}
 	}
-	auto end = Timer::now();
+	auto end = Watch::now();
 	auto runtime = std::chrono::duration<double>(end - start);
 
 	std::cout << tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
@@ -85,7 +85,7 @@ bool TEST_vec3d_square() {
 }
 
 bool TEST_vec3d_vertex() {
-	auto start = Timer::now();
+	auto start = Watch::now();
 	std::cout << "Testing vec3d vertex()..." << std::endl;
 
 	int tests = 0, fails = 0, passes = 0;
@@ -113,7 +113,7 @@ bool TEST_vec3d_vertex() {
 
 		}
 	}
-	auto end = Timer::now();
+	auto end = Watch::now();
 	auto runtime = std::chrono::duration<double>(end - start);
 
 	std::cout << tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";

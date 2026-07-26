@@ -1,11 +1,10 @@
 #include "UTests.h"
 
 bool TEST_vec2d_length() {
-	auto start = Timer::now();
+	auto start = Watch::now();
 	std::cout << "Testing vec2d magnitude..." << std::endl;
 
 	int tests = 0, fails = 0, passes = 0;
-	//std::vector<vec2d> vec;
 
 	for (int i = -10; i < 10; i++) {
 		for (int j = -10; j < 10; j++) {
@@ -13,7 +12,6 @@ bool TEST_vec2d_length() {
 			tests++;
 
 			auto v = vec2d((i % 2 ? i : -2 * i), (j % 2 ? j : -2 * j));
-			//vec.push_back(v);
 
 			float ref = sqrtf( (v.x * v.x) + (v.y * v.y));
 			float mag = v.magnitude();
@@ -30,7 +28,7 @@ bool TEST_vec2d_length() {
 
 		}
 	}
-	auto end = Timer::now();
+	auto end = Watch::now();
 	auto runtime = std::chrono::duration<double>(end - start);
 
 	std::cout << tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
@@ -40,7 +38,7 @@ bool TEST_vec2d_length() {
 }
 
 bool TEST_vec2d_square() {
-	auto start = Timer::now();
+	auto start = Watch::now();
 	std::cout << "Testing vec2d magnitude_square()..." << std::endl;
 
 	int tests = 0, fails = 0, passes = 0;
@@ -69,7 +67,7 @@ bool TEST_vec2d_square() {
 
 		}
 	}
-	auto end = Timer::now();
+	auto end = Watch::now();
 	auto runtime = std::chrono::duration<double>(end - start);
 
 	std::cout << tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
@@ -80,7 +78,7 @@ bool TEST_vec2d_square() {
 
 
 bool TEST_vec2d_vertex() {
-	auto start = Timer::now();
+	auto start = Watch::now();
 	std::cout << "Testing vec2d vertex()..." << std::endl;
 
 	int tests = 0, fails = 0, passes = 0;
@@ -106,7 +104,7 @@ bool TEST_vec2d_vertex() {
 
 		}
 	}
-	auto end = Timer::now();
+	auto end = Watch::now();
 	auto runtime = std::chrono::duration<double>(end - start);
 
 	std::cout << tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";

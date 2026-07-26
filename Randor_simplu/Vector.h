@@ -123,6 +123,8 @@ struct vec2d {
 	vec2d(float x, float y) : x(x), y(y) {};
 	vec2d(const vec2d& other) : x(other.x), y(other.y) {};
 
+	friend std::ostream& operator<<(std::ostream& os, const vec2d& v);
+
 };
 
 /// @brief 3 Dimensional vector with float X Y Z members
@@ -170,6 +172,8 @@ struct vec3d {
 	/// @brief Obtain the X, Y and Z components of the vector
 	/// @return vec2d populated with the X, Y and Z components 
 	inline vec3d xyz() const { return { x,y,z }; };
+
+	friend std::ostream& operator<<(std::ostream& os, const vec3d& v);
 };
 
 /// @brief 4 Dimensional vector with float X Y Z W members. W = 0 if the vector represents a direction. W = 1 if the vector represents a position.

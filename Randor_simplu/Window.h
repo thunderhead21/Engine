@@ -47,7 +47,6 @@ class Window
 
 	std::vector<Entity*> entities;
 
-
 public:
 
 	Window(InputManager& controller, int w = 800, int h = 600, bool VSync = 0, bool fullscreen = 0);
@@ -59,6 +58,12 @@ public:
 	void shader();
 	inline const bool get_validity() const noexcept  { return valid; }
 	inline int set_fps(unsigned int fps) noexcept { this->fps = fps; return this->fps; }
+
+	/// <summary>
+	/// Get dimensions of the window
+	/// </summary>
+	/// <returns>vec2d{width, height}</returns>
+	vec2d get_size() { return {(float)w, (float)h}; };
 
 	//Only cares about the Mesh component of the entity. !! MAY NOT KNOW IF THE OBJECT WAS DELETED !!
 
