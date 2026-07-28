@@ -3,11 +3,15 @@
 #include <vector>
 #include <iostream>
 
-#include "Entity.h"
+#include "Scene.h"
 #include "InputManager.h"
+
+#define FRAME_PACER 1;
 
 constexpr bool DEBUG = 0;
 constexpr bool INFO = 0;
+
+
 
 /*
 namespace Input {
@@ -46,27 +50,37 @@ class Window
 	bool init();
 	void register_own_keybindings();
 
-	std::vector<Entity*> entities;
+	//Prevent changing the scene
+	const Scene const* scene;
+	
 
 public:
-
+	/// @brief Creates a new window
+	/// @param controller - The input controller to use for input processing
+	/// @param w - Number of pixels in width
+	/// @param h - Number of pixels in height
+	/// @param VSync - Whether Vertical Synchronization is enabled
+	/// @param fullscreen - Whether to create it in fullscreen
 	Window(InputManager& controller, int w = 800, int h = 600, bool VSync = 0, bool fullscreen = 0);
 	~Window();
 
-	void update();
+	/// @brief  updates the window screen with the current scene state
+	/// @return float - frame time
+	float update();	//parameter dt doesn't belong here, it belongs to the physics affecting the scene.
 	void handle_events(); ///Will have to be moved to a supposed Window Manager	
-
+	
 	void shader();
 	inline const bool get_validity() const noexcept  { return valid; }
 	int set_fps(unsigned int fps) noexcept;
 
-	/// <summary>
-	/// Get dimensions of the window
-	/// </summary>
-	/// <returns>vec2d{width, height}</returns>
+	/// @brief Get dimensions of the window
+	/// @return vec2d{width, height}
 	vec2d get_size() { return {(float)w, (float)h}; };
 
 	//Only cares about the Mesh component of the entity. !! MAY NOT KNOW IF THE OBJECT WAS DELETED !!
-
-	Entity* enroll_entity(Entity &ent);
+	
+	/// @brief Sets the scene to observe and render
+	/// @param &s - Scene to display
+	/// @return Whether the scene is populated
+	bool set_active_scene(Scene &s);
 };

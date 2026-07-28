@@ -14,6 +14,7 @@ bool Window::init() {
 		else return 0;
 	}
 }
+
 /// REMEMBER! ALL keybindings must be of void return value
 void Window::register_own_keybindings()
 {
@@ -29,10 +30,11 @@ int Window::set_fps(unsigned int fps) noexcept
 
 
 
-Entity* Window::enroll_entity(Entity& ent)
+bool Window::set_active_scene(Scene& s)
 {
-	entities.push_back(&ent);
-	return entities.at(entities.size() - 1);
+	scene = &s;
+
+	return s.empty();
 }
 
 Window::Window(InputManager& controller, int w, int h, bool VSync, bool fullscreen):
@@ -134,8 +136,8 @@ void Window::handle_events() {	// Window related event handling
 		}
 	}
 }
-#include <iomanip>
-void Window::update(){
+
+float Window::update(){
 	
 	//handle_events();
 
@@ -149,19 +151,26 @@ void Window::update(){
 
 	// Present the frame
 	SDL_RenderPresent(renderer);
-	
+
+#if FRAME_PACER	//If the frame pacer was enabled
+		
+	float elapsed = timer.elapsed();
+		
 	// Wait as long as the framerate requires
-	float elapsed;
-		
-		
 	do{
 		elapsed = timer.elapsed() ;
 	} while (elapsed < target_frame_time_s);
 
-	std::cout<< std::setprecision(9)<< timer.elapsed() << '\n';
-
 	timer.reset();
 	
+
+#elif !FRAME_PACER	//If framepacer is disabled
+
+	float elapsed = timer.elapsed();
+	timer.reset();
+
+#endif
+	return elapsed;
 }
 
 Window::~Window() {

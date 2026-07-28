@@ -35,7 +35,7 @@ void Window::shader() {
 
 
 
-	for (auto& entity : entities) {
+	for (const auto &entity : *scene) {
 
 		entity->get_transform().set_scale({ sx, sy, sz });
 		entity->get_transform().rotate({ 0.1f, 0.0f, 1.0f });

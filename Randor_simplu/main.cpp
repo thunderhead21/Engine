@@ -92,10 +92,6 @@ int main(int argc, char* argv[])
 		//std::cin.get();
 	}
 
-
-
-
-
 	InputManager i;
 
 	Cube c1(150);
@@ -105,8 +101,8 @@ int main(int argc, char* argv[])
 	Entity e1(c1);
 	Entity e2(c2);
 	Entity e3(c3);
-	Window w(i, 1280, 720, true);
-	w.set_fps(60);
+	Window w(i, 1280, 720, false);
+	w.set_fps(120);
 	
 	SDL_Event event;
 	
@@ -119,14 +115,25 @@ int main(int argc, char* argv[])
 	e2.get_transform().set_position({ 800, 600, 10 });
 	e3.get_transform().set_position({ -100, 500, 00 });
 
+	Scene world;
+	std::vector<Entity*> ents{new Entity(Cube(100)), new Entity(Cube(50)), new Entity(Cube(200))};
+
+	world.add_entity(ents);
+	
+
+	/*
 	w.enroll_entity(e1);
 	w.enroll_entity(e2);
 	w.enroll_entity(e3);
+	*/
+
+	w.set_active_scene(world);
 
 	while (w.get_validity()) {
 		SDL_PollEvent(&event);	///Event is the hooker you pass around O.O
 
-		w.update();
+		//w.update();
+		std::cout<<w.update()<<'\n';
 		w.handle_events();	//Obsolete... (?)
 
 		i.update(event);

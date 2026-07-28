@@ -102,6 +102,9 @@
     <Filter Include="Tests\Timer">
       <UniqueIdentifier>{f78f42be-2a3c-40b7-be47-e179860b2ba2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Scene">
+      <UniqueIdentifier>{5cf33a70-d9fe-499f-ae07-49de85580ae3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -177,6 +180,9 @@
     <ClCompile Include="TimerTest.cpp">
       <Filter>Tests\Timer</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Components\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -238,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Components\Core\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Components\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

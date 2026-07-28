@@ -1,0 +1,79 @@
+#include "Scene.h"
+
+Scene::~Scene()
+{
+    for (auto& i : entities) {  //For each entity in the scene
+        delete i;               //Delete it
+    }
+}
+
+Entity* Scene::add_entity(Entity* e)
+{
+    entities.push_back(e);
+    if (e->get_visibility() == true) visible.push_back(e);
+
+    return entities.back();
+}
+
+void Scene::add_entity(const std::vector<Entity*>& to_add)
+{
+
+    for (auto *i : to_add) {
+        entities.push_back(i);
+    }
+}
+
+void Scene::delete_entity(Entity*& e)    //Treat e as key, not as target. Scene's vector is the source of truth!
+{
+    auto it = std::find(entities.begin(), entities.end(), e);
+
+    if (it != entities.end()) { //If we found the entity in the the scene
+        delete* it;             //We invalidate it 
+        entities.erase(it);     //And remove it
+    }
+
+    it = std::find(visible.begin(), visible.end(), e);
+    if (it != visible.end()) { //If we found the entity in the the scene
+        delete* it;             //We invalidate it 
+        visible.erase(it);     //And remove it
+    }
+
+
+    e = nullptr;
+
+}
+
+void Scene::delete_entity(const std::vector<Entity*>& e)   //Treat e as key, not as target. Scene's vector is the source of truth!
+{
+
+   
+    for (auto* ptr : e) {   //For each element we want to remove
+
+        delete_entity(ptr); //Call the function that does it
+        
+    }
+
+}
+
+void Scene::delete_last_entity()
+{
+    if (!entities.empty()) {
+        delete entities.back();
+        entities.pop_back();
+    }
+}
+
+unsigned int Scene::rebuild_visible()
+{
+    unsigned int shown = 0;
+    visible.clear();
+
+    for(auto entity : entities){
+        if (entity->get_visibility() == true) {
+            visible.push_back(entity);
+            shown++;
+        }
+    }
+
+    return shown;
+}

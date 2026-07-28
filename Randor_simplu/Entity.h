@@ -17,13 +17,12 @@
 
 /**
 * @brief Base for "Assets" to be used and presented by engine and game
-* @details Contains a Mesh of triangles. Visible by default.
+* @details Contains a Mesh of vertices. Visible by default.
 */
+
 class Entity
 {
 protected:
-	//points geometry;
-	//vec3d center;	Obsolete. Superseded by Transform
 	
 	Mesh geometry;
 	Transform transform;
@@ -36,6 +35,7 @@ protected:
 public:
 
 	Transform& get_transform() { return transform; };
+	const Transform& get_transform() const { return transform; };
 
 	/**
 	* @brief Changes the visibility of the entity
@@ -48,6 +48,7 @@ public:
 	* @returns Mesh& to the entity's geometry
 	*/
 	inline Mesh& get_Mesh() noexcept { return geometry; };
+	inline const Mesh& get_Mesh() const noexcept { return geometry; };
 	
 	/**
 	* @brief Gets the visibility of the entity
