@@ -105,6 +105,15 @@
     <Filter Include="Components\Scene">
       <UniqueIdentifier>{5cf33a70-d9fe-499f-ae07-49de85580ae3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Physics">
+      <UniqueIdentifier>{4ead87ab-7bc0-4a76-b6c5-cddebd802eb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Physics\RigidBody">
+      <UniqueIdentifier>{713c0062-9d00-468d-b9a4-51e8c6b0e80c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Entity\Entity_Data">
+      <UniqueIdentifier>{99516ad0-4491-42c7-92b0-43ff4105ad73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -183,6 +192,12 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Components\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>Components\Physics\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Components\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -247,6 +262,15 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Components\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>Components\Physics\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Components\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity_Data.h">
+      <Filter>Components\Entity\Entity_Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -37,8 +37,8 @@ void Window::shader() {
 
 	for (const auto &entity : *scene) {
 
-		entity->get_transform().set_scale({ sx, sy, sz });
-		entity->get_transform().rotate({ 0.1f, 0.0f, 1.0f });
+		entity->get_transform().set_scale({ sx, sy, sz });		//SUPERSEDED BY SCENE.PHYSICS -- FALSE! Controlling scale is optimal here!
+		//entity->get_transform().rotate({ 0.1f, 0.0f, 1.0f });
 
 		if(controller.is_active(SDL_SCANCODE_PERIOD)) {
 			

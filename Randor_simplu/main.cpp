@@ -9,6 +9,7 @@
 #include "InputManager.h"
 #include "Matrix.hpp"
 #include "Geometry.h"
+#include "Physics.h"
 
 /*
 NEXT STEP - Create pipeline :
@@ -98,9 +99,9 @@ int main(int argc, char* argv[])
 	Cube c2(50);
 	Cube c3(80);
 	
-	Entity e1(c1);
-	Entity e2(c2);
-	Entity e3(c3);
+	Entity* e1 = new Entity(c1);
+	Entity* e2 = new Entity(c2);
+	Entity* e3 = new Entity(c3);
 	Window w(i, 1280, 720, false);
 	w.set_fps(120);
 	
@@ -111,15 +112,24 @@ int main(int argc, char* argv[])
 	i.register_keybind(SDL_SCANCODE_E, SHIFT_UP);
 	i.register_keybind(SDL_SCANCODE_BACKSLASH, []{__debugbreak(); });
 
-	e1.get_transform().set_position({ 500, 300, -02 });
-	e2.get_transform().set_position({ 800, 600, 10 });
-	e3.get_transform().set_position({ -100, 500, 00 });
+	e1->get_transform().set_position({ 500, 300, -02 });
+	e2->get_transform().set_position({ 800, 600, 10 });
+	e3->get_transform().set_position({ -100, 500, 00 });
 
 	Scene world;
-	std::vector<Entity*> ents{new Entity(Cube(100)), new Entity(Cube(50)), new Entity(Cube(200))};
+	//std::vector<Entity*> ents{new Entity(Cube(100)), new Entity(Cube(50)), new Entity(Cube(200))};
+	//world.add_entity(ents);
 
-	world.add_entity(ents);
-	
+	RigidBody* rb1 = dynamic_cast<RigidBody*>(world.add_entity(new RigidBody(Cube(370))));
+	(*rb1).set_angular_velocity({ 10.0f, 30.0f, 0.0f });
+	(*rb1).set_velocity({100.0f, 100.0f, 0.0f});
+
+	RigidBody* rb2 = dynamic_cast<RigidBody*>(world.add_entity(new RigidBody(Cube(370))));
+	(*rb2).set_angular_velocity({ 10.0f, 30.0f, 0.0f });
+	(*rb2).set_velocity({ -100.0f, -100.0f, 0.0f });
+
+	world.add_entity({e1, e2, e3});
+	rb2->get_transform().position() = {-1000, 0, 0};
 
 	/*
 	w.enroll_entity(e1);
@@ -130,10 +140,12 @@ int main(int argc, char* argv[])
 	w.set_active_scene(world);
 
 	while (w.get_validity()) {
-		SDL_PollEvent(&event);	///Event is the hooker you pass around O.O
+		SDL_PollEvent(&event);													///Event is the hooker you pass around O.O
 
-		//w.update();
-		std::cout<<w.update()<<'\n';
+		float dt = w.update();
+		world.update(dt);
+
+		std::cout<<dt<<'\n';
 		w.handle_events();	//Obsolete... (?)
 
 		i.update(event);

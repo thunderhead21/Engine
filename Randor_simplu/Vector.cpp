@@ -84,6 +84,20 @@ void vec3d::operator+=(const vec3d& other)
 	z += other.z;
 
 }
+void vec3d::operator-=(const vec3d& other)
+{
+	x -= other.x;
+	y -= other.y;
+	z -= other.z;
+}
+
+void vec3d::operator*=(const vec3d& other)
+{
+	x *= other.x;
+	y *= other.y;
+	z *= other.z;
+}
+
 float& vec3d::component(char component){
 	switch (SDL_tolower(component)) {
 	case 'x': return x;

@@ -128,6 +128,7 @@ struct vec2d {
 };
 
 /// @brief 3 Dimensional vector with float X Y Z members
+/// @brief 0 Initialized
 struct vec3d {
 	float x, y, z;
 
@@ -142,6 +143,8 @@ struct vec3d {
 	vec3d operator*(float scalar) const;
 	inline bool operator==(vec3d& other) const { return equal(*this, other); };
 	void operator+=(const vec3d& other);
+	void operator-=(const vec3d& other);
+	void operator*=(const vec3d& other);
 
 	inline float magnitude() const { return length(*this); }
 	inline float magnitude_square() const { return length_squared(*this); }

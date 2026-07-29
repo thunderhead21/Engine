@@ -4,6 +4,8 @@
 #include "Mesh.h"
 
 //Describes the object in the world - TRS
+
+/// @brief Describes the object in the world - TRS. Rotation and position set to 0 by default. Scale to 1.
 class Transform {
 private:
 	vec3d _position{ 0,0,0 };
@@ -11,11 +13,19 @@ private:
 	vec3d _scale{ 1,1,1 };
 
 public:
+
+	Transform() : _position({ 0,0,0 }), _rotation({ 0,0,0 }), _scale({1,1,1}) {};
+	Transform(vec3d position, vec3d rotation, vec3d scale) : _position(position), _rotation(rotation), _scale(scale) {};
+
 	//Getters
 	vec3d& position() { return _position; };
 	vec3d& rotation() { return _rotation; };
 	vec3d& scale() { return _scale; };
 	mat4 matrix() const;
+
+	const vec3d& position() const { return _position; };
+	const vec3d& rotation() const { return _rotation; };
+	const vec3d& scale() const { return _scale; };
 
 
 	//Incrementors
@@ -30,7 +40,16 @@ public:
 	void set_rotation(const vec3d& rotation) { _rotation = rotation; };
 	void set_scale(const vec3d& scale) { _scale = scale; };
 
-	std::vector<vec4d> operator*(const Mesh&  mesh);
+	std::vector<vec4d> operator*(const Mesh&  mesh) const;
+	Transform& operator=(const Transform& other);
+
+	Transform operator+(const Transform& other) const;
+	Transform operator-(const Transform& other) const;
+	Transform& operator+=(const Transform& other);
+	Transform& operator-=(const Transform& other);
+
+	Transform operator*(const float coefficient);
+
 
 };
 

@@ -1,15 +1,28 @@
 #pragma once
 
 #include "Entity.h"
+#include "Physics.h"
 /// @brief Scene object. Affected by physics an input.
+
 class Scene
 {
 protected:
-	std::vector<Entity*> entities;	
-	std::vector<Entity*> visible;
+	Physics simulator;
+	Timer timer;
+
+	std::vector<Entity*> entities;		//ALL entities
+	
+	std::vector<Entity*> visible;		//Visible ones for rendering
+	std::vector<RigidBody*> physics;	//Physically simulated entities
+	
+	size_t next_id;
+
+	void rebuild_visible();
+	void rebuild_physics();
+
 
 public:
-	Scene() = default;
+	Scene():next_id(1) {};
 	~Scene();
 
 	Entity* add_entity(Entity* e);
@@ -39,7 +52,9 @@ public:
 	size_t size() const noexcept { return entities.size(); };
 	bool  empty() const noexcept { return entities.empty();};
 
-	unsigned int rebuild_visible();
 
+	float update(float dt);
+
+	void rebuild_queues();
 };
 

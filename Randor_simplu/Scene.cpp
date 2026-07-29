@@ -3,14 +3,20 @@
 Scene::~Scene()
 {
     for (auto& i : entities) {  //For each entity in the scene
+        std::cout << i << " " << '\n';
         delete i;               //Delete it
     }
 }
 
 Entity* Scene::add_entity(Entity* e)
 {
+    e->id = next_id++;
+    e->name = "";
+
     entities.push_back(e);
-    if (e->get_visibility() == true) visible.push_back(e);
+    //if (e->is_visibile() == true) visible.push_back(e);
+
+    rebuild_queues();
 
     return entities.back();
 }
@@ -63,17 +69,44 @@ void Scene::delete_last_entity()
     }
 }
 
-unsigned int Scene::rebuild_visible()
+void Scene::rebuild_visible()
 {
-    unsigned int shown = 0;
     visible.clear();
 
     for(auto entity : entities){
-        if (entity->get_visibility() == true) {
+        if (entity->is_visibile() == true) {
             visible.push_back(entity);
-            shown++;
         }
     }
 
-    return shown;
+}
+
+void Scene::rebuild_physics()
+{
+    physics.clear();
+
+    for (auto entity : entities) {
+
+        RigidBody* rb = dynamic_cast<RigidBody*>(entity);
+        if (rb != nullptr && rb->is_simulated()) {
+            physics.push_back((RigidBody*)entity);
+
+        }
+    }
+
+    simulator.set_active_scene(physics);
+}
+
+float Scene::update(float dt)
+{
+
+    (simulator).update(dt);
+    
+    return timer.tick();
+}
+
+void Scene::rebuild_queues()
+{
+    rebuild_physics();
+    rebuild_visible();
 }

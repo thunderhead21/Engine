@@ -10,7 +10,7 @@ Mesh vertices are stored in LOCAL SPACE.
 
     every frame.
 
-    Modifying the mesh destroys its canonical geometry and prevents:
+    Modifying the mesh destroys its canonical mesh and prevents:
         - instancing
         - shared meshes
         - stable transforms
@@ -20,7 +20,7 @@ Mesh vertices are stored in LOCAL SPACE.
     Transform the vertex during rendering, never the mesh itself.
 void Entity::apply_transform()
 {
-	for (auto& i : geometry) {		//Each triangle
+	for (auto& i : mesh) {		//Each triangle
 		for (auto& vertex : i) {	//Each point
 			auto tmp = transform.matrix() * vertex;
 
@@ -41,12 +41,12 @@ bool Entity::toggle_visibility() noexcept
 }
 
 Entity::Entity() noexcept :
-	geometry({}), visible(1)
+	mesh({}), visible(1), id(0), name("")
 {
 }
 
 Entity::Entity(Mesh m) noexcept:
-	geometry(m), visible(1) 
+	mesh(m), visible(1), id(0), name("")
 {
 
 }
@@ -56,13 +56,7 @@ Entity::Entity(Mesh m) noexcept:
 Entity::~Entity()
 {
 	//Annul its components
-	geometry = {};		
+	mesh = {};		
 	visible = 0;
-}
-//
-namespace Geometry
-{
-
-	
 }
 

@@ -10,7 +10,7 @@ mat4 Transform::matrix() const
 	return (t * (r * s));
 }
 
-std::vector<vec4d> Transform::operator*(const Mesh& mesh)
+std::vector<vec4d> Transform::operator*(const Mesh& mesh) const
 {
 	std::vector<vec4d> vertices_in_world;
 	vertices_in_world.reserve(mesh.size());
@@ -21,4 +21,41 @@ std::vector<vec4d> Transform::operator*(const Mesh& mesh)
 	}
 
 	return vertices_in_world;
+}
+
+Transform& Transform::operator=(const Transform& other)
+{
+	_position = other._position;
+	_rotation = other._rotation;
+	_scale    = other._scale;
+
+	return *this;
+}
+
+Transform Transform::operator+(const Transform& other) const {
+	return Transform({ _position + other._position }, { _rotation + other._rotation }, { _scale + other._scale });
+}
+
+Transform Transform::operator-(const Transform& other) const {
+	return Transform({ _position - other._position }, { _rotation - other._rotation }, { _scale - other._scale });
+}
+
+/*
+Transform& Transform::operator+=(Transform& other)
+{
+	return *this = *this + other;
+}
+*/
+
+Transform& Transform::operator+=(const Transform& other) {
+	return *this = *this + other;
+}
+
+Transform& Transform::operator-=(const Transform& other) {
+	return *this = *this - other;
+}
+
+Transform Transform::operator*(const float coefficient)
+{
+	return Transform(_position * coefficient, _rotation * coefficient, _scale * coefficient);;
 }

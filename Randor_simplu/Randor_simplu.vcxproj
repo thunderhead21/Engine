@@ -210,8 +210,10 @@
     </ClCompile>
     <ClCompile Include="MatrixTest.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Projection.cpp" />
     <ClCompile Include="rectangle.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TimerTest.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -240,6 +242,7 @@
     <ClInclude Include="Core.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Entity_Data.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Keybind.h" />
     <ClInclude Include="Conversion.hpp">
@@ -248,8 +251,10 @@
     </ClInclude>
     <ClInclude Include="Matrix.hpp" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="Projection.h" />
     <ClInclude Include="rectangle.h" />
+    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Transform.h" />
