@@ -1,7 +1,7 @@
 #include "rectangle.h"
 
 /*
-std::vector<SDL_Vertex> rectangle::to_tris() const {
+std::vector<SDL_Vertex> Rectangle::to_tris() const {
 	//KEEP THE TRIGONOMETRIC ORDER
 	
 	//Remove intrinsic projection
@@ -22,7 +22,7 @@ std::vector<SDL_Vertex> rectangle::to_tris() const {
 }
 */
 
-rectangle::rectangle(float width, float height) {
+Rectangle::Rectangle(float width, float height) {
 	float hx = width * 0.5f;
 	float hy = height * 0.5f;
 
@@ -40,7 +40,7 @@ rectangle::rectangle(float width, float height) {
 
 }
 
-rectangle::rectangle(vec3d& a, vec3d& b, vec3d& c, vec3d& d) {
+Rectangle::Rectangle(vec3d& a, vec3d& b, vec3d& c, vec3d& d) {
 
 	vertices = { a, b, c, d };
 

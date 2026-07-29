@@ -95,15 +95,21 @@ int main(int argc, char* argv[])
 
 	InputManager i;
 
+	/*
 	Cube c1(150);
 	Cube c2(50);
 	Cube c3(80);
+	*/
 	
-	Entity* e1 = new Entity(c1);
-	Entity* e2 = new Entity(c2);
-	Entity* e3 = new Entity(c3);
+	Entity* e1 = new RigidBody(RigidBody::Cube(250));
+	Entity* e2 = new RigidBody(RigidBody::Cube(350));
+	Entity* e3 = new RigidBody(RigidBody::Cube(450));
+
 	Window w(i, 1280, 720, false);
 	w.set_fps(120);
+
+	e1->enable_layer(Layers::Physics | Layers::Renderable);
+	std::cout<<std::boolalpha << e1->has_layer(Layers::None);
 	
 	SDL_Event event;
 	

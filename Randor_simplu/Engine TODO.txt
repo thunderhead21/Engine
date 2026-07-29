@@ -1,0 +1,35 @@
+-Engine Core-✅
+Math
+Mesh
+Transform
+Scene
+Renderer
+Physics integration
+
+-Engine Infrastructure- 🔄
+IDs
+Names
+Layers
+Tags
+Engine object encapsulation
+
+-Graphics-
+Camera
+View matrix
+Projection
+Back-face culling
+Clipping
+Depth (Painter's algorithm → Z-buffer)
+
+-Simulation-
+Collision detection
+Collision response
+Gravity
+Fixed timestep
+
+-Gameplay-
+Event system
+World state
+Dialogue
+Quest system
+Save/Load

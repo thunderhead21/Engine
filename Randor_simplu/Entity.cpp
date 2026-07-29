@@ -34,6 +34,8 @@ void Entity::apply_transform()
 }
 */
 
+
+
 bool Entity::toggle_visibility() noexcept
 {
 	visible = (!visible);
@@ -41,12 +43,12 @@ bool Entity::toggle_visibility() noexcept
 }
 
 Entity::Entity() noexcept :
-	mesh({}), visible(1), id(0), name("")
+	mesh({}), visible(1), id(0), name("Entity")
 {
 }
 
 Entity::Entity(Mesh m) noexcept:
-	mesh(m), visible(1), id(0), name("")
+	mesh(m), visible(1), id(0), name("Entity")
 {
 
 }
@@ -60,3 +62,31 @@ Entity::~Entity()
 	visible = 0;
 }
 
+
+//////////////////////   FACTORIES   //////////////////////
+Entity Entity::Cube(float side)
+{
+	
+	Entity cube(Cube(side));
+
+	cube.name = "Cube";
+	return cube;
+
+	
+}
+
+Entity Entity::Rectangle(float width, float height)
+{
+	Entity rectangle(Rectangle(width, height));
+
+	rectangle.name = "Rectangle";
+	return rectangle;
+}
+
+Entity Entity::Triangle(float width, float height)
+{
+	Entity triangle(Triangle(width, height));
+
+	triangle.name = "Triangle";
+	return triangle;
+}

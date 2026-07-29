@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "Transform.h"
-#include "Mesh.h"
+#include "Geometry.h"
 #include "Entity_Data.h"
 
 
@@ -32,22 +32,20 @@ protected:
 	Mesh mesh;
 	Transform transform;
 	
-	bool visible;
 	size_t id;
 	std::string name;
 
-	
-	//SDL_Colour colour
-	//bool fill
+	bool visible;
 
-
-	Tags tags;
-	Layers layers;
+	Tags tags{Tags::None};
+	Layers layers{Layers::Renderable};
 
 public:
 
 	void set_mesh(Mesh mesh) { mesh = mesh; }
 	void set_transform(Transform& t ) { transform = t; }
+
+
 
 	Transform& get_transform() { return transform; };
 	const Transform& get_transform() const { return transform; };
@@ -66,8 +64,8 @@ public:
 	inline const std::string& get_name() const { return name; };
 
 	inline Layers enable_layer(Layers layer) { return layers |= layer; }
-	inline Layers disable_layer(Layers layer) { layers = layers & (~layer); }
-	inline Layers has_layer(Layers layer) { layers &= layer; }
+	inline Layers disable_layer(Layers layer) { layers &= (~layer); }
+	inline bool has_layer(Layers layers_to_check) const { return layers_to_check != 0 ? layers_to_check == (layers & layers_to_check) : layers_to_check == layers; }	//Checks the Layer flags
 
 	/**
 	* @brief Changes the visibility of the entity
@@ -94,6 +92,13 @@ public:
 	Entity(Mesh m) noexcept;
 	virtual ~Entity();
 
+
+
+
+	/////////////////FACTORIES/////////////////
+	static Entity Cube(float side = 400);
+	static Entity Rectangle(float width = 300, float height = 150);
+	static Entity Triangle(float width = 300, float height = 300);
 };
 
 

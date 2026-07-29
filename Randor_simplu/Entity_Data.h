@@ -2,7 +2,7 @@
 
 #include <type_traits>
 
-#define ENTITY_ENUM_TYPE unsigned short
+#define ENTITY_ENUM_TYPE unsigned int
 
 enum class Layers : ENTITY_ENUM_TYPE {
 
@@ -26,20 +26,60 @@ inline Layers operator|(Layers a, Layers b) {
 	return static_cast<Layers>(static_cast<real_type>(a) | static_cast<real_type>(b));
 }
 
+inline Tags operator|(Tags a, Tags b) {
+	return static_cast<Tags>(static_cast<real_type>(a) | static_cast<real_type>(b));
+}
+
 inline Layers& operator|=(Layers& a, Layers& b) {
 	a = static_cast<Layers>(static_cast<real_type>(a) | static_cast<real_type>(b));
 	return a;
 }
+
+inline Tags& operator|=(Tags& a, Tags& b) {
+	a = static_cast<Tags>(static_cast<real_type>(a) | static_cast<real_type>(b));
+	return a;
+}
+
 
 ///////////OPERATOR BITWISE_AND()
 inline Layers operator&(Layers a, Layers b) {
 	return static_cast<Layers>(static_cast<real_type>(a) & static_cast<real_type>(b));
 }
 
-inline Layers& operator&=(Layers& a, Layers& b) {
+inline Tags operator&(Tags a, Tags b) {
+	return static_cast<Tags>(static_cast<real_type>(a) & static_cast<real_type>(b));
+}
+
+inline Layers& operator&=(Layers& a, Layers b) {
+	a = a & b;
+	return a;
+}
+
+inline Tags& operator&=(Tags& a, Tags b) {
 	a = a & b;
 	return a;
 }
 
 ///////////OPERATOR BITWISE_NOT()
 inline Layers operator~(Layers l) { return static_cast<Layers>(~static_cast<real_type>(l)); }
+
+inline Tags operator~(Tags l) { return static_cast<Tags>(~static_cast<real_type>(l)); }
+
+///////////OPERATOR<<()
+inline std::ostream& operator<<(std::ostream& os, Layers l) { return (os << l); }
+
+inline std::ostream& operator<<(std::ostream& os, Tags t) { return (os << t); }
+
+///////////OPERATOR==()
+template<typename T>
+inline bool operator==(Layers a, T b) { return static_cast<real_type>(a) == static_cast<real_type>(b); }
+
+template<typename T>
+inline bool operator==(Tags a, T b) { return static_cast<real_type>(a) == static_cast<real_type>(b); }
+
+///////////OPERATOR!=()
+template<typename T>
+inline bool operator!=(Layers a, T b) { return static_cast<real_type>(a) != static_cast<real_type>(b); }
+
+template<typename T>
+inline bool operator!=(Tags a, T b) { return static_cast<real_type>(a) != static_cast<real_type>(b); }

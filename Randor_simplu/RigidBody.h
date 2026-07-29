@@ -1,9 +1,10 @@
 #pragma once
 #include "Entity.h"
 
-/// @brief A physically simulated entity in the world. Updated by the Physics engine
+/// @brief A physics-enabled entity in the world. Updated by the Physics engine
 class RigidBody : public Entity
 {
+protected:
 	friend class Physics;
 
 	bool physics_enabled{ 1 };
@@ -17,8 +18,8 @@ class RigidBody : public Entity
 public:
 
 	//CTOR
-	RigidBody() : Entity() {};
-	RigidBody(Mesh mesh) : Entity(mesh) {};
+	RigidBody();
+	RigidBody(Mesh mesh);
 	~RigidBody() = default;
 
 	//Setters
@@ -36,5 +37,10 @@ public:
 	void disable_physics() { physics_enabled = false; };
 	void enable_physics() { physics_enabled = true; };
 
-	
+
+
+	/////////////////FACTORIES/////////////////
+	static RigidBody Cube(float side = 400);
+	static RigidBody Rectangle(float width = 300, float height = 150);
+	static RigidBody Triangle(float width = 300, float height = 300);
 };

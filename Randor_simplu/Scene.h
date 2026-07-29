@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "Entity.h"
 #include "Physics.h"
 /// @brief Scene object. Affected by physics an input.

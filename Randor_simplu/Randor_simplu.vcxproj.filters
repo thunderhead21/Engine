@@ -284,13 +284,16 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="TODO.txt">
+    <Text Include="Graphics TODO.txt">
       <Filter>Documentation</Filter>
     </Text>
     <Text Include="Ideas.txt">
       <Filter>Documentation</Filter>
     </Text>
     <Text Include="Regression text.txt">
+      <Filter>Documentation</Filter>
+    </Text>
+    <Text Include="Engine TODO.txt">
       <Filter>Documentation</Filter>
     </Text>
   </ItemGroup>

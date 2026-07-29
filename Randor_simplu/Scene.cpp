@@ -3,7 +3,7 @@
 Scene::~Scene()
 {
     for (auto& i : entities) {  //For each entity in the scene
-        std::cout << i << " " << '\n';
+        std::cout << i->get_name() << " was destroyed" << '\n';
         delete i;               //Delete it
     }
 }
@@ -11,7 +11,7 @@ Scene::~Scene()
 Entity* Scene::add_entity(Entity* e)
 {
     e->id = next_id++;
-    e->name = "";
+    e->name += ("_" + std::to_string(e->id));
 
     entities.push_back(e);
     //if (e->is_visibile() == true) visible.push_back(e);
@@ -25,7 +25,7 @@ void Scene::add_entity(const std::vector<Entity*>& to_add)
 {
 
     for (auto *i : to_add) {
-        entities.push_back(i);
+        add_entity(i);
     }
 }
 
