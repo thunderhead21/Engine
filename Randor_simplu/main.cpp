@@ -118,9 +118,9 @@ int main(int argc, char* argv[])
 	i.register_keybind(SDL_SCANCODE_E, SHIFT_UP);
 	i.register_keybind(SDL_SCANCODE_BACKSLASH, []{__debugbreak(); });
 
-	e1->get_transform().set_position({ 500, 300, -02 });
-	e2->get_transform().set_position({ 800, 600, 10 });
-	e3->get_transform().set_position({ -100, 500, 00 });
+	e1->transform().set_position({ 500, 300, -02 });
+	e2->transform().set_position({ 800, 600, 10 });
+	e3->transform().set_position({ -100, 500, 00 });
 
 	Scene world;
 	//std::vector<Entity*> ents{new Entity(Cube(100)), new Entity(Cube(50)), new Entity(Cube(200))};
@@ -135,9 +135,9 @@ int main(int argc, char* argv[])
 	(*rb2).set_velocity({ -100.0f, -100.0f, 0.0f });
 
 	world.add_entity({e1, e2, e3});
-	rb2->get_transform().position() = {-1000, 0, 0};
+	rb2->transform().position() = {-1000, 0, 0};
 
-	/*
+	/* Outdated, entities belong to the scene
 	w.enroll_entity(e1);
 	w.enroll_entity(e2);
 	w.enroll_entity(e3);
@@ -152,7 +152,7 @@ int main(int argc, char* argv[])
 		world.update(dt);
 
 		std::cout<<dt<<'\n';
-		w.handle_events();	//Obsolete... (?)
+		//w.handle_events();	//Obsolete... (?) -- Kind of... Now is done once we update the screen
 
 		i.update(event);
 

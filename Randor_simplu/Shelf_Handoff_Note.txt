@@ -1,0 +1,206 @@
+📋 File creation order:
+
+Graphics TODO is the first documenting file 
+💡 Ideas came <2weeks later
+📝 Regression text came a month into the project after implementing the timer
+🛠 Engine TODO is the latest before this one, used to create the roadmap for the whole project
+This was created on 30.07.2026
+
+Your main aid is ChatGPT on ironrattlesnake@gmail.com, go to projects and you will see "3D Engine"
+One discussion is architecture, but Branch has the greatest context of the two.
+
+🏗️ 3D Engine – Architecture Notes
+
+Status (30 Jul 2026)
+Core architecture established. The engine has moved beyond a toy renderer into a coherent simulation framework with stable ownership.
+
+🎯 Why This Engine Exists
+
+Build an engine from first principles.
+
+Not to imitate Unreal or Unity, but to create a simulation framework that is:
+
+Easy to reason about
+Architecturally consistent
+Predictable
+Pleasant to extend
+
+Every abstraction must earn its place.
+
+🧠 Core Philosophy
+
+Before writing code, ask:
+
+❓ What is it?
+👤 Who owns it?
+⚠️ Am I introducing two truths?
+
+Golden rules:
+
+✅ One source of truth.
+✅ Ownership determines responsibility.
+✅ Simulation drives rendering.
+✅ Understanding before optimization.
+🌍 World Model
+Engine
+│
+├── Timer
+├── Input
+├── Renderer
+└── Scene
+      │
+      ├── Physics
+      └── Entities
+            │
+            ├── Transform
+            ├── Mesh
+            ├── Layers
+            ├── Tags
+            └── Name + ID
+
+Ownership flows downward.
+
+Do not casually move responsibilities.
+
+📦 Responsibilities
+Engine
+Runs the application
+Coordinates systems
+Scene
+Owns the world
+Owns Physics
+Assigns IDs
+Orchestrates updates
+
+🚫 Does not perform physics.
+
+Entity
+
+Represents something that exists.
+
+Owns:
+
+Transform
+Mesh
+Layers
+Tags
+Name
+ID
+Mesh
+
+Geometry.
+
+Nothing else.
+
+Never owns:
+
+Position
+Physics
+Gameplay
+IDs
+Names
+Renderer
+
+Consumes world state.
+
+Never becomes world state.
+
+🏷️ Naming
+Mesh::cube()
+
+↓
+
+Entity::cube()
+
+↓
+
+Scene::add_entity()
+
+Mesh creates geometry.
+
+Entity defines meaning.
+
+Scene assigns identity.
+
+Example:
+
+Cube_4
+RigidBody_2
+Entity_17
+🧭 Mental Model
+World
+    owns
+Entities
+    own
+Representation
+
+Never
+
+Renderer
+
+↓
+
+Gameplay
+
+
+🚫 Never Regress
+Avoid:
+
+❌ Scene performing physics
+❌ Mesh owning transforms
+❌ Renderer owning simulation
+❌ Multiple owners of position
+
+If synchronization becomes necessary,
+
+question the ownership model first.
+
+✅ Completed
+Math library
+Renderer
+Camera
+Projection
+Scene
+Entity system
+Layers & Tags
+Debug naming
+Entity factories
+Engine shell
+
+🚀 Next
+Engine loop
+Resource manager
+OBJ loader
+Materials
+Animation
+Later
+Audio
+Save system
+AI
+Particles
+Editor
+Eventually
+
+🎮 First complete game (Ideas.txt)
+
+💡 Lessons Learned
+Good encapsulation preserves one mental model.
+One truth beats synchronization.
+Convenience is temporary.
+Architecture compounds.
+📌 Remember
+
+This project values:
+
+🟢 Clarity
+🟢 Explicit ownership
+🟢 Predictable architecture
+🟢 Stable mental models
+
+over
+
+🔴 Clever tricks
+🔴 Premature optimization
+🔴 Engine buzzwords
+
+If something seems to belong everywhere, it probably belongs somewhere specific.

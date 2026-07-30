@@ -78,6 +78,7 @@
     <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)D:\SDL_LIBS\SDL3-3.2.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x64;$(LibraryPath)</LibraryPath>
     <IncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
@@ -89,6 +90,7 @@
     <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x86;$(LibraryPath)</LibraryPath>
     <IncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
@@ -107,7 +109,7 @@
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
       <ShowIncludes>false</ShowIncludes>
       <UseDynamicDebugging>false</UseDynamicDebugging>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
     </ClCompile>
     <Link>
@@ -156,6 +158,7 @@
       <ShowIncludes>false</ShowIncludes>
       <UseDynamicDebugging>false</UseDynamicDebugging>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -199,6 +202,7 @@
     <Text Include="Engine TODO.txt">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </Text>
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Geometry.h" />
     <ClCompile Include="InputManager.cpp" />
@@ -239,11 +243,14 @@
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
       <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
     </ClCompile>
+    <Text Include="Shelf_Handoff_Note.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Entity_Data.h" />
     <ClInclude Include="InputManager.h" />

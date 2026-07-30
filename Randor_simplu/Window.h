@@ -12,23 +12,10 @@ constexpr bool DEBUG = 0;
 constexpr bool INFO = 0;
 
 
-
-/*
-namespace Input {
-#define LMB SDL_BUTTON_MASK(SDL_BUTTON_LEFT)
-#define RMB SDL_BUTTON_MASK(SDL_BUTTON_RIGHT)
-#define MMB SDL_BUTTON_MASK(SDL_BUTTON_MIDDLE)
-#define FMB SDL_BUTTON_MASK(SDL_BUTTON_X1)
-#define BMB SDL_BUTTON_MASK(SDL_BUTTON_X2)
-}
-*/
-
-
-
 class Entity;
 struct vec3d;
 
-class Window
+class Window		//Needs to separate the renderer and window ASAP!
 {
 	Timer timer;
 	
@@ -69,6 +56,7 @@ public:
 	float update();	//parameter dt doesn't belong here, it belongs to the physics affecting the scene.
 	void handle_events(); ///Will have to be moved to a supposed Window Manager	
 	
+	/// @brief Potentially misleading name. This is the code executed each frame by the window
 	void shader();
 	inline const bool get_validity() const noexcept  { return valid; }
 	int set_fps(unsigned int fps) noexcept;

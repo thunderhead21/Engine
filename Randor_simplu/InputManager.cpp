@@ -1,13 +1,13 @@
 #include "InputManager.h"
 
-const bool* InputManager::get_keyboard_state() {
-	return (const bool*)SDL_GetKeyboardState(nullptr);
-}
+
+/*	UNUSED. Debug if there are errors regarding this
 
 void InputManager::update_keyboard_state()
 {
 	*kb_state = (bool*)SDL_GetKeyboardState(nullptr);
 }
+*/
 
 InputManager::InputManager() noexcept:
 	keymap(Keymap()), ignored({ SDL_KMOD_NUM, SDL_KMOD_CAPS, SDL_KMOD_SCROLL})
@@ -23,7 +23,6 @@ InputManager::InputManager() noexcept:
 
 
 }
-
 InputManager::InputManager(const InputManager& other) noexcept:
 	keymap(other.keymap), ignored(other.ignored)
 {
@@ -121,20 +120,3 @@ void InputManager::update(SDL_Event &e) {
 		}
 	} while (SDL_PollEvent(&e));
 }
-
-
-
-/*
-const bool InputManager::check_kb_state() {
-	int active_keys;
-	const bool* key_states = SDL_GetKeyboardState(&active_keys);
-
-	for (const auto& i: keymap) {
-		if (key_states[i.first.key] == true && i.second) {
-			i.second();
-		}
-	}
-
-	return 1;
-}
-*/

@@ -5,18 +5,20 @@ Transform
 Scene
 Renderer
 Physics integration
+Weak perspective projection
+Input system
 
--Engine Infrastructure- 🔄
-IDs
-Names
-Layers
-Tags
-Engine object encapsulation
+-Engine Infrastructure- 80% 🔄
+IDs ✅
+Names ✅
+Layers ✅
+Tags ✅
+Engine object encapsulation (Engine.h / .cpp)🚧
 
 -Graphics-
 Camera
 View matrix
-Projection
+Perspective Projection
 Back-face culling
 Clipping
 Depth (Painter's algorithm → Z-buffer)
@@ -27,7 +29,9 @@ Collision response
 Gravity
 Fixed timestep
 
+
 -Gameplay-
+⚠️Do not start Gameplay before finishing Infrastructure⚠️
 Event system
 World state
 Dialogue

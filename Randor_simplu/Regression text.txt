@@ -31,3 +31,9 @@ WRONG OUTPUT:
 17
 18
 17
+
+
+
+[29.07.2026, 22:40] There is a good reason why oftentimes the .inl file containing the template class implementation should be excluded from the build process:
+Building without excluding matrix.inl from the build process generates innumerable errors that simply disappear if the file is excluded.
+This happens as those are NOT source files and are included in the header's footer

@@ -17,38 +17,40 @@
 */
 ///////////////////////////////   IDENTITY   ///////////////////////////////
 
-//using points = std::vector<SDL_Point> ;
-
 /**
 * @brief Base for "Assets" to be used and presented by engine and game
 * @details Contains a Mesh of vertices. Visible by default.
 */
-
 class Entity
 {
 	friend class Scene;
 protected:
 	
 	Mesh mesh;
-	Transform transform;
+	Transform _transform;
 	
 	size_t id;
 	std::string name;
 
-	bool visible;
+	bool visible;		//Whether it is rendered or not.
 
-	Tags tags{Tags::None};
-	Layers layers{Layers::Renderable};
+	Tags tags{Tags::None};	//Not needed now. Useful for gameplay and categorisation
+	Layers layers{Layers::Renderable};		//Subsystem responsible for the entity. Inheritors modify it in CTORs
 
 public:
-
+	/// @brief Sets the visible component that represents the entity
+	/// @param mesh - Mesh object to copy into the mesh member
 	void set_mesh(Mesh mesh) { mesh = mesh; }
-	void set_transform(Transform& t ) { transform = t; }
+
+	/// @brief Changes the entity's transform (Postion, Rotation, Scale)
+	/// @param &t to the transform to copy from
+	void transform(Transform& t ) { _transform = t; }
 
 
-
-	Transform& get_transform() { return transform; };
-	const Transform& get_transform() const { return transform; };
+	/// @brief Transform getter
+	/// @return Reference to Entity's Transform
+	Transform& transform() { return _transform; };
+	const Transform& transform() const { return _transform; };
 	
 	/**
 	* @brief Gets the Mesh object.
@@ -63,9 +65,18 @@ public:
 	/// @return string name
 	inline const std::string& get_name() const { return name; };
 
+	/// @brief Sets the required layer flags
+	/// @param Layer flag to append
+	/// @return - up-to-date layer flag enum
 	inline Layers enable_layer(Layers layer) { return layers |= layer; }
+	/// @brief Disables the required layer flags
+	/// @param Layer flag to remove
+	/// @return - up-to-date layer flag enum
 	inline Layers disable_layer(Layers layer) { layers &= (~layer); }
-	inline bool has_layer(Layers layers_to_check) const { return layers_to_check != 0 ? layers_to_check == (layers & layers_to_check) : layers_to_check == layers; }	//Checks the Layer flags
+	/// @brief Checks for the requested layer flags
+	/// @param Layer flag to check for
+	/// @return bool value answering "are all the flags present?"
+	inline bool has_layer(Layers layers_to_check) const { return layers_to_check == 0 ? layers_to_check == layers : (layers_to_check & layers) == layers_to_check; }	//Checks the Layer flags
 
 	/**
 	* @brief Changes the visibility of the entity
@@ -96,8 +107,20 @@ public:
 
 
 	/////////////////FACTORIES/////////////////
+	
+	/// @brief Creates an entity with a Cube mesh
+	/// @param side of the cube
+	/// @return Entity with the requested Mesh
 	static Entity Cube(float side = 400);
+	/// @brief Creates an entity with a Rectangle mesh
+	/// @param width of the rectangle
+	/// @param height of the rectangle
+	/// @return Entity with the requested Mesh
 	static Entity Rectangle(float width = 300, float height = 150);
+	/// @brief Creates and entity with a Triangle mesh
+	/// @param width of the traingle's base
+	/// @param height of the traingle
+	/// @return Entity with the requested Mesh
 	static Entity Triangle(float width = 300, float height = 300);
 };
 

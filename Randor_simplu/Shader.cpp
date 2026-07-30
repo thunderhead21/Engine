@@ -37,9 +37,11 @@ void Window::shader() {
 
 	for (const auto &entity : *scene) {
 
-		entity->get_transform().set_scale({ sx, sy, sz });		//SUPERSEDED BY SCENE.PHYSICS -- FALSE! Controlling scale is optimal here!
-		//entity->get_transform().rotate({ 0.1f, 0.0f, 1.0f });
+		entity->transform().set_scale({ sx, sy, sz });		//SUPERSEDED BY SCENE.PHYSICS -- FALSE! Controlling scale is optimal here!
+		//entity->get_transform().rotate({ 0.1f, 0.0f, 1.0f });	[30.07.2026] Changed function to transform
 
+
+		//Changes scale by pressing < or >
 		if(controller.is_active(SDL_SCANCODE_PERIOD)) {
 			
 			sx += 0.1f;
@@ -56,21 +58,25 @@ void Window::shader() {
 		
 		}
 
-		std::vector<vec4d> world_vertices = entity->get_transform() * entity->get_Mesh();
+		//Transforms the vertices to world space
+		std::vector<vec4d> world_vertices = entity->transform() * entity->get_Mesh();
 
+		//Projected vertices onto the screen
 		std::vector<SDL_Vertex> render_vertices;
-		render_vertices.reserve(world_vertices.size());
-		for (const auto& vertex : world_vertices) {
+		render_vertices.reserve(world_vertices.size());	//Naturally, we already know how many of them we are going to have
+		for (const auto& vertex : world_vertices) {		//Take each one and project it!
+
+			//Pass the screen size so we know to center them
 			SDL_Vertex sdl_vertex = weak_projection(this->get_size(), {vertex.x, vertex.y, vertex.z});
-			sdl_vertex.color.r = (r * base);
+			sdl_vertex.color.r = (r * base);	///And apply some global default colour
 			sdl_vertex.color.g = (g * base);
 			sdl_vertex.color.b = (b * base);
 			sdl_vertex.color.a = (a * base);
 			
-			render_vertices.push_back(sdl_vertex);
+			render_vertices.push_back(sdl_vertex);	
 		}
 
-
+		//And finally, render what we have!
 		if (SDL_RenderGeometry(
 			renderer, 
 			nullptr, 

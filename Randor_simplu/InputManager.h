@@ -11,7 +11,7 @@ using Keymap = std::unordered_map<Keybind, Action, KeybindHash, KeybindEqual>;
 
 /// @brief Manages or makes available everything regarding input from interfacing devices (e.g - mouse, keyboard, joystick...)
 /// @brief Allows declaring a keybinding or accessing the state of the key directly
-/// @brief Manages or makes available everything regarding input from interfacing devices (e.g - mouse, keyboard, joystick...)
+
 class InputManager
 {	
 private:
@@ -19,14 +19,12 @@ private:
 	// The golden formula to ignore modifiers
 	//lookup_key.required_mods = e.mod & ~(SDL_KMOD_NUM | SDL_KMOD_CAPS | SDL_KMOD_SCROLL);
 
-	Keymap keymap;
-	std::set<SDL_Keymod> ignored;
-	SDL_Keymod ignore_mask = 0;
+	Keymap keymap;	//Maps the keys (SDL_Scancode) to functions
+	std::set<SDL_Keymod> ignored;	//Ignored key modifiers
+	SDL_Keymod ignore_mask{ 0 };	//Mask computed from the set of ignored modifiers for quick reference
 
-	bool* kb_state;
+	bool* kb_state;	//Map of individual key states
 
-	const bool* get_keyboard_state();
-	void update_keyboard_state();
 public:
 	/// @brief Default Ctor
 	InputManager() noexcept;

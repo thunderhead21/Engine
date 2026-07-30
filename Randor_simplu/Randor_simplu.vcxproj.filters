@@ -27,9 +27,6 @@
     <Filter Include="Components\Input\InputManager">
       <UniqueIdentifier>{f25cd115-2517-46c5-b48d-0622d61653fc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\Input\Keybind">
-      <UniqueIdentifier>{9c176132-de8a-4735-b579-294dc210d4bd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components\Rendering\Projection">
       <UniqueIdentifier>{1ab0d04c-f896-4bb7-96f9-c53072394124}</UniqueIdentifier>
     </Filter>
@@ -114,6 +111,12 @@
     <Filter Include="Components\Entity\Entity_Data">
       <UniqueIdentifier>{99516ad0-4491-42c7-92b0-43ff4105ad73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{d493916e-34e1-49e9-9809-fa499dffb5da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Input\InputManager\Keybind">
+      <UniqueIdentifier>{9c176132-de8a-4735-b579-294dc210d4bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -142,7 +145,7 @@
       <Filter>Components\Input\InputManager</Filter>
     </ClCompile>
     <ClCompile Include="Keybind.cpp">
-      <Filter>Components\Input\Keybind</Filter>
+      <Filter>Components\Input\InputManager\Keybind</Filter>
     </ClCompile>
     <ClCompile Include="triangle.cpp">
       <Filter>Components\Geometry\Primitives\2D\Triangle</Filter>
@@ -198,6 +201,9 @@
     <ClCompile Include="Physics.cpp">
       <Filter>Components\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -222,7 +228,7 @@
       <Filter>Components\Input\InputManager</Filter>
     </ClInclude>
     <ClInclude Include="Keybind.h">
-      <Filter>Components\Input\Keybind</Filter>
+      <Filter>Components\Input\InputManager\Keybind</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
@@ -272,6 +278,12 @@
     <ClInclude Include="Entity_Data.h">
       <Filter>Components\Entity\Entity_Data</Filter>
     </ClInclude>
+    <ClInclude Include="Components.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="doc.xml">
@@ -294,6 +306,9 @@
       <Filter>Documentation</Filter>
     </Text>
     <Text Include="Engine TODO.txt">
+      <Filter>Documentation</Filter>
+    </Text>
+    <Text Include="Shelf_Handoff_Note.txt">
       <Filter>Documentation</Filter>
     </Text>
   </ItemGroup>

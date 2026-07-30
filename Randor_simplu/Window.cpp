@@ -100,38 +100,12 @@ void Window::handle_events() {	// Window related event handling
 
 			break;
 		}
-		case SDL_EVENT_MOUSE_BUTTON_DOWN: // Process mouse input
+		case SDL_EVENT_MOUSE_BUTTON_DOWN: // Process mouse input -- MOVE TO THE InputManager!
 			float x, y;
 			mouse = SDL_GetMouseState(&x, &y);	//Get position of the mouse
 
-			/*	Limbo state. Not used while simply working on redering
-			if (mouse & LMB) {
-				//SDL_GetMouseState(&a, &b);
-				pts.push_back({ x, y });
+		default:
 
-				if (INFO) spdlog::info("LMB DOWN at X:{}, Y:{}", x, y);
-
-			}
-			else if (mouse & RMB) {
-				tmp->x = x;
-				tmp->y = y;
-				if (INFO) spdlog::info("RMB DOWN at X:{}, Y:{}", x, y);
-			}
-			*/
-
-			break;
-		case SDL_EVENT_MOUSE_BUTTON_UP:
-			/*	Limbo state. Not used while simply working on redering 
-			SDL_GetMouseState(&x, &y);
-			if (mouse & RMB) {
-				if (INFO) spdlog::info("RMB UP at X:{}, Y:{}", x, y);
-				//tmp->w = fabs(x - tmp->x);
-				//tmp->h = fabs(y - tmp->y);
-				tmp->w = (x - tmp->x);
-				tmp->h = (y - tmp->y);
-
-			}
-			*/
 			break;
 		}
 	}
@@ -139,7 +113,7 @@ void Window::handle_events() {	// Window related event handling
 
 float Window::update(){
 	
-	//handle_events();
+	handle_events();
 
 	// Clear screen with a nice color
 	SDL_SetRenderDrawColor(renderer, 20, 25, 35, 255);
