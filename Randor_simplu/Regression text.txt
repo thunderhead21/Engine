@@ -48,6 +48,8 @@ If excluding an .inl file manually in Visual Studio, apply the change to all Con
 Otherwise Debug will work and Release is going to throw a mound of errors.
 Do not change the .vcxproj file ! When time comes, CMake will be useful.
 
+[01.08.2026, 13:46] Read above and keep it DRY, please and thank you very much, in a really passive agressive manner, thank you very much!
+
 [01.08.2026, 12:50] 
 |                 Entity Count |  Avg. FPS | Status      | Key Observation                                                         |
 | ---------------------------: | --------: | :-----------| :---------------------------------------------------------------------- |
@@ -61,3 +63,56 @@ Do not change the .vcxproj file ! When time comes, CMake will be useful.
 |        Renderer bottleneck   |         — | ⏳           | Not yet identified at normal scene sizes.                               |
 |   Benchmark infrastructure   |         — | ✅          | `FrameStat`, `rendering_test_run()`, automated stress scenes.           |
 |     Next optimization task   |         — | 📌          | Measure renderer stage timings to locate the true rendering bottleneck. |
+
+
+
+Renderer Profiling Summary (30k entities)
+Stage				Time
+Event handling		~0.001–0.01 ms
+Screen clear		~0.001–0.01 ms
+Draw (shader())		~280–330 ms
+Present				~3–4 ms (occasional scheduler spikes)
+Conclusion: Rendering time is almost entirely spent inside shader(). Window/event/presentation overhead is negligible.
+
+SOLUTION
+
+Current renderer rebuilds every frame:
+
+Mesh (local)
+      │
+Transform
+      │
+World vertices
+      │
+Projection
+      │
+SDL_Vertex
+      │
+Render
+
+Potential future optimization:
+
+Mesh
+      │
+Transform
+      │
+VertexBuffer
+ ├── world_vertices
+ └── render_vertices
+
+Rebuild only when invalidated.
+
+Possible API:
+
+vertex_buffer.invalidate();
+vertex_buffer.rebuild();
+vertex_buffer.up_to_date();
+
+Typical invalidation sources:
+
+Transform changed
+Mesh changed
+Projection parameters changed
+Viewport resized
+
+This avoids rebuilding world/projection buffers every frame for static geometry.

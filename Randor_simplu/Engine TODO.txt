@@ -15,15 +15,24 @@ Layers ✅
 Tags ✅
 Engine object encapsulation (Engine.h / .cpp)🚧
 
--Graphics-
+-Graphics Pipeline-
 Camera
 View matrix
-Perspective Projection
+Perspective projection
 Back-face culling
 Clipping
 Depth (Painter's algorithm → Z-buffer)
-Measure the renderer's stages' time to find the current bottleneck (maximum 18k entities now)
 Add geometric primitives
+
+-Graphics Performance-	[DATA TABLES @ Regression text]
+Measure the renderer's stages' time to find the current bottleneck (maximum 18k entities now)
+Timing in shader():
+	Transform
+	Projection
+	SDL_RenderGeometry()
+Identify dominant rendering cost.
+Introduce VBO to store world and projected vertices
+Benchmark after each optimization.
 
 -Simulation-
 Collision detection

@@ -35,6 +35,7 @@ bool ascending = 1;
 // Mesh never owns position, rotation or scale.
 // Rendering always consumes Entity::Transform.
 
+Timer  shader_timer;
 void Window::shader() {
 	// [DESIGN]
 	// Scale belongs to Transform.
@@ -46,31 +47,35 @@ void Window::shader() {
 		spdlog::warn("\"{}\" has no scene to render", SDL_GetWindowTitle(this->window));
 		return;
 	}
-	for (const auto &entity : *scene) {
+	//Changes scale by pressing < or >
+	if(controller.is_active(SDL_SCANCODE_PERIOD)) {
+			
+		sx += 0.1f;
+		sy += 0.1f;
+		sz += 0.1f;
+			
+	}
+
+	if (controller.is_active(SDL_SCANCODE_COMMA)) {
+			
+		sx -= 0.1f;
+		sy -= 0.1f;
+		sz -= 0.1f;
+		
+	}
+
+	double rendering = 0, tform = 0, projection = 0;
+	std::vector<vec4d> world_vertices;	//Moved here for optimization purposes
+	for (const auto &entity : scene->get_visible_entities()) {
+
 
 		entity->transform().scale({ sx, sy, sz });		//SUPERSEDED BY SCENE.PHYSICS -- FALSE! Controlling scale is optimal here!
 		//entity->get_transform().rotate({ 0.1f, 0.0f, 1.0f });	[30.07.2026] Changed function to transform
 
 
-		//Changes scale by pressing < or >
-		if(controller.is_active(SDL_SCANCODE_PERIOD)) {
-			
-			sx += 0.1f;
-			sy += 0.1f;
-			sz += 0.1f;
-			
-		}
-
-		if (controller.is_active(SDL_SCANCODE_COMMA)) {
-			
-			sx -= 0.1f;
-			sy -= 0.1f;
-			sz -= 0.1f;
-		
-		}
-
-		//Transforms the vertices to world space
-		std::vector<vec4d> world_vertices = entity->transform() * entity->mesh();
+		//Transforms the vertices to world space and places them in the world
+		world_vertices = entity->transform() * entity->mesh();	//This is the result of operator*() in the middle!
+		tform += shader_timer.tick() * 1000;
 
 		// [DESIGN]
 		// Rendering operates on world-space geometry.
@@ -93,7 +98,7 @@ void Window::shader() {
 			
 			render_vertices.push_back(sdl_vertex);	
 		}
-
+		projection += shader_timer.tick() * 1000;
 		//And finally, render what we have!
 		if (SDL_RenderGeometry(
 			renderer, 
@@ -105,10 +110,13 @@ void Window::shader() {
 			std::cout << SDL_GetError() << '\n';
 		};
 				
-					
+		rendering += shader_timer.tick() * 1000;
 
 	}
 
+	spdlog::info("TForm: {}ms", tform);
+	spdlog::info("Projection: {}ms", projection);
+	spdlog::info("rendering: {}ms", rendering);
 
 }
 
