@@ -4,12 +4,15 @@
 //#include <SDL3/SDL.h> included by the others
 //#include "Window.h"
 
+
 #include "UTests.h"
 #include "Window.h"
 #include "InputManager.h"
 #include "Matrix.hpp"
 #include "Geometry.h"
 #include "Physics.h"
+#include <random>
+
 
 /*
 NEXT STEP - Create pipeline :
@@ -30,6 +33,90 @@ Transformation queuing
 
 
 */
+
+
+/// @brief Renderer a test scene [scene not implemented]
+/// @param fps - The desired framerate of the simulation
+/// @param seconds - Amount of time to run the scene for
+/// @param ignore_frames - Skip registering frame times for
+void rendering_test_run(unsigned int fps = 60, float seconds = 15, unsigned int ignore_frames = 10){
+
+	seconds = fabs(seconds);
+
+	FrameStat fs;
+	InputManager i;
+
+	Window w(i);
+	w.set_fps(fps);
+
+	static unsigned int probe = 0;
+	unsigned int dbg_frames = (fps * seconds) + ignore_frames;
+
+	SDL_Event event;
+
+
+
+	Scene s;
+
+	std::mt19937 rng(time(nullptr));
+	std::uniform_real_distribution<float> pos(-2000.f, 2000.f);
+	std::uniform_real_distribution<float> size(1.f, 500.f);
+	
+
+	int test_entities_count = 30000;
+	s.reserve(test_entities_count);
+	
+	for (int i = 0; i < test_entities_count; i++) {
+		s.add_entity(new RigidBody(RigidBody::Cube(400)));
+
+	}
+
+	/*
+
+	for (auto& entity : s) {
+
+
+		if (RigidBody* body = dynamic_cast<RigidBody*>(entity)) {
+
+			//body->set_angular_velocity({ (float)(rand() % 30), (float)(rand() % 30), (float)(rand() % 30) });
+
+			//body->set_velocity( { (float)(rand() % 30), (float)(rand() % 30) , (float)(rand() % 30) } 
+
+			//body->transform().position({ pos(rng), pos(rng) , pos(rng)});
+
+		}
+		
+	}
+		
+	*/
+
+	s.rebuild_queues();
+	w.set_active_scene(s);
+	
+	float elapsed = 0;
+
+	while (w.get_validity() && elapsed < seconds) {
+		SDL_PollEvent(&event);
+
+		float dt = w.update();
+		elapsed += dt;
+
+		//s.update(dt);
+		probe++;
+
+		if (probe < ignore_frames) {
+			std::cout << dt << '\n';
+		}
+		if (probe >= dbg_frames ) {
+			break;
+		}
+	
+		fs.add(dt);
+	}
+	fs.print();
+	std::cin.get();
+
+}
 
 unsigned char gear = 0;
 
@@ -65,11 +152,24 @@ void print_mat(mat<T>& m) {
 	}
 }
 
-//Entity a;
+// [ARCHITECTURE]
+// Entities belong to the Scene.
+//
+// Window/Engine may observe or render the world,
+// but Scene remains the authoritative owner of all world objects.
+// 
+// /////////////////////////////////////////////////
+// 
+// Transform is the single source of truth for spatial state.
+//
+// Mesh never owns position, rotation or scale.
+// Rendering always consumes Entity::Transform.
 
 //Now you have to pass the input manager to the window as function parameter for topical usage
 int main(int argc, char* argv[])
 {
+
+	rendering_test_run(60, 30, 10);
 	Timer t;
 
 	//std::cin.get();
@@ -109,18 +209,15 @@ int main(int argc, char* argv[])
 	w.set_fps(120);
 
 	e1->enable_layer(Layers::Physics | Layers::Renderable);
-	std::cout<<std::boolalpha << e1->has_layer(Layers::None);
-	
-	SDL_Event event;
 	
 	//Using thin wrapper
 	i.register_keybind(SDL_SCANCODE_Q, SHIFT_DN);
 	i.register_keybind(SDL_SCANCODE_E, SHIFT_UP);
 	i.register_keybind(SDL_SCANCODE_BACKSLASH, []{__debugbreak(); });
 
-	e1->transform().set_position({ 500, 300, -02 });
-	e2->transform().set_position({ 800, 600, 10 });
-	e3->transform().set_position({ -100, 500, 00 });
+	e1->transform().position({ 500, 300, -02 });
+	e2->transform().position({ 800, 600, 10 });
+	e3->transform().position({ -100, 500, 00 });
 
 	Scene world;
 	//std::vector<Entity*> ents{new Entity(Cube(100)), new Entity(Cube(50)), new Entity(Cube(200))};
@@ -145,22 +242,22 @@ int main(int argc, char* argv[])
 
 	w.set_active_scene(world);
 
+	FrameStat fs;
+	SDL_Event event;
 	while (w.get_validity()) {
 		SDL_PollEvent(&event);													///Event is the hooker you pass around O.O
 
 		float dt = w.update();
 		world.update(dt);
-
-		std::cout<<dt<<'\n';
-		//w.handle_events();	//Obsolete... (?) -- Kind of... Now is done once we update the screen
-
 		i.update(event);
+		fs.add(dt);
 
-
+		//w.handle_events();	//Obsolete... (?) -- Kind of... Now is done once we update the screen
 		
 
 	}
 
+	fs.print();
 
 	return 0;
 }

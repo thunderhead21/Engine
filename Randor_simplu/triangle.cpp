@@ -1,8 +1,8 @@
 #include "triangle.h"
 
 Triangle::Triangle(const vec3d& a, const vec3d& b, const vec3d& c) {
-	vertices = { a, b, c };
-	indices = { 0, 1, 2 };
+	_vertices = { a, b, c };
+	_indices = { 0, 1, 2 };
 }
 
 Triangle::Triangle(const float& width, const float& height) {
@@ -10,12 +10,12 @@ Triangle::Triangle(const float& width, const float& height) {
 	float x = width * 0.5f;
 	float y = height * 0.5f;
 
-	vertices = { 
+	_vertices = { 
 		{-x, -y, 0},
 		{x , -y, 0},
 		{0 ,  y, 0}
 	};
-	indices = { 0, 1, 2 };
+	_indices = { 0, 1, 2 };
 }
 
 Triangle Triangle::Equilateral(const float& side) {

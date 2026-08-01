@@ -29,15 +29,26 @@ float a = 125, r = 185, g = 50, b = 80;
 float base = (1.0f / 255.0f);
 bool ascending = 1;
 
-
+// [ARCHITECTURE]
+// Transform is the single source of truth for spatial state.
+//
+// Mesh never owns position, rotation or scale.
+// Rendering always consumes Entity::Transform.
 
 void Window::shader() {
+	// [DESIGN]
+	// Scale belongs to Transform.
+	//
+	// Physics may consume scale (for collision volumes),
+	// but Transform remains the authoritative owner.
 
-
-
+	if (scene == NULL) {
+		spdlog::warn("\"{}\" has no scene to render", SDL_GetWindowTitle(this->window));
+		return;
+	}
 	for (const auto &entity : *scene) {
 
-		entity->transform().set_scale({ sx, sy, sz });		//SUPERSEDED BY SCENE.PHYSICS -- FALSE! Controlling scale is optimal here!
+		entity->transform().scale({ sx, sy, sz });		//SUPERSEDED BY SCENE.PHYSICS -- FALSE! Controlling scale is optimal here!
 		//entity->get_transform().rotate({ 0.1f, 0.0f, 1.0f });	[30.07.2026] Changed function to transform
 
 
@@ -59,7 +70,14 @@ void Window::shader() {
 		}
 
 		//Transforms the vertices to world space
-		std::vector<vec4d> world_vertices = entity->transform() * entity->get_Mesh();
+		std::vector<vec4d> world_vertices = entity->transform() * entity->mesh();
+
+		// [DESIGN]
+		// Rendering operates on world-space geometry.
+		//
+		// Mesh stores local-space geometry.
+		// Transform converts local geometry into world space
+		// immediately before rendering.
 
 		//Projected vertices onto the screen
 		std::vector<SDL_Vertex> render_vertices;
@@ -82,8 +100,8 @@ void Window::shader() {
 			nullptr, 
 			render_vertices.data(), 
 			render_vertices.size(), 
-			(const int*)entity->get_Mesh().get_indices().data(), 
-			entity->get_Mesh().get_indices().size()) == false) {
+			(const int*)entity->mesh().indices().data(), 
+			entity->mesh().indices().size()) == false) {
 			std::cout << SDL_GetError() << '\n';
 		};
 				

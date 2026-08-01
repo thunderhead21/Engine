@@ -6,7 +6,7 @@ Cube::Cube(float side)
 	
 
 	///{0,0,0} center
-	vertices = {
+	_vertices = {
 		{-hs, -hs, -hs},	//Far Bottom Left	0
 		{ hs, -hs, -hs},	//Far Bottom Right	1
 		{ hs,  hs, -hs},	//Far   Top  Right	2
@@ -18,7 +18,7 @@ Cube::Cube(float side)
 		{-hs,  hs, hs},		//Near   Top  Left	7
 	};
 
-	indices = {
+	_indices = {
 		0,1,2, 2,3,0,
 		4,5,6, 6,7,4,
 		0,1,5, 5,4,0,

@@ -6,6 +6,30 @@
 //Describes the object in the world - TRS
 
 /// @brief Describes the object in the world - TRS. Rotation and position set to 0 by default. Scale to 1.
+
+// [ARCHITECTURE]
+// ==========================================================
+// ARCHITECTURAL INVARIANT
+//
+// Transform is the only authoritative spatial state.
+//
+// If another class begins storing independent position,
+// rotation or scale, the ownership model has been broken.
+//
+// Avoid synchronization.
+// Prefer one truth.
+// 
+// ==========================================================
+// 
+// Mesh never owns position, rotation or scale.
+// Rendering always consumes Entity::Transform.
+
+// [DESIGN]
+// Scale belongs to Transform.
+//
+// Physics may consume scale (for collision volumes),
+// but Transform remains the authoritative owner.
+
 class Transform {
 private:
 	vec3d _position{ 0,0,0 };
@@ -36,9 +60,9 @@ public:
 	//void rotate(vec3d amount) { _rotation += amount; };
 
 	//Setters
-	void set_position(const vec3d& position) { _position = position; };
-	void set_rotation(const vec3d& rotation) { _rotation = rotation; };
-	void set_scale(const vec3d& scale) { _scale = scale; };
+	void position(const vec3d& position) { _position = position; };
+	void rotation(const vec3d& rotation) { _rotation = rotation; };
+	void scale(const vec3d& scale) { _scale = scale; };
 
 	std::vector<vec4d> operator*(const Mesh&  mesh) const;
 	Transform& operator=(const Transform& other);

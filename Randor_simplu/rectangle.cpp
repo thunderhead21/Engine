@@ -26,14 +26,14 @@ Rectangle::Rectangle(float width, float height) {
 	float hx = width * 0.5f;
 	float hy = height * 0.5f;
 
-	vertices = {
+	_vertices = {
 		{-hx, -hy, 0},
 		{-hx,  hy, 0},
 		{ hx,  hy, 0},
 		{ hx, -hy, 0}
 	};
 
-	indices = {
+	_indices = {
 		0, 1, 2,
 		0, 2, 3
 	};
@@ -42,9 +42,9 @@ Rectangle::Rectangle(float width, float height) {
 
 Rectangle::Rectangle(vec3d& a, vec3d& b, vec3d& c, vec3d& d) {
 
-	vertices = { a, b, c, d };
+	_vertices = { a, b, c, d };
 
-	indices = {
+	_indices = {
 		0, 1, 2,
 		2, 3, 0
 	};

@@ -1,51 +1,67 @@
-📋 File creation order:
-
-Graphics TODO is the first documenting file 
-💡 Ideas came <2weeks later
-📝 Regression text came a month into the project after implementing the timer
-🛠 Engine TODO is the latest before this one, used to create the roadmap for the whole project
-This was created on 30.07.2026
-
 Your main aid is ChatGPT on ironrattlesnake@gmail.com, go to projects and you will see "3D Engine"
 One discussion is architecture, but Branch has the greatest context of the two.
+However, it does NOT know all of the source code, as I avoided that
 
-🏗️ 3D Engine – Architecture Notes
+# 🏗️ 3D Engine — Wake-Up Notes
 
-Status (30 Jul 2026)
-Core architecture established. The engine has moved beyond a toy renderer into a coherent simulation framework with stable ownership.
+## 📋 Documentation Timeline
 
-🎯 Why This Engine Exists
+These files were created in the following order:
 
-Build an engine from first principles.
+* 📐 **Graphics TODO** — the first project planning document.
+* 💡 **Ideas** — created roughly two weeks later; contains future projects and gameplay concepts.
+* 📝 **Regression text** — started after implementing the Timer to record architectural decisions and regressions.
+* 🛠️ **Engine TODO** — expanded the roadmap from graphics into the complete engine.
+* 📖 **Wake-Up Notes** *(this document)* — created on **30.07.2026** as the project's architectural reference.
 
-Not to imitate Unreal or Unity, but to create a simulation framework that is:
+If returning after a long break, read this file first, then **Engine TODO**, then continue from the code.
 
-Easy to reason about
-Architecturally consistent
-Predictable
-Pleasant to extend
+---
 
-Every abstraction must earn its place.
+# 📌 Project Status (30 Jul 2026)
 
-🧠 Core Philosophy
+The project has moved beyond a toy renderer.
 
-Before writing code, ask:
+The core architecture is established, and ownership relationships are stable.
 
-❓ What is it?
-👤 Who owns it?
-⚠️ Am I introducing two truths?
+Most future work consists of **extending** the engine rather than redesigning it.
 
-Golden rules:
+---
 
-✅ One source of truth.
-✅ Ownership determines responsibility.
-✅ Simulation drives rendering.
-✅ Understanding before optimization.
-🌍 World Model
+# 🎯 Why This Engine Exists
+
+This engine is built from first principles.
+
+The objective is **not** to imitate Unreal, Unity or other engines, but to construct a simulation framework that is:
+
+* understandable
+* architecturally coherent
+* predictable
+* pleasant to extend
+
+Every abstraction must justify its existence.
+
+---
+
+# 🧠 Core Philosophy
+
+Before writing code, always ask:
+
+* ❓ **What is it?**
+* 👤 **Who owns it?**
+* ⚠️ **Am I introducing two truths?**
+
+The answers to these questions determine the correct architecture.
+
+---
+
+# 🌍 Ownership Hierarchy
+
+```text
 Engine
 │
 ├── Timer
-├── Input
+├── InputManager
 ├── Renderer
 └── Scene
       │
@@ -56,56 +72,130 @@ Engine
             ├── Mesh
             ├── Layers
             ├── Tags
-            └── Name + ID
+            └── Name / ID
+```
 
-Ownership flows downward.
+Ownership intentionally flows downward.
 
-Do not casually move responsibilities.
+Responsibilities should not casually migrate between levels.
 
-📦 Responsibilities
-Engine
-Runs the application
-Coordinates systems
-Scene
-Owns the world
-Owns Physics
-Assigns IDs
-Orchestrates updates
+---
 
-🚫 Does not perform physics.
+# 📦 Responsibilities
 
-Entity
+## Engine
 
-Represents something that exists.
+Coordinates the application.
+
+Owns the application's lifetime.
+
+Orchestrates systems.
+
+Does **not** implement subsystem logic.
+
+---
+
+## Scene
+
+Represents the simulated world.
 
 Owns:
 
-Transform
-Mesh
-Layers
-Tags
-Name
-ID
-Mesh
+* Physics
+* Entities
 
-Geometry.
+Assigns world identity (IDs).
 
-Nothing else.
+Coordinates updates.
+
+Does **not** perform physics itself.
+
+---
+
+## Physics
+
+Simulates the world.
+
+Consumes Scene state.
+
+Updates Entity transforms.
+
+Owns **no** world objects.
+
+---
+
+## Entity
+
+Represents something that exists within the world.
+
+Owns:
+
+* Transform
+* Mesh
+* Layers
+* Tags
+* Name
+* ID
+
+Does not perform rendering or physics.
+
+---
+
+## Transform
+
+The authoritative spatial representation.
+
+Position.
+
+Rotation.
+
+Scale.
+
+Everything derives from Transform.
+
+---
+
+## Mesh
+
+Geometry only.
 
 Never owns:
 
-Position
-Physics
-Gameplay
-IDs
-Names
-Renderer
+* Transform
+* Physics
+* Gameplay
+* Names
+* IDs
 
-Consumes world state.
+Stores local-space geometry.
 
-Never becomes world state.
+---
 
-🏷️ Naming
+## Renderer
+
+Observes the world.
+
+Consumes Entity state.
+
+Rendering never becomes simulation.
+
+Simulation always drives rendering.
+
+---
+
+## InputManager
+
+Interprets input.
+
+Window owns SDL events.
+
+InputManager never owns the operating system event queue.
+
+---
+
+# 🏷️ Object Creation
+
+```text
 Mesh::cube()
 
 ↓
@@ -115,92 +205,186 @@ Entity::cube()
 ↓
 
 Scene::add_entity()
+```
 
 Mesh creates geometry.
 
-Entity defines meaning.
+Entity gives semantic meaning.
 
-Scene assigns identity.
+Scene assigns world identity.
 
-Example:
+Example naming:
 
+```text
 Cube_4
 RigidBody_2
 Entity_17
-🧭 Mental Model
+```
+
+---
+
+# 🧭 Mental Model
+
+Always think:
+
+```text
 World
     owns
 Entities
     own
 Representation
+```
 
-Never
+Never:
 
+```text
 Renderer
-
-↓
-
+      ↓
 Gameplay
+```
 
+The simulated world is reality.
 
-🚫 Never Regress
-Avoid:
+Everything else observes it.
 
-❌ Scene performing physics
-❌ Mesh owning transforms
-❌ Renderer owning simulation
-❌ Multiple owners of position
+---
+
+# 🚫 Architectural Invariants
+
+Never violate these without an intentional redesign.
+
+* Transform is the **single source of truth** for spatial state.
+* Mesh never owns transforms.
+* Physics never owns world objects.
+* Renderer never owns simulation.
+* Avoid duplicated ownership.
 
 If synchronization becomes necessary,
 
-question the ownership model first.
+**question the ownership model first.**
 
-✅ Completed
-Math library
-Renderer
-Camera
-Projection
-Scene
-Entity system
-Layers & Tags
-Debug naming
-Entity factories
-Engine shell
+---
 
-🚀 Next
-Engine loop
-Resource manager
-OBJ loader
-Materials
-Animation
-Later
-Audio
-Save system
-AI
-Particles
-Editor
-Eventually
+# ✅ Current Progress
 
-🎮 First complete game (Ideas.txt)
+## Engine Core
 
-💡 Lessons Learned
+* ✅ Math library
+* ✅ Mesh
+* ✅ Transform
+* ✅ Scene
+* ✅ Renderer
+* ✅ Physics integration
+* ✅ Weak perspective projection
+* ✅ Input system
+
+## Infrastructure
+
+* ✅ IDs
+* ✅ Names
+* ✅ Layers
+* ✅ Tags
+* ✅ Engine encapsulation
+
+---
+
+## Engine
+
+* Vector class refactoring
+* SIMD math class
+* Engine wraper class
+
+# 🚀 Roadmap
+
+## Graphics
+
+* Camera
+* View matrix
+* Perspective projection
+* Back-face culling
+* Clipping
+* Depth (Painter → Z-buffer)
+
+## Simulation
+
+* Collision detection
+* Collision response
+* Gravity
+* Fixed timestep
+
+## Gameplay
+
+* Event system
+* World state
+* Dialogue
+* Quest system
+* Save / Load
+
+## Later
+
+* Resource manager
+* OBJ loader
+* Materials
+* Animation
+* Audio
+* AI
+* Particle systems
+* Editor tools
+
+## Long-term
+
+🎮 Build the first complete game (see **Ideas.txt**).
+
+---
+
+# 💡 Lessons Learned
+
 Good encapsulation preserves one mental model.
-One truth beats synchronization.
-Convenience is temporary.
-Architecture compounds.
-📌 Remember
 
-This project values:
+Ownership eliminates synchronization.
+
+Convenience is temporary.
+
+Architecture compounds.
+
+If something seems to belong everywhere,
+
+it almost certainly belongs somewhere specific.
+
+---
+
+# 📌 Reminder to Future Me
+
+Do **not** optimize for cleverness.
+
+Optimize for understanding.
+
+This project intentionally values:
 
 🟢 Clarity
+
 🟢 Explicit ownership
-🟢 Predictable architecture
+
 🟢 Stable mental models
+
+🟢 Predictable architecture
 
 over
 
 🔴 Clever tricks
+
 🔴 Premature optimization
+
 🔴 Engine buzzwords
 
-If something seems to belong everywhere, it probably belongs somewhere specific.
+If you are unsure where something belongs,
+
+return to the three questions:
+
+* What is it?
+* Who owns it?
+* Am I introducing two truths?
+
+Those questions built the architecture.
+
+They will continue to protect it.

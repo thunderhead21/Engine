@@ -43,12 +43,12 @@ bool Entity::toggle_visibility() noexcept
 }
 
 Entity::Entity() noexcept :
-	mesh({}), visible(1), id(0), name("Entity")
+	_mesh({}), visible(1), _id(0), _name("Entity")
 {
 }
 
 Entity::Entity(Mesh m) noexcept:
-	mesh(m), visible(1), id(0), name("Entity")
+	_mesh(m), visible(1), _id(0), _name("Entity")
 {
 
 }
@@ -58,7 +58,7 @@ Entity::Entity(Mesh m) noexcept:
 Entity::~Entity()
 {
 	//Annul its components
-	mesh = {};		
+	_mesh = {};		
 	visible = 0;
 }
 
@@ -69,7 +69,7 @@ Entity Entity::Cube(float side)
 	
 	Entity cube(Cube(side));
 
-	cube.name = "Cube";
+	cube._name = "Cube";
 	return cube;
 
 	
@@ -79,7 +79,7 @@ Entity Entity::Rectangle(float width, float height)
 {
 	Entity rectangle(Rectangle(width, height));
 
-	rectangle.name = "Rectangle";
+	rectangle._name = "Rectangle";
 	return rectangle;
 }
 
@@ -87,6 +87,6 @@ Entity Entity::Triangle(float width, float height)
 {
 	Entity triangle(Triangle(width, height));
 
-	triangle.name = "Triangle";
+	triangle._name = "Triangle";
 	return triangle;
 }

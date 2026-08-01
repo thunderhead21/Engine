@@ -37,3 +37,13 @@ WRONG OUTPUT:
 [29.07.2026, 22:40] There is a good reason why oftentimes the .inl file containing the template class implementation should be excluded from the build process:
 Building without excluding matrix.inl from the build process generates innumerable errors that simply disappear if the file is excluded.
 This happens as those are NOT source files and are included in the header's footer
+
+[30.07.2026, 19:55] You will notice some class names are lowercase. That is because they are mainly PODs and not generally intended for external API use
+The ones that are uppercase are NOT PODs and are actually meaningful to the end user. For example, it is unlikely a user would instantiate a mat4
+But highly likely to instantiate a Mesh or a Transform
+
+
+[31.07.2026, 11:55] Exclude .inl files from compilation in every configuration and platform [Properties -> Excluded from Build - YES]
+If excluding an .inl file manually in Visual Studio, apply the change to all Configurations and Platforms.
+Otherwise Debug will work and Release is going to throw a mound of errors.
+Do not change the .vcxproj file ! When time comes, CMake will be useful.

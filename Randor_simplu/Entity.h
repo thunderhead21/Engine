@@ -23,14 +23,14 @@
 */
 class Entity
 {
-	friend class Scene;
+	friend class Scene;		//Modify the ID and Name upon entering Scene
 protected:
 	
-	Mesh mesh;
+	Mesh _mesh;
 	Transform _transform;
 	
-	size_t id;
-	std::string name;
+	size_t _id;
+	std::string _name;
 
 	bool visible;		//Whether it is rendered or not.
 
@@ -40,7 +40,7 @@ protected:
 public:
 	/// @brief Sets the visible component that represents the entity
 	/// @param mesh - Mesh object to copy into the mesh member
-	void set_mesh(Mesh mesh) { mesh = mesh; }
+	void set_mesh(const Mesh& mesh) { _mesh = mesh; }
 
 	/// @brief Changes the entity's transform (Postion, Rotation, Scale)
 	/// @param &t to the transform to copy from
@@ -56,14 +56,14 @@ public:
 	* @brief Gets the Mesh object.
 	* @returns Mesh& to the entity's mesh
 	*/
-	inline Mesh& get_Mesh() noexcept { return mesh; };
-	inline const Mesh& get_Mesh() const noexcept { return mesh; };
+	inline Mesh& mesh() noexcept { return _mesh; };
+	inline const Mesh& mesh() const noexcept { return _mesh; };
 	/// @brief Getter for Entity's ID
 	/// @return size_t ID
-	inline const size_t& get_id() const { return id; }
+	inline const size_t& id() const { return _id; }
 	/// @brief Getter for Entity's name
 	/// @return string name
-	inline const std::string& get_name() const { return name; };
+	inline const std::string& name() const { return _name; };
 
 	/// @brief Sets the required layer flags
 	/// @param Layer flag to append

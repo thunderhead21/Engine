@@ -1,7 +1,8 @@
 #pragma once
 
 #include <string>
-
+#include <spdlog/spdlog.h>
+#include <spdlog/fmt/fmt.h>
 #include "Entity.h"
 #include "Physics.h"
 
@@ -34,6 +35,11 @@ public:
 
 	//Appends an entity to the scene by pointer
 	Entity* add_entity(Entity* e);
+
+
+	void reserve(size_t entities_count);
+
+	void reserve_queues(size_t entities_count);
 
 	/// @brief Adds the provided entities to the scene
 	/// @param to_add std::vector of Entity pointers. Updated with the addresses in the vector.

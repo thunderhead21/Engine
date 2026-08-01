@@ -69,6 +69,8 @@ Window::Window(InputManager& controller, int w, int h, bool VSync, bool fullscre
 	if (fps > 0) target_frame_time_s = 1.0f / fps;
 
 	register_own_keybindings();
+
+	timer.reset();	//Prime the timer, discard the startup time.... or not!
 }
 
 //Keep only internals here. Delegate controls

@@ -22,6 +22,8 @@ Perspective Projection
 Back-face culling
 Clipping
 Depth (Painter's algorithm → Z-buffer)
+Measure the renderer's stages' time to find the current bottleneck (maximum 18k entities now)
+Add geometric primitives
 
 -Simulation-
 Collision detection

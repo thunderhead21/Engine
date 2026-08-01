@@ -2,13 +2,13 @@
 
 RigidBody::RigidBody() : Entity()
 {
-	name = "RigidBody";
+	_name = "RigidBody";
 	this->layers = Layers::Physics | Layers::Renderable;
 }
 
 RigidBody::RigidBody(Mesh mesh): Entity(mesh)
 {
-	name = "RigidBody";
+	_name = "RigidBody";
 	this->layers = Layers::Physics | Layers::Renderable;
 }
 
@@ -22,7 +22,7 @@ RigidBody RigidBody::Cube(float side)
 	RigidBody cube(Cube::Cube(side));
 
 
-	cube.name = "Cube";
+	cube._name = "Cube";
 	return cube;
 
 
@@ -32,7 +32,7 @@ RigidBody RigidBody::Rectangle(float width, float height)
 {
 	RigidBody rectangle(Rectangle::Rectangle(width, height));
 
-	rectangle.name = "Rectangle";
+	rectangle._name = "Rectangle";
 	return rectangle;
 }
 
@@ -40,6 +40,6 @@ RigidBody RigidBody::Triangle(float width, float height)
 {
 	RigidBody triangle(Triangle::Triangle(width, height));
 
-	triangle.name = "Triangle";
+	triangle._name = "Triangle";
 	return triangle;
 }

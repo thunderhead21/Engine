@@ -12,9 +12,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Components\Core">
-      <UniqueIdentifier>{5f1d89f7-be8f-44a9-85ce-69b3b89d7994}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components\Input">
       <UniqueIdentifier>{2549120f-f01b-45a8-b551-e1fd0d50d6b1}</UniqueIdentifier>
     </Filter>
@@ -78,12 +75,6 @@
     <Filter Include="Components\Geometry\Primitives\3D">
       <UniqueIdentifier>{9b8d9fca-7aa3-4faa-9fe0-b9b1d36c04ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\Core\Global">
-      <UniqueIdentifier>{9510b8a5-1a4f-43e8-af6a-5e28c2650d7b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Core\Conversion">
-      <UniqueIdentifier>{671165a4-baad-4c3a-9fbe-6cefac917b02}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Tests\Vector">
       <UniqueIdentifier>{860d683d-61e7-4539-b4fc-91f52d2d53a9}</UniqueIdentifier>
     </Filter>
@@ -92,9 +83,6 @@
     </Filter>
     <Filter Include="Components\Geometry\Primitives\3D\Cube">
       <UniqueIdentifier>{6f24c157-fec1-48fa-9f08-2aae4e2c3e64}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Core\Timer">
-      <UniqueIdentifier>{50609199-37bd-47f0-8f50-3b0c0c53dca2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Tests\Timer">
       <UniqueIdentifier>{f78f42be-2a3c-40b7-be47-e179860b2ba2}</UniqueIdentifier>
@@ -116,6 +104,21 @@
     </Filter>
     <Filter Include="Components\Input\InputManager\Keybind">
       <UniqueIdentifier>{9c176132-de8a-4735-b579-294dc210d4bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{5f1d89f7-be8f-44a9-85ce-69b3b89d7994}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Global">
+      <UniqueIdentifier>{9510b8a5-1a4f-43e8-af6a-5e28c2650d7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Conversion">
+      <UniqueIdentifier>{671165a4-baad-4c3a-9fbe-6cefac917b02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Timer">
+      <UniqueIdentifier>{50609199-37bd-47f0-8f50-3b0c0c53dca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\FrameStat">
+      <UniqueIdentifier>{3747dabf-c6c8-4570-950f-90e95cb47ab2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +166,7 @@
       <Filter>Components\Math\Vector\Unused\vec3d</Filter>
     </ClCompile>
     <ClCompile Include="Conversion.inl">
-      <Filter>Components\Core\Conversion</Filter>
+      <Filter>Core\Conversion</Filter>
     </ClCompile>
     <ClCompile Include="Vec4dTest.cpp">
       <Filter>Tests\Vector</Filter>
@@ -187,7 +190,7 @@
       <Filter>Components\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
-      <Filter>Components\Core\Timer</Filter>
+      <Filter>Core\Timer</Filter>
     </ClCompile>
     <ClCompile Include="TimerTest.cpp">
       <Filter>Tests\Timer</Filter>
@@ -203,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameStat.cpp">
+      <Filter>Core\FrameStat</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -249,13 +255,13 @@
       <Filter>Components\Math\Vector\Unused\vec3d</Filter>
     </ClInclude>
     <ClInclude Include="Core.h">
-      <Filter>Components\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">
-      <Filter>Components\Core\Global</Filter>
+      <Filter>Core\Global</Filter>
     </ClInclude>
     <ClInclude Include="Conversion.hpp">
-      <Filter>Components\Core\Conversion</Filter>
+      <Filter>Core\Conversion</Filter>
     </ClInclude>
     <ClInclude Include="Projection.h">
       <Filter>Components\Rendering\Projection</Filter>
@@ -264,7 +270,7 @@
       <Filter>Components\Geometry\Primitives\3D\Cube</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Components\Core\Timer</Filter>
+      <Filter>Core\Timer</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Components\Scene</Filter>
@@ -283,6 +289,9 @@
     </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameStat.h">
+      <Filter>Core\FrameStat</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
