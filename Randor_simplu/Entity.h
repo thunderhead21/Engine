@@ -27,21 +27,21 @@ class Entity
 protected:
 	
 	Mesh _mesh;
-	std::vector<vec4d> _world_cache;
-	std::vector<SDL_Vertex> _projection_cache;
+	mutable std::vector<vec4d> _world_cache;
+	mutable std::vector<SDL_Vertex> _projection_cache;
 
 	Transform _transform;
 	
-	size_t _id;
+	mutable size_t _id;
 	std::string _name;
 
 	bool visible;		//Whether it is rendered or not.
 
-	Tags tags{Tags::None};	//Not needed now. Useful for gameplay and categorisation
-	Layers layers{Layers::Renderable};		//Subsystem responsible for the entity. Inheritors modify it in CTORs
+	mutable Tags tags{Tags::None};	//Not needed now. Useful for gameplay and categorisation
+	mutable Layers layers{Layers::Renderable};		//Subsystem responsible for the entity. Inheritors modify it in CTORs
 
 
-	bool _dirty = 1;
+	mutable bool _dirty = 1;
 
 public:
 	/// @brief Sets the visible component that represents the entity
