@@ -74,35 +74,40 @@ inline bool mat<T>::operator==(const mat& other) const
 }
 
 template<typename T>
-inline vec4d mat<T>::operator*(const vec4d& v) const
+inline vec4d mat<T>::operator*(const vec3d& v) 
 {
-	vec4d result{0,0,0,0};
+	internal::v4.x = (v.x * at(0, 0)) + (v.y * at(0, 1)) + (v.z * at(0, 2)) + at(0, 3);
+	internal::v4.y = (v.x * at(1, 0)) + (v.y * at(1, 1)) + (v.z * at(1, 2)) + at(1, 3);
+	internal::v4.z = (v.x * at(2, 0)) + (v.y * at(2, 1)) + (v.z * at(2, 2)) + at(2, 3);
+	internal::v4.w = (v.x * at(3, 0)) + (v.y * at(3, 1)) + (v.z * at(3, 2)) + at(3, 3);
+
 	for (int i = 0; i < rows; i++) {
 		
-		result[i] = (v[0] * at(i, 0)) + (v[1] * at(i, 1)) + (v[2] * at(i, 2)) + (v[3] * at(i, 3));
-		//result[i] = (v[i] * at(0, i)) + (v[i] * at(1, i)) + (v[i] * at(2, i)) + (v[i] * at(3, i));
+		internal::v4[i] = (v[0] * at(i, 0)) + (v[1] * at(i, 1)) + (v[2] * at(i, 2)) + (1 * at(i, 3));
+		//v4[i] = (v[i] * at(0, i)) + (v[i] * at(1, i)) + (v[i] * at(2, i)) + (v[i] * at(3, i));
 		
 	}
-	return result;
+	return internal::v4;
 }
 
+
 template<typename T>
-inline vec4d mat<T>::operator*(const vec3d& v) const
+inline vec4d mat<T>::operator*(const vec4d& v)
 {
 	
-	vec4d result{ v.x, v.y, v.z, 1 };
-	//std::cout<< "START: " << result << std::endl;
+	internal::v4 = {0,0,0,0};
+	//std::cout<< "START: " << v4 << std::endl;
 	for (int i = 0; i < rows; i++) {
 
-		result[i] = (v[0] * at(i, 0)) + (v[1] * at(i, 1)) + (v[2] * at(i, 2)) + (1 * at(i, 3));
+		internal::v4[i] = (v[0] * at(i, 0)) + (v[1] * at(i, 1)) + (v[2] * at(i, 2)) + (1 * at(i, 3));
 
 	}
-	//std::cout <<"END:" << result << std::endl;
-	return result;
+	//std::cout <<"END:" << v4 << std::endl;
+	return internal::v4;
 }
 
 template<typename T>
-inline mat<T> mat<T>::operator*(const mat<T>& other) const
+inline mat<T> mat<T>::operator*(const mat<T>& other)
 {
 	assert(columns == other.rows);
 

@@ -169,7 +169,7 @@ void print_mat(mat<T>& m) {
 int main(int argc, char* argv[])
 {
 
-	rendering_test_run(60, 30, 10);
+	//rendering_test_run(60, 30, 10);
 	Timer t;
 
 	//std::cin.get();
@@ -220,8 +220,8 @@ int main(int argc, char* argv[])
 	e3->transform().position({ -100, 500, 00 });
 
 	Scene world;
-	//std::vector<Entity*> ents{new Entity(Cube(100)), new Entity(Cube(50)), new Entity(Cube(200))};
-	//world.add_entity(ents);
+	std::vector<Entity*> ents{new Entity(Cube(100)), new Entity(Cube(50)), new Entity(Cube(200))};
+	world.add_entity(ents);
 
 	RigidBody* rb1 = dynamic_cast<RigidBody*>(world.add_entity(new RigidBody(Cube(370))));
 	(*rb1).set_angular_velocity({ 10.0f, 30.0f, 0.0f });
@@ -240,7 +240,9 @@ int main(int argc, char* argv[])
 	w.enroll_entity(e3);
 	*/
 
-	w.set_active_scene(world);
+	world.rebuild_queues();
+	if(w.set_active_scene(world)) spdlog::critical("WORLD IS EMPTY!");
+
 
 	FrameStat fs;
 	SDL_Event event;

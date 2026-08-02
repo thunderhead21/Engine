@@ -17,6 +17,11 @@ struct vec3d;
 
 class Window		//Needs to separate the renderer and window ASAP!
 {
+
+	//Future Vertex Buffer Object
+	std::vector<vec4d> world_vertices;
+	std::vector<SDL_Vertex> render_vertices;
+
 	Timer timer;
 	
 	SDL_Window* window;

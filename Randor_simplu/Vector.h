@@ -192,6 +192,7 @@ struct vec4d {
 	vec4d operator-(const vec4d& other) const;
 	vec4d operator*(float scalar) const;
 	inline bool operator==(vec4d& other) const { return equal(*this, other); };
+	vec4d& operator=(const vec4d& other);
 
 	inline float magnitude() const { return length(*this); }
 	inline float magnitude_square() const { return length_squared(*this); }
@@ -209,6 +210,7 @@ struct vec4d {
 	///////////////////////////WORKSPACE///////////////////////////////
 	//inline void print() const { std::cout << x << ', ' << y << ', ' << z << ', ' << w << ', ' ; };
 	friend std::ostream& operator<<(std::ostream& os, const vec4d& v);
+
 	
 };
 

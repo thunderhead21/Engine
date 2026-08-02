@@ -33,7 +33,7 @@ int Window::set_fps(unsigned int fps) noexcept
 bool Window::set_active_scene(Scene& s)
 {
 	scene = &s;
-
+	s.rebuild_queues();
 	return s.empty();
 }
 

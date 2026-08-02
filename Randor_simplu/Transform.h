@@ -30,11 +30,16 @@
 // Physics may consume scale (for collision volumes),
 // but Transform remains the authoritative owner.
 
+//TIP - Non-const function should _probably_ set _outdated = 1;
+
 class Transform {
 private:
 	vec3d _position{ 0,0,0 };
 	vec3d _rotation{ 0,0,0 };
 	vec3d _scale{ 1,1,1 };
+
+	mutable mat4 _matrix;
+	mutable bool _outdated{1};	//Rebuild Matrix cache ASAP flag
 
 public:
 
@@ -42,29 +47,48 @@ public:
 	Transform(vec3d position, vec3d rotation, vec3d scale) : _position(position), _rotation(rotation), _scale(scale) {};
 
 	//Getters
-	vec3d& position() { return _position; };
-	vec3d& rotation() { return _rotation; };
-	vec3d& scale() { return _scale; };
+	vec3d& position() { return _position; _outdated = 1; };
+	vec3d& rotation() { return _rotation; _outdated = 1; };
+	vec3d& scale() { return _scale; _outdated = 1; };
 	mat4 matrix() const;
 
 	const vec3d& position() const { return _position; };
 	const vec3d& rotation() const { return _rotation; };
 	const vec3d& scale() const { return _scale; };
 
+	bool changed() const { return _outdated; };
 
 	//Incrementors
-	void translate(const vec3d& amount) { _position += amount; };
-	void rotate(const vec3d& amount) { _rotation += amount; };
+	void translate(const vec3d& amount) { _position += amount; _outdated = 1; };
+	void rotate(const vec3d& amount) { _rotation += amount; _outdated = 1; };
 
 	//void translate(vec3d amount) { _position += amount; };
 	//void rotate(vec3d amount) { _rotation += amount; };
 
 	//Setters
-	void position(const vec3d& position) { _position = position; };
-	void rotation(const vec3d& rotation) { _rotation = rotation; };
-	void scale(const vec3d& scale) { _scale = scale; };
+	void position(const vec3d& position);
+	void rotation(const vec3d& rotation);
+	void scale(const vec3d& scale);
 
+	/// @brief Transform the mesh from local coordinates to world coordinates coordinates.
+	/// @brief That means it places the entity's representation in the world
+	/// @brief SUB-OPTIMAL! USE OPTIMIZED transform_mesh() !
+	/// @param mesh - the mesh to apply the transformation to.
+	/// @return std::vector containing the resulting vertices as vec4
 	std::vector<vec4d> operator*(const Mesh&  mesh) const;
+	/// @brief Transform the mesh from local coordinates to world coordinates coordinates.
+	/// @brief That means it places the entity's representation in the world
+	/// @param mesh - the mesh to apply the transformation to.
+	/// @param out - reference to the storage buffer
+	void transform_mesh(const Mesh& mesh, std::vector<vec4d>& out) const;
+	/// @brief Transform the provided meshes from local coordinates to world coordinates coordinates.
+	/// @brief That means it places the entity's representation in the world
+	/// @param mesh - the mesh array to apply the transformation to.
+	/// @param count - number of meshes to transform
+	/// @param out - reference to the storage buffer
+	void transform_mesh_batch(const Mesh* mesh_array, size_t& count, std::vector<vec4d>& out) const;
+
+
 	Transform& operator=(const Transform& other);
 
 	Transform operator+(const Transform& other) const;
@@ -73,7 +97,7 @@ public:
 	Transform& operator-=(const Transform& other);
 
 	Transform operator*(const float coefficient);
-
+	void operator*=(const float coefficient);
 
 };
 

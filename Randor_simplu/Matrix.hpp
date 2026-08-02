@@ -7,12 +7,17 @@
 
 /// @brief Column-major order. Solves to array. Transforms vertices.
 /// @brief Column-major means as you progress, you advance through the columns, then lines
+namespace internal {
+	static vec4d v4;
+}
+
 template <typename T = float>
 class  mat {
 protected:
 	const size_t columns, rows, size;
 	const bool is_square;
 	T* data;
+
 
 	void copyDataFrom(const mat<T>& other) {
 		if (rows != other.rows || columns != other.columns)
@@ -66,9 +71,9 @@ public:
 
 	//OPERATOR* NEVER changes the matrix, it returns a new one.
 	//OPERATOR*= does that
-	vec4d operator*(const vec4d& v) const ;	//Mat * Vec operator
-	vec4d operator*(const vec3d& v) const;	//Mat * Vec operator
-	mat<T> operator*(const mat<T>& other) const;	//Mat * Mat operator
+	vec4d operator*(const vec4d& v)  ;	//Mat * Vec operator
+	vec4d operator*(const vec3d& v) ;	//Mat * Vec operator
+	mat<T> operator*(const mat<T>& other) ;	//Mat * Mat operator
 
 
 	//Matrix Accessors

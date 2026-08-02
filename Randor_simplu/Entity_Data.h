@@ -19,6 +19,8 @@ enum class Tags : ENTITY_ENUM_TYPE {
 
 };
 
+
+
 using real_type = std::underlying_type_t<Layers>;	//Whichever one. Tags and Layers are of same type.
 
 ///////////OPERATOR BITWISE_OR() 

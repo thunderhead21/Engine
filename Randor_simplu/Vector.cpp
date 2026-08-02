@@ -182,6 +182,14 @@ vec4d vec4d::operator*(const float scalar) const
 {
 	return { scalar * x, scalar * y, scalar * z, w};
 }
+vec4d& vec4d::operator=(const vec4d& other)
+{
+	x = other.x;
+	y = other.y;
+	z = other.z;
+
+	return *this;
+}
 const float& vec4d::operator[](char dimension) const {
 	switch (SDL_tolower(dimension)) {
 	case 'x': return x;

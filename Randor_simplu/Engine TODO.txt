@@ -33,6 +33,7 @@ Timing in shader():
 Identify dominant rendering cost.
 Introduce VBO to store world and projected vertices
 Benchmark after each optimization.
+Introduce Transform::mesh_batch_transform()
 
 -Simulation-
 Collision detection

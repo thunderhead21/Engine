@@ -25,7 +25,7 @@ void Window::shader() {
 
 
 float sx=0.85f, sy=0.85f, sz=0.85f;
-float a = 125, r = 185, g = 50, b = 80;
+float a = 85, r = 20, g = 5, b = 20;
 float base = (1.0f / 255.0f);
 bool ascending = 1;
 
@@ -34,6 +34,7 @@ bool ascending = 1;
 //
 // Mesh never owns position, rotation or scale.
 // Rendering always consumes Entity::Transform.
+
 
 Timer  shader_timer;
 void Window::shader() {
@@ -64,47 +65,56 @@ void Window::shader() {
 		
 	}
 
-	double rendering = 0, tform = 0, projection = 0;
-	std::vector<vec4d> world_vertices;	//Moved here for optimization purposes
-	for (const auto &entity : scene->get_visible_entities()) {
+	double rendering = 0, tform = 0, projection = 0;	//Timing variables
 
+	for (const auto &entity : scene->get_visible_entities()) {
+		
 
 		entity->transform().scale({ sx, sy, sz });		//SUPERSEDED BY SCENE.PHYSICS -- FALSE! Controlling scale is optimal here!
 		//entity->get_transform().rotate({ 0.1f, 0.0f, 1.0f });	[30.07.2026] Changed function to transform
 
 
-		//Transforms the vertices to world space and places them in the world
-		world_vertices = entity->transform() * entity->mesh();	//This is the result of operator*() in the middle!
-		tform += shader_timer.tick() * 1000;
+		//Recompute the entity if it changed
+		if (entity->transform().changed()) {
 
-		// [DESIGN]
-		// Rendering operates on world-space geometry.
-		//
-		// Mesh stores local-space geometry.
-		// Transform converts local geometry into world space
-		// immediately before rendering.
-
-		//Projected vertices onto the screen
-		std::vector<SDL_Vertex> render_vertices;
-		render_vertices.reserve(world_vertices.size());	//Naturally, we already know how many of them we are going to have
-		for (const auto& vertex : world_vertices) {		//Take each one and project it!
-
-			//Pass the screen size so we know to center them
-			SDL_Vertex sdl_vertex = weak_projection(this->get_size(), {vertex.x, vertex.y, vertex.z});
-			sdl_vertex.color.r = (r * base);	///And apply some global default colour
-			sdl_vertex.color.g = (g * base);
-			sdl_vertex.color.b = (b * base);
-			sdl_vertex.color.a = (a * base);
+			entity->projection_buffer().clear();
+			entity->world_buffer().clear();
 			
-			render_vertices.push_back(sdl_vertex);	
+			//Transforms the vertices to world space and places them in the world
+			entity->transform().transform_mesh(entity->mesh(), entity->world_buffer());	//This is the result of operator*() in the middle!. It is good the two functions return a reference
+			tform += shader_timer.tick() * 1000;
+
+			// [DESIGN]
+			// Rendering operates on world-space geometry.
+			//
+			// Mesh stores local-space geometry.
+			// Transform converts local geometry into world space
+			// immediately before rendering.
+
+			//Projected vertices onto the screen. Test reserve vs resize.
+			entity->projection_buffer().reserve(entity->world_buffer().size());	//Naturally, we already know how many of them we are going to have
+			for (const auto& vertex : entity->world_buffer()) {		//Take each one and project it!
+
+				//Pass the screen size so we know to center them
+				weak_projection(this->get_size(), { vertex.x, vertex.y, vertex.z }, entity->projection_buffer());
+
+				entity->projection_buffer().back().color.r = (r * base);	///And apply some global default colour
+				entity->projection_buffer().back().color.g = (g * base);
+				entity->projection_buffer().back().color.b = (b * base);
+				entity->projection_buffer().back().color.a = (a * base);
+			
+				
+			}
+			entity->clean();
+
+			projection += shader_timer.tick() * 1000;
 		}
-		projection += shader_timer.tick() * 1000;
 		//And finally, render what we have!
 		if (SDL_RenderGeometry(
 			renderer, 
 			nullptr, 
-			render_vertices.data(), 
-			render_vertices.size(), 
+			entity->projection_buffer().data(),
+			entity->projection_buffer().size(),
 			(const int*)entity->mesh().indices().data(), 
 			entity->mesh().indices().size()) == false) {
 			std::cout << SDL_GetError() << '\n';
