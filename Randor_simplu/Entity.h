@@ -26,21 +26,20 @@ class Entity
 	friend class Scene;		//Modify the ID and Name upon entering Scene
 protected:
 	
-	Mesh _mesh;
-	mutable std::vector<vec4d> _world_cache;
-	mutable std::vector<SDL_Vertex> _projection_cache;
 
 	Transform _transform;
 	
-	mutable size_t _id;
+	size_t _id;
 	std::string _name;
 
 	bool visible;		//Whether it is rendered or not.
 
-	mutable Tags tags{Tags::None};	//Not needed now. Useful for gameplay and categorisation
-	mutable Layers layers{Layers::Renderable};		//Subsystem responsible for the entity. Inheritors modify it in CTORs
+	Tags tags{Tags::None};	//Not needed now. Useful for gameplay and categorisation
+	Layers layers{Layers::Renderable};		//Subsystem responsible for the entity. Inheritors modify it in CTORs
 
-
+	Mesh _mesh;
+	mutable std::vector<vec4d> _world_cache;
+	mutable std::vector<SDL_Vertex> _projection_cache;
 	mutable bool _dirty = 1;
 
 public:
