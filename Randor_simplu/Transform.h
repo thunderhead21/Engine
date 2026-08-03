@@ -32,6 +32,11 @@
 
 //TIP - Non-const function should _probably_ set _outdated = 1;
 
+// N O T E: 
+// Transforms are relative to a frame of reference. 
+// The renderer operates exclusively on world transforms. 
+// Constructing the correct world transform from local transforms and hierarchy is the responsibility of the engine, not the renderer.
+
 class Transform {
 private:
 	vec3d _position{ 0,0,0 };

@@ -27,6 +27,7 @@ class Entity
 protected:
 	
 
+	Mesh _mesh;
 	Transform _transform;
 	
 	size_t _id;
@@ -37,7 +38,6 @@ protected:
 	Tags tags{Tags::None};	//Not needed now. Useful for gameplay and categorisation
 	Layers layers{Layers::Renderable};		//Subsystem responsible for the entity. Inheritors modify it in CTORs
 
-	Mesh _mesh;
 	mutable std::vector<vec4d> _world_cache;
 	mutable std::vector<SDL_Vertex> _projection_cache;
 	mutable bool _dirty = 1;

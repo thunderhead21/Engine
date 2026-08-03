@@ -113,30 +113,47 @@ void Window::handle_events() {	// Window related event handling
 	}
 }
 
+
+
+
+#if FRAME_PROFILER
 Timer instrument;
+#endif // FRAME_PROFILER
+
 float Window::update(){
-
+#if FRAME_PROFILER
 	instrument.reset();
+#endif // FRAME_PROFILER
+
 	handle_events();
-	spdlog::info( "Event Handling: {} ms", instrument.tick() * 1000);
 
+#if FRAME_PROFILER
+	spdlog::info( "Event Handling: {} ms", instrument.tick() * 1000);
 	instrument.reset();
+#endif
+
 	// Clear screen with a nice color
 	SDL_SetRenderDrawColor(renderer, 20, 25, 35, 255);
 	SDL_RenderClear(renderer);
+#if FRAME_PROFILER
 	spdlog::info("Screen clear: {} ms", instrument.tick() * 1000);
-	
-
 	instrument.reset();
+#endif
+
 	////////////////// Draw something simple (a rectangle)
 	shader();
 	//////////////////
+#if FRAME_PROFILER
 	spdlog::info("Draw: {} ms", instrument.tick() * 1000);
-
 	instrument.reset();
+#endif // FRAME_PROFILER
+
+
 	// Present the frame
 	SDL_RenderPresent(renderer);
-	spdlog::info("Presentation: {} ms\n", instrument.tick() * 1000);
+#if FRAME_PROFILER
+	spdlog::info("Presentation: {} ms\n\n", instrument.tick() * 1000);
+#endif // FRAME_PROFILER
 
 #if FRAME_PACER	//If the frame pacer was enabled
 		

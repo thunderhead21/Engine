@@ -63,7 +63,7 @@ void rendering_test_run(unsigned int fps = 60, float seconds = 15, unsigned int 
 	std::uniform_real_distribution<float> size(1.f, 500.f);
 	
 
-	int test_entities_count = 30000;
+	int test_entities_count = 300000;
 	s.reserve(test_entities_count);
 	
 	for (int i = 0; i < test_entities_count; i++) {
@@ -169,7 +169,7 @@ void print_mat(mat<T>& m) {
 int main(int argc, char* argv[])
 {
 
-	//rendering_test_run(60, 30, 10);
+	rendering_test_run(60, 30, 10);
 	Timer t;
 
 	//std::cin.get();

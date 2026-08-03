@@ -36,14 +36,20 @@ bool ascending = 1;
 // Rendering always consumes Entity::Transform.
 
 
-Timer  shader_timer;
+#if FRAME_PROFILER
+	Timer  shader_timer;
+	double rendering = 0, tform = 0, projection = 0;	//Timing variables
+#endif
 void Window::shader() {
 	// [DESIGN]
 	// Scale belongs to Transform.
 	//
 	// Physics may consume scale (for collision volumes),
 	// but Transform remains the authoritative owner.
+#if FRAME_PROFILER
 
+	rendering = 0, tform = 0, projection = 0;	//Reset Timing variables
+#endif
 	if (scene == NULL) {
 		spdlog::warn("\"{}\" has no scene to render", SDL_GetWindowTitle(this->window));
 		return;
@@ -65,7 +71,7 @@ void Window::shader() {
 		
 	}
 
-	double rendering = 0, tform = 0, projection = 0;	//Timing variables
+
 
 	for (const auto &entity : scene->get_visible_entities()) {
 		
@@ -82,7 +88,10 @@ void Window::shader() {
 			
 			//Transforms the vertices to world space and places them in the world
 			entity->transform().transform_mesh(entity->mesh(), entity->world_buffer());	//This is the result of operator*() in the middle!. It is good the two functions return a reference
+
+#if FRAME_PROFILER
 			tform += shader_timer.tick() * 1000;
+#endif // FRAME_PROFILER
 
 			// [DESIGN]
 			// Rendering operates on world-space geometry.
@@ -106,8 +115,9 @@ void Window::shader() {
 				
 			}
 			entity->clean();
-
+#if FRAME_PROFILER
 			projection += shader_timer.tick() * 1000;
+#endif // FRAME_PROFILER
 		}
 		//And finally, render what we have!
 		if (SDL_RenderGeometry(
@@ -119,14 +129,18 @@ void Window::shader() {
 			entity->mesh().indices().size()) == false) {
 			std::cout << SDL_GetError() << '\n';
 		};
-				
+
+#if FRAME_PROFILER
 		rendering += shader_timer.tick() * 1000;
+#endif // FRAME_PROFILER
 
 	}
 
+#if FRAME_PROFILER
 	spdlog::info("TForm: {}ms", tform);
 	spdlog::info("Projection: {}ms", projection);
 	spdlog::info("rendering: {}ms", rendering);
+#endif // FRAME_PROFILER
 
 }
 

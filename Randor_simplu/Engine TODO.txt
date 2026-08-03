@@ -1,4 +1,4 @@
--Engine Core-✅
+-Engine Core- ✅
 Math
 Mesh
 Transform
@@ -8,12 +8,17 @@ Physics integration
 Weak perspective projection
 Input system
 
--Engine Infrastructure- 80% 🔄
+-Engine Infrastructure- 🔄 (≈80%)
 IDs ✅
 Names ✅
 Layers ✅
 Tags ✅
-Engine object encapsulation (Engine.h / .cpp)🚧
+Engine object encapsulation (Engine.h / .cpp) 🚧
+RendererProfiler class expose transform, projection and presentation times
+Make Window::update(dt) return RendererProfiler
+Transform::_locked
+Hierarchical transforms
+Hierarchical transform caching
 
 -Graphics Pipeline-
 Camera
@@ -21,16 +26,18 @@ View matrix
 Perspective projection
 Back-face culling
 Clipping
-Depth (Painter's algorithm → Z-buffer)
-Add geometric primitives
+Depth
+    Painter's Algorithm
+    Z-buffer
+Geometric primitives
+
+-Graphics Optimization-  [DATA TABLES @ Regression text]
+Introduce GPU VBO cache
+Transform::mesh_batch_transform()
+Compare overdraw vs frame time
+Benchmark after every optimization
 
 -Graphics Performance-	[DATA TABLES @ Regression text]
-Measure the renderer's stages' time to find the current bottleneck (maximum 18k entities now)
-Timing in shader():
-	Transform
-	Projection
-	SDL_RenderGeometry()
-Identify dominant rendering cost.
 Introduce VBO to store world and projected vertices
 Benchmark after each optimization.
 Introduce Transform::mesh_batch_transform()
@@ -41,11 +48,16 @@ Collision response
 Gravity
 Fixed timestep
 
-
 -Gameplay-
-⚠️Do not start Gameplay before finishing Infrastructure⚠️
+⚠️ Do not start Gameplay before finishing Infrastructure ⚠️
 Event system
 World state
 Dialogue
 Quest system
-Save/Load
+Save / Load
+
+-Research-
+Explore different engine transform hierarchy designs
+
+-Branch Projects-
+Virtual Machine experiment

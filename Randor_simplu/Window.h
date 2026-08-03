@@ -6,7 +6,8 @@
 #include "Scene.h"
 #include "InputManager.h"
 
-#define FRAME_PACER 1;
+#define FRAME_PACER 1		//Smooth busy-waiting for precise frame times
+#define FRAME_PROFILER 0	//Print every render stage timing breakdown
 
 constexpr bool DEBUG = 0;
 constexpr bool INFO = 0;
