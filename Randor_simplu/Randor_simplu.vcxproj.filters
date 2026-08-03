@@ -5,299 +5,242 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Documentation">
-      <UniqueIdentifier>{ef48f1d5-1438-4e60-bb9f-c080e79f5b81}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Components\Input">
-      <UniqueIdentifier>{2549120f-f01b-45a8-b551-e1fd0d50d6b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Rendering">
-      <UniqueIdentifier>{e407e888-700a-4c10-b805-f1165a222e40}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Tests">
-      <UniqueIdentifier>{4ba6d0de-9ac0-4960-912a-ea8100b1fee6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Input\InputManager">
-      <UniqueIdentifier>{f25cd115-2517-46c5-b48d-0622d61653fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Rendering\Projection">
-      <UniqueIdentifier>{1ab0d04c-f896-4bb7-96f9-c53072394124}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Geometry">
-      <UniqueIdentifier>{24ded329-6b5c-407b-b6d1-b462e17a4431}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Window">
-      <UniqueIdentifier>{6798966b-f757-47d9-825b-5a7f372b9225}</UniqueIdentifier>
+      <UniqueIdentifier>{eade8291-eea4-4353-9e9f-24847e781dbd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Components\Entity">
-      <UniqueIdentifier>{ecf0687d-9590-45d6-8b72-a7f017ad7b62}</UniqueIdentifier>
+      <UniqueIdentifier>{95eecf0c-ddd7-41fe-a6d6-fc6d5960c424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Geometry">
+      <UniqueIdentifier>{362c458c-b1c7-4e2d-b824-ff83e8be7e02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Input">
+      <UniqueIdentifier>{0c931946-f597-41f7-bb86-a2456d8fda1a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Components\Math">
-      <UniqueIdentifier>{ac807277-05f7-4c42-8602-e560f230dcfa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Math\Vector">
-      <UniqueIdentifier>{22e464a7-b0ab-419a-8d34-064b1c2de487}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Math\Matrix">
-      <UniqueIdentifier>{77750980-88f3-4353-894f-f3f8472f7a68}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Math\Transform">
-      <UniqueIdentifier>{48ad8fca-0e97-4ad7-a71c-b062a07a043d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Geometry\Primitives">
-      <UniqueIdentifier>{f5741e91-e677-4093-a212-ea7b96590041}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Geometry\Mesh">
-      <UniqueIdentifier>{bde99f7d-3cc1-474c-9ac7-7de0eaa683fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Math\Vector\Unused">
-      <UniqueIdentifier>{25e1ffa8-7667-40e9-b623-e48b2c04d62a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Math\Vector\Unused\vec3d">
-      <UniqueIdentifier>{ebe06ccb-4f2c-4fc7-bb2a-99d3d0020542}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Math\Vector\Unused\vec2d">
-      <UniqueIdentifier>{3a353f23-c0d1-4681-bb57-5fc2f3c7a88f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Geometry\Primitives\2D">
-      <UniqueIdentifier>{a1053a05-76bf-4f3e-911a-733c45879d8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Geometry\Primitives\2D\Rectangle">
-      <UniqueIdentifier>{74730b55-6248-4e30-8a92-d01f835e9e91}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Geometry\Primitives\2D\Triangle">
-      <UniqueIdentifier>{30958c80-fbd8-41e8-9054-8ed72f6ec4af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Geometry\Primitives\3D">
-      <UniqueIdentifier>{9b8d9fca-7aa3-4faa-9fe0-b9b1d36c04ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Tests\Vector">
-      <UniqueIdentifier>{860d683d-61e7-4539-b4fc-91f52d2d53a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Tests\Matrix">
-      <UniqueIdentifier>{b895e574-dc3e-4392-8237-37d0859a6e69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Geometry\Primitives\3D\Cube">
-      <UniqueIdentifier>{6f24c157-fec1-48fa-9f08-2aae4e2c3e64}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Tests\Timer">
-      <UniqueIdentifier>{f78f42be-2a3c-40b7-be47-e179860b2ba2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Scene">
-      <UniqueIdentifier>{5cf33a70-d9fe-499f-ae07-49de85580ae3}</UniqueIdentifier>
+      <UniqueIdentifier>{49dcf765-fe08-420a-9d5d-ef0470c497c3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Components\Physics">
-      <UniqueIdentifier>{4ead87ab-7bc0-4a76-b6c5-cddebd802eb4}</UniqueIdentifier>
+      <UniqueIdentifier>{b7f97034-cd2d-4d0c-955d-4d9eb70f76ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\Physics\RigidBody">
-      <UniqueIdentifier>{713c0062-9d00-468d-b9a4-51e8c6b0e80c}</UniqueIdentifier>
+    <Filter Include="Components\Rendering">
+      <UniqueIdentifier>{e32fe64a-2a87-4c32-a7ee-4b4385340f54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Scene">
+      <UniqueIdentifier>{284f9034-2399-4bd6-87df-87c914714dcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Transform">
+      <UniqueIdentifier>{35648a40-bef5-47e5-85fb-98c9e90befff}</UniqueIdentifier>
     </Filter>
     <Filter Include="Components\Entity\Entity_Data">
-      <UniqueIdentifier>{99516ad0-4491-42c7-92b0-43ff4105ad73}</UniqueIdentifier>
+      <UniqueIdentifier>{02083274-0c18-499c-b468-5b011ee09491}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine">
-      <UniqueIdentifier>{d493916e-34e1-49e9-9809-fa499dffb5da}</UniqueIdentifier>
+    <Filter Include="Components\Geometry\Mesh">
+      <UniqueIdentifier>{07008a22-e9f2-4785-8109-19369ffd5e3b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\Input\InputManager\Keybind">
-      <UniqueIdentifier>{9c176132-de8a-4735-b579-294dc210d4bd}</UniqueIdentifier>
+    <Filter Include="Components\Geometry\Primitives">
+      <UniqueIdentifier>{45fa9a23-7a5a-4a0c-ae4b-ae248d80a5fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Input\InputManger">
+      <UniqueIdentifier>{a5826eba-ee08-498f-af0d-552dba1877c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Input\InputManger\Keybind">
+      <UniqueIdentifier>{3494d54a-13bb-46ad-abb2-fdde0a39d336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Math\Vector">
+      <UniqueIdentifier>{0a27d547-8203-4301-b361-9542c6bb8d3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Math\Matrix">
+      <UniqueIdentifier>{8a7340c9-1337-442f-a3af-73887f0937d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Window">
+      <UniqueIdentifier>{97f69027-7838-4d70-a55c-18f3f0868d10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Rendering\Projection">
+      <UniqueIdentifier>{6a0e28ac-ad98-4c84-ad4f-df1fd1d8e697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Physics\RigidBody">
+      <UniqueIdentifier>{41e6b893-62c8-487e-92cd-f6f4d6f8a5a1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core">
-      <UniqueIdentifier>{5f1d89f7-be8f-44a9-85ce-69b3b89d7994}</UniqueIdentifier>
+      <UniqueIdentifier>{f70d8b6b-bbce-4348-b540-e69dc9aba6ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Global">
-      <UniqueIdentifier>{9510b8a5-1a4f-43e8-af6a-5e28c2650d7b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Conversion">
-      <UniqueIdentifier>{671165a4-baad-4c3a-9fbe-6cefac917b02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Timer">
-      <UniqueIdentifier>{50609199-37bd-47f0-8f50-3b0c0c53dca2}</UniqueIdentifier>
+    <Filter Include="Core\Conversions">
+      <UniqueIdentifier>{44362450-422a-4660-9773-b86dd4bd506e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\FrameStat">
-      <UniqueIdentifier>{3747dabf-c6c8-4570-950f-90e95cb47ab2}</UniqueIdentifier>
+      <UniqueIdentifier>{1e5eee3d-ea69-408f-823c-a43506a4dd2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Global">
+      <UniqueIdentifier>{f4a1e350-7959-4e76-8b35-31c7c1c854e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Timer">
+      <UniqueIdentifier>{a834eff7-c9f6-4eb5-987f-afd05755dd5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{a6e9359a-9532-4f4b-90d8-32a36223dcf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{c1aab404-73dd-4c18-96a0-f82816c6b794}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Documentation">
+      <UniqueIdentifier>{c5662266-b70f-43a5-9b03-4797364c044b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Entity.cpp">
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Components\Entity\Entity.cpp">
       <Filter>Components\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Components\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Vector.cpp">
-      <Filter>Components\Math\Vector</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector_functions.cpp">
-      <Filter>Components\Math\Vector</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix.inl">
-      <Filter>Components\Math\Matrix</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Components\Math\Transform</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Components\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Components\Input\InputManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Keybind.cpp">
-      <Filter>Components\Input\InputManager\Keybind</Filter>
-    </ClCompile>
-    <ClCompile Include="triangle.cpp">
-      <Filter>Components\Geometry\Primitives\2D\Triangle</Filter>
-    </ClCompile>
-    <ClCompile Include="rectangle.cpp">
-      <Filter>Components\Geometry\Primitives\2D\Rectangle</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
+    <ClCompile Include="Source\Components\Geometry\Mesh\Mesh.cpp">
       <Filter>Components\Geometry\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="vec2d.cpp">
-      <Filter>Components\Math\Vector\Unused\vec2d</Filter>
+    <ClCompile Include="Source\Components\Geometry\Primitives\Triangle.cpp">
+      <Filter>Components\Geometry\Primitives</Filter>
     </ClCompile>
-    <ClCompile Include="vec3d.cpp">
-      <Filter>Components\Math\Vector\Unused\vec3d</Filter>
+    <ClCompile Include="Source\Components\Geometry\Primitives\Cube.cpp">
+      <Filter>Components\Geometry\Primitives</Filter>
     </ClCompile>
-    <ClCompile Include="Conversion.inl">
-      <Filter>Core\Conversion</Filter>
+    <ClCompile Include="Source\Components\Geometry\Primitives\Rectangle.cpp">
+      <Filter>Components\Geometry\Primitives</Filter>
     </ClCompile>
-    <ClCompile Include="Vec4dTest.cpp">
-      <Filter>Tests\Vector</Filter>
+    <ClCompile Include="Source\Components\Input\InputManager\InputManager.cpp">
+      <Filter>Components\Input\InputManger</Filter>
     </ClCompile>
-    <ClCompile Include="Vec3dTest.cpp">
-      <Filter>Tests\Vector</Filter>
+    <ClCompile Include="Source\Components\Input\InputManager\Keybind\Keybind.cpp">
+      <Filter>Components\Input\InputManger\Keybind</Filter>
     </ClCompile>
-    <ClCompile Include="Vec2dTest.cpp">
-      <Filter>Tests\Vector</Filter>
+    <ClCompile Include="Source\Components\Math\Vector\Vector_functions.cpp">
+      <Filter>Components\Math\Vector</Filter>
     </ClCompile>
-    <ClCompile Include="MatrixTest.cpp">
-      <Filter>Tests\Matrix</Filter>
+    <ClCompile Include="Source\Components\Math\Vector\Vector.cpp">
+      <Filter>Components\Math\Vector</Filter>
     </ClCompile>
-    <ClCompile Include="Projection.cpp">
-      <Filter>Components\Rendering\Projection</Filter>
+    <ClCompile Include="Source\Components\Transform\Transform.cpp">
+      <Filter>Components\Transform</Filter>
     </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>Components\Geometry\Primitives\3D\Cube</Filter>
-    </ClCompile>
-    <ClCompile Include="Geometry.h">
-      <Filter>Components\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Core\Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="TimerTest.cpp">
-      <Filter>Tests\Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
+    <ClCompile Include="Source\Components\Scene\Scene.cpp">
       <Filter>Components\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="RigidBody.cpp">
-      <Filter>Components\Physics\RigidBody</Filter>
+    <ClCompile Include="Source\Components\Rendering\Shader.cpp">
+      <Filter>Components\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Physics.cpp">
+    <ClCompile Include="Source\Components\Rendering\Projection\Projection.cpp">
+      <Filter>Components\Rendering\Projection</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\Physics\Physics.cpp">
       <Filter>Components\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="Engine.cpp">
+    <ClCompile Include="Source\Components\Physics\RigidBody\RigidBody.cpp">
+      <Filter>Components\Physics\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\Window\Window.cpp">
+      <Filter>Components\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\FrameStat\FrameStat.cpp">
+      <Filter>Core\FrameStat</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Timer\Timer.cpp">
+      <Filter>Core\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Engine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="FrameStat.cpp">
-      <Filter>Core\FrameStat</Filter>
+    <ClCompile Include="Source\Tests\TimerTest.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tests\Vec2dTest.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tests\Vec3dTest.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tests\Vec4dTest.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tests\MatrixTest.cpp">
+      <Filter>Tests</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entity.h">
-      <Filter>Components\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="UTests.h">
-      <Filter>Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector.h">
-      <Filter>Components\Math\Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.hpp">
-      <Filter>Components\Math\Matrix</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Components\Math\Transform</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Components\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Components\Input\InputManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Keybind.h">
-      <Filter>Components\Input\InputManager\Keybind</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="triangle.h">
-      <Filter>Components\Geometry\Primitives\2D\Triangle</Filter>
-    </ClInclude>
-    <ClInclude Include="rectangle.h">
-      <Filter>Components\Geometry\Primitives\2D\Rectangle</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Components\Geometry\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="vec2d.h">
-      <Filter>Components\Math\Vector\Unused\vec2d</Filter>
-    </ClInclude>
-    <ClInclude Include="vec3d.h">
-      <Filter>Components\Math\Vector\Unused\vec3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Core.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Constants.h">
-      <Filter>Core\Global</Filter>
-    </ClInclude>
-    <ClInclude Include="Conversion.hpp">
-      <Filter>Core\Conversion</Filter>
-    </ClInclude>
-    <ClInclude Include="Projection.h">
-      <Filter>Components\Rendering\Projection</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>Components\Geometry\Primitives\3D\Cube</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Core\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Components\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="RigidBody.h">
-      <Filter>Components\Physics\RigidBody</Filter>
-    </ClInclude>
-    <ClInclude Include="Physics.h">
-      <Filter>Components\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity_Data.h">
-      <Filter>Components\Entity\Entity_Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Components.h">
+    <ClInclude Include="Source\Components\Components.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="Source\Components\Entity\Entity.h">
+      <Filter>Components\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="FrameStat.h">
+    <ClInclude Include="Source\Components\Entity\Entity_Data\Entity_Data.h">
+      <Filter>Components\Entity\Entity_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Geometry\Geometry.h">
+      <Filter>Components\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Geometry\Mesh\Mesh.h">
+      <Filter>Components\Geometry\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Geometry\Primitives\Rectangle.h">
+      <Filter>Components\Geometry\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Geometry\Primitives\Triangle.h">
+      <Filter>Components\Geometry\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Geometry\Primitives\Cube.h">
+      <Filter>Components\Geometry\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Input\InputManager\InputManager.h">
+      <Filter>Components\Input\InputManger</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Input\InputManager\Keybind\Keybind.h">
+      <Filter>Components\Input\InputManger\Keybind</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Math\Matrix\Matrix.hpp">
+      <Filter>Components\Math\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Math\Vector\Vector.h">
+      <Filter>Components\Math\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Transform\Transform.h">
+      <Filter>Components\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Scene\Scene.h">
+      <Filter>Components\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Rendering\Projection\Projection.h">
+      <Filter>Components\Rendering\Projection</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Physics\Physics.h">
+      <Filter>Components\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Physics\RigidBody\RigidBody.h">
+      <Filter>Components\Physics\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Window\Window.h">
+      <Filter>Components\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Core.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Conversions\Conversion.hpp">
+      <Filter>Core\Conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\FrameStat\FrameStat.h">
       <Filter>Core\FrameStat</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="doc.xml">
-      <Filter>Documentation</Filter>
-    </Xml>
+    <ClInclude Include="Source\Core\Global\Constants.h">
+      <Filter>Core\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Timer\Timer.h">
+      <Filter>Core\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tests\UTests.h">
+      <Filter>Tests</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Randor_simplu.rc">
@@ -305,25 +248,33 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Graphics TODO.txt">
-      <Filter>Documentation</Filter>
-    </Text>
-    <Text Include="Ideas.txt">
-      <Filter>Documentation</Filter>
-    </Text>
-    <Text Include="Regression text.txt">
-      <Filter>Documentation</Filter>
-    </Text>
-    <Text Include="Engine TODO.txt">
-      <Filter>Documentation</Filter>
-    </Text>
-    <Text Include="Shelf_Handoff_Note.txt">
-      <Filter>Documentation</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="Icon.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Components\Math\Matrix\Matrix.inl">
+      <Filter>Components\Math\Matrix</Filter>
+    </None>
+    <None Include="Source\Core\Conversions\Conversion.inl">
+      <Filter>Core\Conversions</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Documentation\Ideas.txt">
+      <Filter>Documentation</Filter>
+    </Text>
+    <Text Include="Documentation\Regression text.txt">
+      <Filter>Documentation</Filter>
+    </Text>
+    <Text Include="Documentation\Shelf_Handoff_Note.txt">
+      <Filter>Documentation</Filter>
+    </Text>
+    <Text Include="Documentation\Engine TODO.txt">
+      <Filter>Documentation</Filter>
+    </Text>
+    <Text Include="Documentation\Graphics TODO.txt">
+      <Filter>Documentation</Filter>
+    </Text>
   </ItemGroup>
 </Project>

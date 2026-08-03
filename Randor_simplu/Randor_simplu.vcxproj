@@ -77,25 +77,29 @@
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)D:\SDL_LIBS\SDL3-3.2.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x64;$(LibraryPath)</LibraryPath>
-    <IncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Source\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
     <LinkIncremental>true</LinkIncremental>
+    <SourcePath>$(ProjectPath)Source\;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)D:\SDL_LIBS\SDL3-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x64;$(LibraryPath)</LibraryPath>
-    <IncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Source\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectPath)Source\;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x86;$(LibraryPath)</LibraryPath>
-    <IncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Source\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
     <LinkIncremental>true</LinkIncremental>
+    <SourcePath>$(ProjectPath)Source\;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x86;$(LibraryPath)</LibraryPath>
-    <IncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Source\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectPath)Source\;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -103,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
@@ -134,7 +138,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
@@ -153,7 +157,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
@@ -184,7 +188,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL_image-main\SDL_image-main\include;D:\SDL_LIBS\SDL_ttf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL_image-main\SDL_image-main\include;D:\SDL_LIBS\SDL_ttf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
@@ -198,108 +202,62 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Conversion.inl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Cube.cpp" />
-    <Text Include="Engine TODO.txt">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </Text>
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="FrameStat.cpp" />
-    <ClCompile Include="Geometry.h" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Keybind.cpp" />
     <ClCompile Include="main.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
       <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EditAndContinue</DebugInformationFormat>
     </ClCompile>
-    <ClCompile Include="Matrix.inl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level3</WarningLevel>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Level3</WarningLevel>
-      <MinimalRebuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</MinimalRebuild>
-      <MinimalRebuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</MinimalRebuild>
-      <MinimalRebuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</MinimalRebuild>
-      <MinimalRebuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MinimalRebuild>
-      <EnableParallelCodeGeneration Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableParallelCodeGeneration>
-      <EnableParallelCodeGeneration Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</EnableParallelCodeGeneration>
-      <EnableParallelCodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</EnableParallelCodeGeneration>
-      <EnableParallelCodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</EnableParallelCodeGeneration>
-    </ClCompile>
-    <ClCompile Include="MatrixTest.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="Physics.cpp" />
-    <ClCompile Include="Projection.cpp" />
-    <ClCompile Include="rectangle.cpp" />
-    <ClCompile Include="RigidBody.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="TimerTest.cpp" />
-    <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="triangle.cpp" />
-    <ClCompile Include="vec2d.cpp" />
-    <ClCompile Include="vec3d.cpp" />
-    <ClCompile Include="Vector.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Vec2dTest.cpp" />
-    <ClCompile Include="Vec3dTest.cpp" />
-    <ClCompile Include="Vec4dTest.cpp" />
-    <ClCompile Include="Vector_functions.cpp" />
-    <ClCompile Include="Window.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)</ObjectFileName>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <Text Include="Shelf_Handoff_Note.txt" />
+    <ClCompile Include="Source\Components\Entity\Entity.cpp" />
+    <ClCompile Include="Source\Components\Geometry\Mesh\Mesh.cpp" />
+    <ClCompile Include="Source\Components\Geometry\Primitives\Cube.cpp" />
+    <ClCompile Include="Source\Components\Geometry\Primitives\Rectangle.cpp" />
+    <ClCompile Include="Source\Components\Geometry\Primitives\Triangle.cpp" />
+    <ClCompile Include="Source\Components\Input\InputManager\InputManager.cpp" />
+    <ClCompile Include="Source\Components\Input\InputManager\Keybind\Keybind.cpp" />
+    <ClCompile Include="Source\Components\Math\Vector\Vector.cpp" />
+    <ClCompile Include="Source\Components\Math\Vector\Vector_functions.cpp" />
+    <ClCompile Include="Source\Components\Physics\Physics.cpp" />
+    <ClCompile Include="Source\Components\Physics\RigidBody\RigidBody.cpp" />
+    <ClCompile Include="Source\Components\Rendering\Projection\Projection.cpp" />
+    <ClCompile Include="Source\Components\Rendering\Shader.cpp" />
+    <ClCompile Include="Source\Components\Scene\Scene.cpp" />
+    <ClCompile Include="Source\Components\Transform\Transform.cpp" />
+    <ClCompile Include="Source\Components\Window\Window.cpp" />
+    <ClCompile Include="Source\Core\FrameStat\FrameStat.cpp" />
+    <ClCompile Include="Source\Core\Timer\Timer.cpp" />
+    <ClCompile Include="Source\Engine\Engine.cpp" />
+    <ClCompile Include="Source\Tests\MatrixTest.cpp" />
+    <ClCompile Include="Source\Tests\TimerTest.cpp" />
+    <ClCompile Include="Source\Tests\Vec2dTest.cpp" />
+    <ClCompile Include="Source\Tests\Vec3dTest.cpp" />
+    <ClCompile Include="Source\Tests\Vec4dTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Components.h" />
-    <ClInclude Include="Constants.h" />
-    <ClInclude Include="Core.h" />
-    <ClInclude Include="Cube.h" />
-    <ClInclude Include="Engine.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="Entity_Data.h" />
-    <ClInclude Include="FrameStat.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Keybind.h" />
-    <ClInclude Include="Conversion.hpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="Matrix.hpp" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Physics.h" />
-    <ClInclude Include="Projection.h" />
-    <ClInclude Include="rectangle.h" />
-    <ClInclude Include="RigidBody.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="Timer.h" />
-    <ClInclude Include="Transform.h" />
-    <ClInclude Include="triangle.h" />
-    <ClInclude Include="vec2d.h" />
-    <ClInclude Include="vec3d.h" />
-    <ClInclude Include="Vector.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="UTests.h" />
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="Source\Components\Components.h" />
+    <ClInclude Include="Source\Components\Entity\Entity.h" />
+    <ClInclude Include="Source\Components\Entity\Entity_Data\Entity_Data.h" />
+    <ClInclude Include="Source\Components\Geometry\Geometry.h" />
+    <ClInclude Include="Source\Components\Geometry\Mesh\Mesh.h" />
+    <ClInclude Include="Source\Components\Geometry\Primitives\Cube.h" />
+    <ClInclude Include="Source\Components\Geometry\Primitives\Rectangle.h" />
+    <ClInclude Include="Source\Components\Geometry\Primitives\Triangle.h" />
+    <ClInclude Include="Source\Components\Input\InputManager\InputManager.h" />
+    <ClInclude Include="Source\Components\Input\InputManager\Keybind\Keybind.h" />
+    <ClInclude Include="Source\Components\Math\Matrix\Matrix.hpp" />
+    <ClInclude Include="Source\Components\Math\Vector\Vector.h" />
+    <ClInclude Include="Source\Components\Physics\Physics.h" />
+    <ClInclude Include="Source\Components\Physics\RigidBody\RigidBody.h" />
+    <ClInclude Include="Source\Components\Rendering\Projection\Projection.h" />
+    <ClInclude Include="Source\Components\Scene\Scene.h" />
+    <ClInclude Include="Source\Components\Transform\Transform.h" />
+    <ClInclude Include="Source\Components\Window\Window.h" />
+    <ClInclude Include="Source\Core\Conversions\Conversion.hpp" />
+    <ClInclude Include="Source\Core\Core.h" />
+    <ClInclude Include="Source\Core\FrameStat\FrameStat.h" />
+    <ClInclude Include="Source\Core\Global\Constants.h" />
+    <ClInclude Include="Source\Core\Timer\Timer.h" />
+    <ClInclude Include="Source\Engine\Engine.h" />
+    <ClInclude Include="Source\Tests\UTests.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="D:\SDL_LIBS\SDL3-3.4.10\VisualC\SDL\SDL.vcxproj">
@@ -307,18 +265,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="doc.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="Randor_simplu.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Ideas.txt" />
-    <Text Include="Regression text.txt" />
-    <Text Include="Graphics TODO.txt" />
+    <Image Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Icon.ico" />
+    <None Include="Source\Components\Math\Matrix\Matrix.inl" />
+    <None Include="Source\Core\Conversions\Conversion.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Documentation\Engine TODO.txt" />
+    <Text Include="Documentation\Graphics TODO.txt" />
+    <Text Include="Documentation\Ideas.txt" />
+    <Text Include="Documentation\Regression text.txt" />
+    <Text Include="Documentation\Shelf_Handoff_Note.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

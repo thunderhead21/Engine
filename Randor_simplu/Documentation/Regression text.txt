@@ -1,0 +1,171 @@
+Target FPS : 60
+Target Frame Time : 16.666666 ms
+
+Measured:
+
+16.6667995
+16.6667995
+16.6667995
+16.6667004
+16.6667995
+16.6667995
+16.6667995
+16.6667995
+16.6667995
+16.6667995
+16.6667995
+16.6669006
+16.6667995
+16.6667995
+16.6667995
+16.6667995
+
+WRONG OUTPUT:
+16
+16
+17
+17
+17
+17
+17
+17
+18
+17
+
+
+
+[29.07.2026, 22:40] There is a good reason why oftentimes the .inl file containing the template class implementation should be excluded from the build process:
+Building without excluding matrix.inl from the build process generates innumerable errors that simply disappear if the file is excluded.
+This happens as those are NOT source files and are included in the header's footer
+
+[30.07.2026, 19:55] You will notice some class names are lowercase. That is because they are mainly PODs and not generally intended for external API use
+The ones that are uppercase are NOT PODs and are actually meaningful to the end user. For example, it is unlikely a user would instantiate a mat4
+But highly likely to instantiate a Mesh or a Transform
+
+
+[31.07.2026, 11:55] Exclude .inl files from compilation in every configuration and platform [Properties -> Excluded from Build - YES]
+If excluding an .inl file manually in Visual Studio, apply the change to all Configurations and Platforms.
+Otherwise Debug will work and Release is going to throw a mound of errors.
+Do not change the .vcxproj file ! When time comes, CMake will be useful.
+
+[01.08.2026, 13:46] Read above and keep it DRY, please and thank you very much, in a really passive agressive manner, thank you very much!
+
+[01.08.2026, 12:50 - UPDATE 02.08.2026, 23:31] 
+|                Entity Count | Avg. FPS |    Status   | Notes                                                                                                                  |
+| --------------------------: | -------: | :---------: | :--------------------------------------------------------------------------------------------------------------------- |
+|                     ≤ 1,000 |       60 | ✅ Excellent| Full frame rate. Plenty of rendering headroom.                                                                        |
+|                       1k–5k |      ~59 |  🟢 Stable  | Essentially full-speed rendering.                                                                                      |
+|                      5k–10k |    54–59 |   🟡 Good   | First measurable performance drop.                                                                                     |
+|                        ~18k |      ~34 |   🟠 Heavy  | Performance cliff begins here.                                                                                         |
+|                         30k |      ~20 |  🔴 Stress  | Still fully interactive despite extreme entity count.                                                                  |
+|                        300k |       ~5 |  ☠ Extreme  | Correct rendering, practical only as a stress test.                                                                    |
+| Major bottleneck discovered |        — |      🔍     | `rebuild_queues()` was executed after every `add_entity()`. Eliminating this significantly improved scalability.       |
+| Current renderer bottleneck |        — |      🎯     | CPU transform stage (`Transform::transform_mesh`) dominates animated scenes.                                           |
+|   Static-scene optimization |        — |      ✅      | Dirty flags skip transform and projection entirely (`TForm = 0 ms`, `Projection = 0 ms`).                             |
+|       Fill-rate observation |        — |     🖥️     | Large overlapping cubes become GPU/fill-rate limited. Performance scales with covered pixels rather than entity count.  |
+|        Blend mode discovery |        — |      ⚡      | `SDL_BLENDMODE_NONE` dramatically improves performance for opaque geometry.                                           |
+|           Benchmark tooling |        — |      ✅      | `FrameStat`, `rendering_test_run()`, stage timing instrumentation, automated stress scenes.                           |
+|              Next milestone |        — |      📌     | GPU renderer (OpenGL/Vulkan/Direct3D) and batched rendering.                                                           |
+
+*Static scenes are amost free thanks to caching
+Performance scales much more strongly with projected screen coverage than with entity count once geometry caching eliminates redundant CPU transforms.
+
+Renderer Profiling Summary (30k entities)
+Stage				Time
+Event handling		~0.001–0.01 ms
+Screen clear		~0.001–0.01 ms
+Draw (shader())		~280–330 ms
+Present				~3–4 ms (occasional scheduler spikes)
+Conclusion: Rendering time is almost entirely spent inside shader(). Window/event/presentation overhead is negligible.
+
+SOLUTION
+
+Current renderer rebuilds every frame:
+
+Mesh (local)
+      │
+Transform
+      │
+World vertices
+      │
+Projection
+      │
+SDL_Vertex
+      │
+Render
+
+Potential future optimization:
+
+Mesh
+      │
+Transform
+      │
+VertexBuffer
+ ├── world_vertices
+ └── render_vertices
+
+Rebuild only when invalidated.
+
+Possible API:
+
+vertex_buffer.invalidate();
+vertex_buffer.rebuild();
+vertex_buffer.up_to_date();
+
+Typical invalidation sources:
+
+Transform changed
+Mesh changed
+Projection parameters changed
+Viewport resized
+
+This avoids rebuilding world/projection buffers every frame for static geometry.
+
+[02.08.2026, 21:50] The softwaare renderer has been optimized with per entity geometry buffers and dirty flags to avoid 
+rebuilding geometry unnecessarily.
+
+===================================================================================================
+|                                 Optimization table (30k entities)                               |
+===================================================================================================
+| Configuration                         |   Avg FPS |    Avg Frame |         Best |         Worst |
+| ------------------------------------- | --------: | -----------: | -----------: | ------------: |
+|   Debug (original)                    |      4.69 |    213.05 ms |     16.67 ms |     779.38 ms |
+|   Debug (cached)                      |      9.46 |    105.70 ms |     18.03 ms |     434.30 ms |
+|   Debug (static)                      |     51.91 |     19.26 ms |     16.67 ms |    1027.20 ms |
+|   Release – Static                    |   59.39   |   16.84 ms   |   16.67 ms   |   169.22 ms   |
+|   Release – Tiny cubes (animated)     |   30.09   |   33.23 ms   |   16.67 ms   |   117.12 ms   |
+|   Release – Small cubes (animated)    |   27.06   |   36.95 ms   |   16.67 ms   |   144.87 ms   |
+|   Release – Medium cubes (animated)   |   18.33   |   54.55 ms   |   16.67 ms   |   325.07 ms   |
+===================================================================================================
+
+Optimization:
+- Added per-entity world cache
+- Added projection cache
+- Added dirty flags
+- Static entities skip transform/projection entirely
+
+Renderer v0
+------------
+Every frame:
+Transform
+Projection
+Render
+
+Renderer v1
+------------
+Dirty flags
+Per-entity cache
+Projection cache
+Transform cache
+
+Static geometry:
+Transform = 0 ms
+Projection = 0 ms
+
+
+[03.08.2026, 23:30]
+Engine source tree reorganized.
+• Core / Components / Tests include hierarchy introduced.
+• Visual Studio filters rebuilt.
+• No measurable performance regression.
+• 300k entity benchmark remains ≈6 FPS (CPU stress test).

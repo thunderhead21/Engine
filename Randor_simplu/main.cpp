@@ -4,14 +4,11 @@
 //#include <SDL3/SDL.h> included by the others
 //#include "Window.h"
 
-
-#include "UTests.h"
-#include "Window.h"
-#include "InputManager.h"
-#include "Matrix.hpp"
-#include "Geometry.h"
-#include "Physics.h"
+#include "Core/FrameStat/FrameStat.h"
+#include "Components/Components.h"
+#include "Tests/UTests.h"
 #include <random>
+
 
 
 /*
