@@ -3,6 +3,8 @@
 #include <vector>
 #include <iostream>
 
+#include "../../Core/FrameStat/FrameStat.h"
+
 #include "../Scene/Scene.h"
 #include "../Input/InputManager/InputManager.h"
 
@@ -18,19 +20,15 @@ struct vec3d;
 
 class Window		//Needs to separate the renderer and window ASAP!
 {
-
-	//Future Vertex Buffer Object
-	std::vector<vec4d> world_vertices;
-	std::vector<SDL_Vertex> render_vertices;
-
 	Timer timer;
+	InputManager& controller;
+	FrameStat profiling;
 	
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	SDL_Event event;
 	SDL_MouseButtonFlags mouse;
 
-	InputManager& controller;
 
 	unsigned int w, h, fps;
 
@@ -58,8 +56,8 @@ public:
 	~Window();
 
 	/// @brief  updates the window screen with the current scene state
-	/// @return float - frame time
-	float update();	//parameter dt doesn't belong here, it belongs to the physics affecting the scene.
+	/// @return const FrameStat& - Constant reference to the frame profiling object of the frame.
+	const FrameStat& update();	//parameter dt doesn't belong here, it belongs to the physics affecting the scene.
 	void handle_events(); ///Will have to be moved to a supposed Window Manager	
 	
 	/// @brief Potentially misleading name. This is the code executed each frame by the window

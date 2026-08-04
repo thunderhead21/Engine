@@ -1,5 +1,5 @@
-#include "Window.h"
-#include "Projection.h"
+#include "Projection/Projection.h"
+#include "Components/Window/Window.h"
 
 /* Click to add line to render queue. Nice little demo
 float r = 220, g = 230, b = 225;
@@ -24,8 +24,8 @@ void Window::shader() {
 */
 
 
-float sx=0.85f, sy=0.85f, sz=0.85f;
-float a = 85, r = 20, g = 5, b = 20;
+float sx=0.15f, sy=0.15f, sz=0.15f;
+float a = 205, r = 255, g = 135, b = 3;
 float base = (1.0f / 255.0f);
 bool ascending = 1;
 
@@ -57,17 +57,17 @@ void Window::shader() {
 	//Changes scale by pressing < or >
 	if(controller.is_active(SDL_SCANCODE_PERIOD)) {
 			
-		sx += 0.1f;
-		sy += 0.1f;
-		sz += 0.1f;
+		sx += 0.9f * profiling.last();
+		sy += 0.9f * profiling.last();
+		sz += 0.9f * profiling.last();
 			
 	}
 
 	if (controller.is_active(SDL_SCANCODE_COMMA)) {
 			
-		sx -= 0.1f;
-		sy -= 0.1f;
-		sz -= 0.1f;
+		sx -= 0.9f * profiling.last();
+		sy -= 0.9f * profiling.last();
+		sz -= 0.9f * profiling.last();
 		
 	}
 

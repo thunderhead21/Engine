@@ -7,6 +7,8 @@ void FrameStat::add(float dt)
 
 	maximum = (dt > maximum) ? dt : maximum;
 	minimum = (dt < minimum) ? dt : minimum;
+
+	last_frame_time = dt;
 }
 
 void FrameStat::print() const

@@ -120,7 +120,7 @@ void Window::handle_events() {	// Window related event handling
 Timer instrument;
 #endif // FRAME_PROFILER
 
-float Window::update(){
+const FrameStat& Window::update(){
 #if FRAME_PROFILER
 	instrument.reset();
 #endif // FRAME_PROFILER
@@ -173,7 +173,9 @@ float Window::update(){
 	timer.reset();
 
 #endif
-	return elapsed;
+
+	profiling.add(elapsed);
+	return profiling;
 }
 
 Window::~Window() {

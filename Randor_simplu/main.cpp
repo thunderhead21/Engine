@@ -36,14 +36,14 @@ Transformation queuing
 /// @param fps - The desired framerate of the simulation
 /// @param seconds - Amount of time to run the scene for
 /// @param ignore_frames - Skip registering frame times for
-void rendering_test_run(unsigned int fps = 60, float seconds = 15, unsigned int ignore_frames = 10){
+void rendering_test_run(unsigned int entities = 10000, unsigned int fps = 60, float seconds = 15, unsigned int ignore_frames = 10){
 
 	seconds = fabs(seconds);
 
 	FrameStat fs;
 	InputManager i;
 
-	Window w(i);
+	Window w(i, 1440, 720, true);
 	w.set_fps(fps);
 
 	static unsigned int probe = 0;
@@ -60,32 +60,32 @@ void rendering_test_run(unsigned int fps = 60, float seconds = 15, unsigned int 
 	std::uniform_real_distribution<float> size(1.f, 500.f);
 	
 
-	int test_entities_count = 300000;
-	s.reserve(test_entities_count);
 	
-	for (int i = 0; i < test_entities_count; i++) {
+	s.reserve(entities);
+	
+	for (int i = 0; i < entities; i++) {
 		s.add_entity(new RigidBody(RigidBody::Cube(400)));
 
 	}
 
-	/*
+	
 
 	for (auto& entity : s) {
 
 
 		if (RigidBody* body = dynamic_cast<RigidBody*>(entity)) {
 
-			//body->set_angular_velocity({ (float)(rand() % 30), (float)(rand() % 30), (float)(rand() % 30) });
+			body->set_angular_velocity({ size(rng), size(rng), size(rng) });
 
-			//body->set_velocity( { (float)(rand() % 30), (float)(rand() % 30) , (float)(rand() % 30) } 
+			body->set_velocity({ float(int(pos(rng)) % 50), float(int(pos(rng)) % 50) , float(int(pos(rng)) % 50) });
 
-			//body->transform().position({ pos(rng), pos(rng) , pos(rng)});
+			body->transform().position({ pos(rng), pos(rng) , pos(rng)});
 
 		}
 		
 	}
 		
-	*/
+	
 
 	s.rebuild_queues();
 	w.set_active_scene(s);
@@ -95,10 +95,10 @@ void rendering_test_run(unsigned int fps = 60, float seconds = 15, unsigned int 
 	while (w.get_validity() && elapsed < seconds) {
 		SDL_PollEvent(&event);
 
-		float dt = w.update();
+		float dt = w.update().last();
 		elapsed += dt;
 
-		//s.update(dt);
+		s.update(dt);
 		probe++;
 
 		if (probe < ignore_frames) {
@@ -166,7 +166,7 @@ void print_mat(mat<T>& m) {
 int main(int argc, char* argv[])
 {
 
-	rendering_test_run(60, 30, 10);
+	rendering_test_run(15000,120, 30);
 	Timer t;
 
 	//std::cin.get();
@@ -246,7 +246,7 @@ int main(int argc, char* argv[])
 	while (w.get_validity()) {
 		SDL_PollEvent(&event);													///Event is the hooker you pass around O.O
 
-		float dt = w.update();
+		float dt = w.update().last();
 		world.update(dt);
 		i.update(event);
 		fs.add(dt);
