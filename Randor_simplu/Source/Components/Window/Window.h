@@ -3,10 +3,10 @@
 #include <vector>
 #include <iostream>
 
-#include "../../Core/FrameStat/FrameStat.h"
+#include "Core/FrameStat/FrameStat.h"
 
-#include "../Scene/Scene.h"
-#include "../Input/InputManager/InputManager.h"
+#include "Components/Scene/Scene.h"
+#include "Components/Input/InputManager/InputManager.h"
 
 #define FRAME_PACER 1		//Smooth busy-waiting for precise frame times
 #define FRAME_PROFILER 0	//Print every render stage timing breakdown
@@ -52,7 +52,8 @@ public:
 	/// @param h - Number of pixels in height
 	/// @param VSync - Whether Vertical Synchronization is enabled
 	/// @param fullscreen - Whether to create it in fullscreen
-	Window(InputManager& controller, int w = 800, int h = 600, bool VSync = 0, bool fullscreen = 0);
+	Window(InputManager& controller, int w = 1280, int h = 960, bool VSync = 1, bool fullscreen = 0);
+	Window(InputManager& controller, std::string window_name = "New Vigineer Window", int w = 1280, int h = 960, bool VSync = 1, bool fullscreen = 0);	//Reserved for Engine. Specialized CTOR
 	~Window();
 
 	/// @brief  updates the window screen with the current scene state

@@ -143,9 +143,6 @@
     <ClCompile Include="Source\Core\Timer\Timer.cpp">
       <Filter>Core\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Engine.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Tests\TimerTest.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
@@ -160,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="Source\Tests\MatrixTest.cpp">
       <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Engine.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

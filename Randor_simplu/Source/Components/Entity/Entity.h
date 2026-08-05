@@ -3,8 +3,8 @@
 #include <SDL3/SDL_render.h>
 #include <vector>
 
-#include "../Transform/Transform.h"
-#include "../Geometry/Geometry.h"
+#include "Components/Transform/Transform.h"
+#include "Components/Geometry/Geometry.h"
 #include "Entity_Data/Entity_Data.h"
 
 
@@ -74,6 +74,7 @@ public:
 	/// @brief Getter for Entity's name
 	/// @return string name
 	inline const std::string& name() const { return _name; };
+	inline void name(std::string name) { _name = name; };
 
 	/// @brief Sets the required layer flags
 	/// @param Layer flag to append
@@ -121,17 +122,17 @@ public:
 	/// @brief Creates an entity with a Cube mesh
 	/// @param side of the cube
 	/// @return Entity with the requested Mesh
-	static Entity Cube(float side = 400);
+	static Entity* Cube(float side = 400);
 	/// @brief Creates an entity with a Rectangle mesh
 	/// @param width of the rectangle
 	/// @param height of the rectangle
 	/// @return Entity with the requested Mesh
-	static Entity Rectangle(float width = 300, float height = 150);
+	static Entity* Rectangle(float width = 300, float height = 150);
 	/// @brief Creates and entity with a Triangle mesh
 	/// @param width of the traingle's base
 	/// @param height of the traingle
 	/// @return Entity with the requested Mesh
-	static Entity Triangle(float width = 300, float height = 300);
+	static Entity* Triangle(float width = 300, float height = 300);
 };
 
 

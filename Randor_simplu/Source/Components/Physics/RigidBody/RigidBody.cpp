@@ -16,30 +16,29 @@ RigidBody::RigidBody(Mesh mesh): Entity(mesh)
 
 
 /////////////////FACTORIES/////////////////
-RigidBody RigidBody::Cube(float side)
+RigidBody* RigidBody::Cube(float side)
 {
 
-	RigidBody cube(Cube::Cube(side));
+	RigidBody* body = new RigidBody(Cube::Cube(side));
 
 
-	cube._name = "Cube";
-	return cube;
-
+	body->_name = "Cube";
+	return body;
 
 }
 
-RigidBody RigidBody::Rectangle(float width, float height)
+RigidBody* RigidBody::Rectangle(float width, float height)
 {
-	RigidBody rectangle(Rectangle::Rectangle(width, height));
+	RigidBody* body = new RigidBody(Rectangle::Rectangle(width, height));
 
-	rectangle._name = "Rectangle";
-	return rectangle;
+	body->_name = "Rectangle";
+	return body;
 }
 
-RigidBody RigidBody::Triangle(float width, float height)
+RigidBody* RigidBody::Triangle(float width, float height)
 {
-	RigidBody triangle(Triangle::Triangle(width, height));
+	RigidBody* body = new RigidBody(Triangle::Triangle(width, height));
 
-	triangle._name = "Triangle";
-	return triangle;
+	body->_name = "Triangle";
+	return body;
 }

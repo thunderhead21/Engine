@@ -48,7 +48,7 @@ If excluding an .inl file manually in Visual Studio, apply the change to all Con
 Otherwise Debug will work and Release is going to throw a mound of errors.
 Do not change the .vcxproj file ! When time comes, CMake will be useful.
 
-[01.08.2026, 13:46] Read above and keep it DRY, please and thank you very much, in a really passive agressive manner, thank you very much!
+[01.08.2026, 13:46] Read above and keep it DRY, please and thank you very much, in a really passive aggressive manner, thank you very much!
 
 [01.08.2026, 12:50 - UPDATE 02.08.2026, 23:31] 
 |                Entity Count | Avg. FPS |    Status   | Notes                                                                                                                  |

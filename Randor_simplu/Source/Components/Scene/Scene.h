@@ -3,6 +3,7 @@
 #include <string>
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/fmt.h>
+
 #include "../Entity/Entity.h"
 #include "../Physics/Physics.h"
 
@@ -18,6 +19,8 @@ protected:
 	
 	std::vector<Entity*> visible;		//Visible ones for rendering
 	std::vector<RigidBody*> physics;	//Physically simulated entities
+
+	bool print_entity_destruction = 0;
 	
 	//Used to compute the next entity's ID
 	//0 is reserved for invalid entities that should be ignored!
@@ -60,6 +63,9 @@ public:
 	/// @brief Render queue getter
 	/// @return Reference to the entities which are physics-enabled within the Scene
 	const std::vector<Entity*>& get_physics_entities() const noexcept { return visible; };
+
+	void enable_eol_print() { print_entity_destruction = 1; }
+	void disable_eol_print() { print_entity_destruction = 0; }
 	
 
 	//Iterators

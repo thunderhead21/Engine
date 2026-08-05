@@ -2,16 +2,19 @@
 
 Scene::~Scene()
 {
-	spdlog::set_pattern("[%M:%S.%e] %v");
+	if (print_entity_destruction) {
+
+		spdlog::set_pattern("[%M:%S.%e] %v");
 	
 	
-	std::cout << "=============SCENE SHUTDOWN=============\n\n";
-	for (auto& i : entities) {  //For each entity in the scene
-		spdlog::info("{}{}{} was destroyed",
-			"\x1b[1;33m", i->name(), "\x1b[0m");
-		delete i;               //Delete it
+		std::cout << "=============SCENE SHUTDOWN=============\n\n";
+		for (auto& i : entities) {  //For each entity in the scene
+			spdlog::info("{}{}{} was destroyed",
+				"\x1b[1;33m", i->name(), "\x1b[0m");
+			delete i;               //Delete it
+		}
+		std::cout << "\n========================================\n";
 	}
-	std::cout << "\n========================================\n";
 }
 
 Entity* Scene::add_entity(Entity* e)

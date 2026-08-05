@@ -1,15 +1,31 @@
 ﻿//#define SDL_MAIN_HANDLED
 
 
-//#include <SDL3/SDL.h> included by the others
-//#include "Window.h"
+#include <random>
+#include <fstream>
 
 #include "Core/FrameStat/FrameStat.h"
 #include "Components/Components.h"
 #include "Tests/UTests.h"
-#include <random>
+#include "Engine/Engine.h"
 
+#include <Psapi.h>
+#include <Windows.h>
 
+std::size_t get_ram_usage_mb()
+{
+	PROCESS_MEMORY_COUNTERS_EX pmc{};
+
+	if (GetProcessMemoryInfo(
+		GetCurrentProcess(),
+		reinterpret_cast<PROCESS_MEMORY_COUNTERS*>(&pmc),
+		sizeof(pmc)))
+	{
+		return pmc.WorkingSetSize / (1024 * 1024);
+	}
+
+	return 0;
+}
 
 /*
 NEXT STEP - Create pipeline :
@@ -36,7 +52,7 @@ Transformation queuing
 /// @param fps - The desired framerate of the simulation
 /// @param seconds - Amount of time to run the scene for
 /// @param ignore_frames - Skip registering frame times for
-void rendering_test_run(unsigned int entities = 10000, unsigned int fps = 60, float seconds = 15, unsigned int ignore_frames = 10){
+void rendering_test_run(unsigned int entities = 10000, unsigned int fps = 60, float seconds = 15, unsigned int ignore_frames = 10) {
 
 	seconds = fabs(seconds);
 
@@ -46,29 +62,23 @@ void rendering_test_run(unsigned int entities = 10000, unsigned int fps = 60, fl
 	Window w(i, 1440, 720, true);
 	w.set_fps(fps);
 
-	static unsigned int probe = 0;
-	unsigned int dbg_frames = (fps * seconds) + ignore_frames;
-
 	SDL_Event event;
-
-
-
 	Scene s;
 
 	std::mt19937 rng(time(nullptr));
 	std::uniform_real_distribution<float> pos(-2000.f, 2000.f);
 	std::uniform_real_distribution<float> size(1.f, 500.f);
-	
 
-	
+
+
 	s.reserve(entities);
-	
+
 	for (int i = 0; i < entities; i++) {
-		s.add_entity(new RigidBody(RigidBody::Cube(400)));
+		s.add_entity(RigidBody::Cube(400));
 
 	}
 
-	
+
 
 	for (auto& entity : s) {
 
@@ -77,41 +87,48 @@ void rendering_test_run(unsigned int entities = 10000, unsigned int fps = 60, fl
 
 			body->set_angular_velocity({ size(rng), size(rng), size(rng) });
 
-			body->set_velocity({ float(int(pos(rng)) % 50), float(int(pos(rng)) % 50) , float(int(pos(rng)) % 50) });
+			body->set_velocity({ pos(rng), pos(rng) , pos(rng)});
 
-			body->transform().position({ pos(rng), pos(rng) , pos(rng)});
+			body->transform().position({ pos(rng), pos(rng) , pos(rng) });
 
 		}
-		
+
 	}
-		
-	
+
+
 
 	s.rebuild_queues();
 	w.set_active_scene(s);
-	
-	float elapsed = 0;
 
+	float elapsed = 0;
+	unsigned int probe = 0;
+	float dt = 0, sim_dt = 0;
 	while (w.get_validity() && elapsed < seconds) {
 		SDL_PollEvent(&event);
 
-		float dt = w.update().last();
+		dt = w.update().last();
 		elapsed += dt;
 
-		s.update(dt);
-		probe++;
+		sim_dt += s.update(dt);
 
 		if (probe < ignore_frames) {
 			std::cout << dt << '\n';
+			probe++;
 		}
-		if (probe >= dbg_frames ) {
-			break;
-		}
-	
+
 		fs.add(dt);
 	}
+	sim_dt = (sim_dt / (fs.runtime() * fs.average_fps())) * 1000;
+
+	std::ofstream f("Benchmark_history.log", std::ios::app | std::ios::out);
+	spdlog::info("{} entities", s.get_entities().size());
+	spdlog::info("Average physics time: {}ms", sim_dt);
+
 	fs.print();
-	std::cin.get();
+	f << s.get_entities().size() << " entities simulated.\n";
+	f<<"Average physics time:" << sim_dt<<"ms" << fs.str();
+	f << get_ram_usage_mb() << " MB RAM\n\n";
+	
 
 }
 
@@ -165,11 +182,24 @@ void print_mat(mat<T>& m) {
 //Now you have to pass the input manager to the window as function parameter for topical usage
 int main(int argc, char* argv[])
 {
+	Engine engine;
 
-	rendering_test_run(15000,120, 30);
+	engine.add_cube();
+	engine.add_cube();
+	engine.refresh_scene();
+
+	while (engine.update());
+
+	for (int i = 1000; i < 80000; ) {
+		rendering_test_run(i, 120, 30);
+		if (i < 10000) i += 2000;
+		else if (i < 50000) i += 10000;
+		else i += 20000;
+		SDL_Delay(2000);
+	}
 	Timer t;
 
-	//std::cin.get();
+	std::cin.get();
 
 	bool run_tests = 0;
 	if (run_tests) {
@@ -198,9 +228,9 @@ int main(int argc, char* argv[])
 	Cube c3(80);
 	*/
 	
-	Entity* e1 = new RigidBody(RigidBody::Cube(250));
-	Entity* e2 = new RigidBody(RigidBody::Cube(350));
-	Entity* e3 = new RigidBody(RigidBody::Cube(450));
+	Entity* e1 = RigidBody::Cube(250);
+	Entity* e2 = RigidBody::Cube(350);
+	Entity* e3 = RigidBody::Cube(450);
 
 	Window w(i, 1280, 720, false);
 	w.set_fps(120);
@@ -257,6 +287,6 @@ int main(int argc, char* argv[])
 	}
 
 	fs.print();
-
+	SDL_Quit();
 	return 0;
 }

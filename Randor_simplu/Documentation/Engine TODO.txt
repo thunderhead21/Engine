@@ -13,12 +13,13 @@ IDs ✅
 Names ✅
 Layers ✅
 Tags ✅
+Make Window::update(dt) return RendererProfiler
 Engine object encapsulation (Engine.h / .cpp) 🚧
 RendererProfiler class expose transform, projection and presentation times
-Make Window::update(dt) return RendererProfiler
 Transform::_locked
 Hierarchical transforms
 Hierarchical transform caching
+Event system - OnCreation,onDestroy, onUpdate...
 
 -Graphics Pipeline-
 Camera
@@ -32,21 +33,16 @@ Depth
 Geometric primitives
 
 -Graphics Optimization-  [DATA TABLES @ Regression text]
-Introduce GPU VBO cache
-Transform::mesh_batch_transform()
 Compare overdraw vs frame time
 Benchmark after every optimization
-
--Graphics Performance-	[DATA TABLES @ Regression text]
-Introduce VBO to store world and projected vertices
-Benchmark after each optimization.
-Introduce Transform::mesh_batch_transform()
+Introduce VertexBufferObject class
 
 -Simulation-
 Collision detection
 Collision response
 Gravity
 Fixed timestep
+Multi-threaded physics (99% of frametime)
 
 -Gameplay-
 ⚠️ Do not start Gameplay before finishing Infrastructure ⚠️
@@ -61,3 +57,12 @@ Explore different engine transform hierarchy designs
 
 -Branch Projects-
 Virtual Machine experiment
+
+
+⚠️const Entity is not well defined! ID and Name are not declared at initialization⚠️
+⚠️If you see ominous no name 0 ID entites, they may have been declared as const⚠️
+⚠️Similarly, if assigning ID/Name suddenly produces errors, this could be it!⚠️
+
+⚠️Make sure your CTORs are aligned, all parameters HAVE to be the same otherwise⚠️
+⚠️The window created by Engine::Engine() is titled "My window" and Window::Window()⚠️
+⚠️Has default title "New Window". This can snowball into inconsistent behavior hunting⚠️

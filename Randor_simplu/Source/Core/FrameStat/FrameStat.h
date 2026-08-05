@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <sstream>
 
 class FrameStat
 {
@@ -29,8 +30,9 @@ public:
 	long double max_time()		const { return maximum; }
 	long double last()			const { return last_frame_time; }
 	long double runtime()		const { return time_accumulator; }
+	//unsigned long long frames() const { return frames; }
 
 	void print() const;
-
+	std::string str() const;
 };
 

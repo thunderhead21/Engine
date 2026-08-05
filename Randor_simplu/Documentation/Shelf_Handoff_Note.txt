@@ -8,13 +8,15 @@ However, it does NOT know all of the source code, as I avoided that
 
 These files were created in the following order:
 
-* 📐 **Graphics TODO** — the first project planning document.
-* 💡 **Ideas** — created roughly two weeks later; contains future projects and gameplay concepts.
-* 📝 **Regression text** — started after implementing the Timer to record architectural decisions and regressions.
-* 🛠️ **Engine TODO** — expanded the roadmap from graphics into the complete engine.
-* 📖 **Wake-Up Notes** *(this document)* — created on **30.07.2026** as the project's architectural reference.
+* 📐 Graphics TODO — the first project planning document.
+* 💡 Ideas — created roughly two weeks later; contains future projects and gameplay concepts.
+* 📝 Regression text — started after implementing the Timer to record architectural decisions and regressions.
+* 🛠️ Engine TODO — expanded the roadmap from graphics into the complete engine.
+* 📖 Wake-Up Notes (this document) — created on 30.07.2026 as the project's architectural reference.
 
-If returning after a long break, read this file first, then **Engine TODO**, then continue from the code.
+If returning after a long break, read this file first, then Engine TODO, then continue from the code.
+In case there is something confusing happening, cycle through the files before continuing. Pointers 
+may be found, but are not guaranteed.
 
 ---
 
@@ -24,7 +26,7 @@ The project has moved beyond a toy renderer.
 
 The core architecture is established, and ownership relationships are stable.
 
-Most future work consists of **extending** the engine rather than redesigning it.
+Most future work consists of extending the engine rather than redesigning it.
 
 ---
 
@@ -32,7 +34,7 @@ Most future work consists of **extending** the engine rather than redesigning it
 
 This engine is built from first principles.
 
-The objective is **not** to imitate Unreal, Unity or other engines, but to construct a simulation framework that is:
+The objective is not to imitate Unreal, Unity or other engines, but to construct a simulation framework that is:
 
 * understandable
 * architecturally coherent
@@ -47,9 +49,9 @@ Every abstraction must justify its existence.
 
 Before writing code, always ask:
 
-* ❓ **What is it?**
-* 👤 **Who owns it?**
-* ⚠️ **Am I introducing two truths?**
+* ❓ What is it?
+* 👤 Who owns it?
+* ⚠️ Am I introducing two truths?
 
 The answers to these questions determine the correct architecture.
 
@@ -91,7 +93,7 @@ Owns the application's lifetime.
 
 Orchestrates systems.
 
-Does **not** implement subsystem logic.
+Does not implement subsystem logic.
 
 ---
 
@@ -108,7 +110,7 @@ Assigns world identity (IDs).
 
 Coordinates updates.
 
-Does **not** perform physics itself.
+Does not perform physics itself.
 
 ---
 
@@ -120,7 +122,7 @@ Consumes Scene state.
 
 Updates Entity transforms.
 
-Owns **no** world objects.
+Owns no world objects.
 
 ---
 
@@ -253,7 +255,7 @@ Everything else observes it.
 
 Never violate these without an intentional redesign.
 
-* Transform is the **single source of truth** for spatial state.
+* Transform is the single source of truth for spatial state.
 * Mesh never owns transforms.
 * Physics never owns world objects.
 * Renderer never owns simulation.
@@ -261,7 +263,7 @@ Never violate these without an intentional redesign.
 
 If synchronization becomes necessary,
 
-**question the ownership model first.**
+question the ownership model first.
 
 ---
 
@@ -333,7 +335,7 @@ If synchronization becomes necessary,
 
 ## Long-term
 
-🎮 Build the first complete game (see **Ideas.txt**).
+🎮 Build the first complete game (see Ideas.txt).
 
 ---
 
@@ -355,7 +357,7 @@ it almost certainly belongs somewhere specific.
 
 # 📌 Reminder to Future Me
 
-Do **not** optimize for cleverness.
+Do not optimize for cleverness.
 
 Optimize for understanding.
 

@@ -73,24 +73,6 @@ There is no elegant way to do this at the moment. It was hardcoded for the purpo
 
 
 
-TASK:
-vec3d - > vec2d{x/z, y/z} - > SDL_Vertex  
-
-Current problem:
-There is no implicit conversion from vec3d to vertex. One can be obtained by dividing the first two components by the third
-
-Goal:
-Obtain a vec3d_to_SDL_Vertex()
-
-Observations:
-I realised this because modifying each SDL_Vertex depth leads to a certain vertex roaming around the screen.
-Vertex roaming was caused by tris.end() returning tris[4] instead of tris[3]
-vec3d::vertex() was implemented as alias for make_vertex(*this)
-vec2d::vertex() was implemented as alias for make_vertex(*this)
-The completion state depends on the projection type:
-Weak projection (dividing X, Y by Z) uses the Z component. Could be Wea
-Perspective projection discards Z in the end after matrix transformations
-
 
 
 TASK:
@@ -265,3 +247,21 @@ Error was that the kb_state member was declared as `bool* kb_state[SDL_SCANCODE_
 
 
 [09.07.2026, 15:00] - The program was renamed Vigineer, a word combination between 'View' and 'Engineer'. Initial name was 'Randor_simplu' for both the solution and the project
+
+TASK:
+vec3d - > vec2d{x/z, y/z} - > SDL_Vertex  [COMPLETE]
+
+Current problem:
+There is no implicit conversion from vec3d to vertex. One can be obtained by dividing the first two components by the third
+
+Goal:
+Obtain a vec3d_to_SDL_Vertex()
+
+Observations:
+I realised this because modifying each SDL_Vertex depth leads to a certain vertex roaming around the screen.
+Vertex roaming was caused by tris.end() returning tris[4] instead of tris[3]
+vec3d::vertex() was implemented as alias for make_vertex(*this)
+vec2d::vertex() was implemented as alias for make_vertex(*this)
+The completion state depends on the projection type:
+Weak projection (dividing X, Y by Z) uses the Z component. Could be Wea
+Perspective projection discards Z in the end after matrix transformations

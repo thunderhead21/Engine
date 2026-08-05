@@ -40,7 +40,7 @@ public:
 
 
 	/////////////////FACTORIES/////////////////
-	static RigidBody Cube(float side = 400);
-	static RigidBody Rectangle(float width = 300, float height = 150);
-	static RigidBody Triangle(float width = 300, float height = 300);
+	static RigidBody* Cube(float side = 400);
+	static RigidBody* Rectangle(float width = 300, float height = 150);
+	static RigidBody* Triangle(float width = 300, float height = 300);
 };

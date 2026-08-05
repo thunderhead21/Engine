@@ -1,4 +1,5 @@
-#include "Window.h"
+#include "Components/Window/Window.h"
+
 
 bool Window::init_attempted = 0;
 bool Window::init_success = 0;
@@ -47,12 +48,52 @@ Window::Window(InputManager& controller, int w, int h, bool VSync, bool fullscre
 
 	SDL_WindowFlags options = SDL_WINDOW_RESIZABLE | (fullscreen * SDL_WINDOW_FULLSCREEN);
 
-	if (!SDL_CreateWindowAndRenderer("SDL3 Boilerplate", w, h, SDL_WINDOW_RESIZABLE, &window, &renderer)) {
+	if (!SDL_CreateWindowAndRenderer("New Vigineer Window", w, h, SDL_WINDOW_RESIZABLE, &window, &renderer)) {
 		SDL_Log("Failed to create window/renderer: %s", SDL_GetError());
 		SDL_Quit();
 		if (DEBUG) throw "Failed to create window / renderer:" + (std::string)SDL_GetError();
 	}
-	
+	if (DEBUG) {
+		std::cout << "Window: " << window << '\n' << "Renderer: " << renderer << '\n';
+	}
+	if (!SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND)) {
+		SDL_Log("Failed to set blending mode: %s", SDL_GetError());
+	};
+
+	if (VSync) {
+		SDL_SetRenderVSync(renderer, 1);  // Enable vsync
+		fps = 75;
+	}
+	else {
+		SDL_SetRenderVSync(renderer, 0);  // Disable vsync
+		fps = 0;
+	}
+
+	if (fps > 0) target_frame_time_s = 1.0f / fps;
+
+	register_own_keybindings();
+
+	timer.reset();	//Prime the timer, discard the startup time.... or not!
+}
+
+Window::Window(InputManager& controller, std::string window_name, int w, int h, bool VSync, bool fullscreen): 
+	window(nullptr), renderer(nullptr), w(w), h(h), vsync(VSync), mouse(0), aspect_ratio(w / h), event({}), valid(1), controller(controller)
+{
+	if (init_attempted == 0) {
+		init_success = !init();
+		init_attempted = 1;
+	}
+
+	SDL_WindowFlags options = SDL_WINDOW_RESIZABLE | (fullscreen * SDL_WINDOW_FULLSCREEN);
+
+	if (!SDL_CreateWindowAndRenderer(window_name.c_str(), w, h, SDL_WINDOW_RESIZABLE, &window, &renderer)) {
+		SDL_Log("Failed to create window/renderer: %s", SDL_GetError());
+		SDL_Quit();
+		if (DEBUG) throw "Failed to create window / renderer:" + (std::string)SDL_GetError();
+	}
+	if (DEBUG) {
+		std::cout << "Window: " << window << '\n' << "Renderer: " << renderer << '\n';
+	}
 	if (!SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND)) {
 		SDL_Log("Failed to set blending mode: %s", SDL_GetError());
 	};
@@ -181,5 +222,4 @@ const FrameStat& Window::update(){
 Window::~Window() {
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
-	SDL_Quit();
 }

@@ -25,3 +25,19 @@ void FrameStat::print() const
 
 
 }
+
+std::string FrameStat::str() const
+{
+	std::stringstream ss;
+	ss << std::fixed << std::setprecision(10);
+	ss << "\n\n=========== STATISTICS ===========" << std::endl;
+	ss << "Average FPS:      " << average_fps() << '\n';
+	ss << "Average Frame:    " << mean_time() * 1000ULL << "ms" << "\n\n";
+	ss << "Best:             " << min_time() * 1000ULL << "ms" << '\n';
+	ss << "Worst:            " << max_time() * 1000ULL << "ms" << '\n';
+	ss << "Frames:           " << frames << '\n';
+	ss << "Runtime:          " << runtime() << 's' << '\n';
+	ss << "==================================" << "\n\n";
+
+	return ss.str();
+}

@@ -64,29 +64,29 @@ Entity::~Entity()
 
 
 //////////////////////   FACTORIES   //////////////////////
-Entity Entity::Cube(float side)
+Entity* Entity::Cube(float side)
 {
 	
-	Entity cube(Cube(side));
+	Entity* ent = new Entity(Cube::Cube(side));
 
-	cube._name = "Cube";
-	return cube;
+	ent->_name = "Cube";
+	return ent;
 
 	
 }
 
-Entity Entity::Rectangle(float width, float height)
+Entity* Entity::Rectangle(float width, float height)
 {
-	Entity rectangle(Rectangle(width, height));
+	Entity* ent = new Entity(Rectangle::Rectangle(width, height));
 
-	rectangle._name = "Rectangle";
-	return rectangle;
+	ent->_name = "Rectangle";
+	return ent;
 }
 
-Entity Entity::Triangle(float width, float height)
+Entity* Entity::Triangle(float width, float height)
 {
-	Entity triangle(Triangle(width, height));
+	Entity* ent = new Entity(Triangle::Triangle(width, height));
 
-	triangle._name = "Triangle";
-	return triangle;
+	ent->_name = "Triangle";
+	return ent;
 }
