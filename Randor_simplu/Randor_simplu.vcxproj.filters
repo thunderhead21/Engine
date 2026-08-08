@@ -86,6 +86,9 @@
     <Filter Include="Documentation">
       <UniqueIdentifier>{c5662266-b70f-43a5-9b03-4797364c044b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\RendererProfiler">
+      <UniqueIdentifier>{15d25d4b-f53b-4a49-a05f-04e25c6cfe17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -241,6 +244,12 @@
     <ClInclude Include="Source\Tests\UTests.h">
       <Filter>Tests</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Core\RenderProfiler\RenderProfile.h">
+      <Filter>Core\RendererProfiler</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Global\Macros.h">
+      <Filter>Core\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Randor_simplu.rc">
@@ -259,6 +268,9 @@
     <None Include="Source\Core\Conversions\Conversion.inl">
       <Filter>Core\Conversions</Filter>
     </None>
+    <None Include="Documentation\Performance Review.xlsx">
+      <Filter>Documentation</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Documentation\Ideas.txt">
@@ -274,6 +286,9 @@
       <Filter>Documentation</Filter>
     </Text>
     <Text Include="Documentation\Graphics TODO.txt">
+      <Filter>Documentation</Filter>
+    </Text>
+    <Text Include="Benchmark_history.log">
       <Filter>Documentation</Filter>
     </Text>
   </ItemGroup>

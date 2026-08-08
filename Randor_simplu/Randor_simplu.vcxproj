@@ -255,6 +255,8 @@
     <ClInclude Include="Source\Core\Core.h" />
     <ClInclude Include="Source\Core\FrameStat\FrameStat.h" />
     <ClInclude Include="Source\Core\Global\Constants.h" />
+    <ClInclude Include="Source\Core\Global\Macros.h" />
+    <ClInclude Include="Source\Core\RenderProfiler\RenderProfile.h" />
     <ClInclude Include="Source\Core\Timer\Timer.h" />
     <ClInclude Include="Source\Engine\Engine.h" />
     <ClInclude Include="Source\Tests\UTests.h" />
@@ -271,10 +273,12 @@
     <Image Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Documentation\Performance Review.xlsx" />
     <None Include="Source\Components\Math\Matrix\Matrix.inl" />
     <None Include="Source\Core\Conversions\Conversion.inl" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Benchmark_history.log" />
     <Text Include="Documentation\Engine TODO.txt" />
     <Text Include="Documentation\Graphics TODO.txt" />
     <Text Include="Documentation\Ideas.txt" />

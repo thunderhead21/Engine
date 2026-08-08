@@ -87,9 +87,9 @@ void rendering_test_run(unsigned int entities = 10000, unsigned int fps = 60, fl
 
 			body->set_angular_velocity({ size(rng), size(rng), size(rng) });
 
-			body->set_velocity({ pos(rng), pos(rng) , pos(rng)});
+			body->set_velocity({ pos(rng), pos(rng) , pos(rng)+1000.0f});
 
-			body->transform().position({ pos(rng), pos(rng) , pos(rng) });
+			body->transform().position({ pos(rng), pos(rng) , pos(rng)-800.0f });
 
 		}
 
@@ -112,7 +112,7 @@ void rendering_test_run(unsigned int entities = 10000, unsigned int fps = 60, fl
 		sim_dt += s.update(dt);
 
 		if (probe < ignore_frames) {
-			std::cout << dt << '\n';
+			//std::cout << dt << '\n';
 			probe++;
 		}
 
@@ -124,10 +124,13 @@ void rendering_test_run(unsigned int entities = 10000, unsigned int fps = 60, fl
 	spdlog::info("{} entities", s.get_entities().size());
 	spdlog::info("Average physics time: {}ms", sim_dt);
 
-	fs.print();
+//	fs.print();
 	f << s.get_entities().size() << " entities simulated.\n";
-	f<<"Average physics time:" << sim_dt<<"ms" << fs.str();
-	f << get_ram_usage_mb() << " MB RAM\n\n";
+	f << "Average physics time:" << sim_dt << "ms";
+	f <<w.analysis().str();
+	f << "--------------------------------------------------------\n";
+
+
 	
 
 }
@@ -154,6 +157,7 @@ void SHIFT_UP() {
 
 }
 
+//You have to move this out... This is a matrix utility
 template <typename T>
 void print_mat(mat<T>& m) {
 
@@ -182,24 +186,25 @@ void print_mat(mat<T>& m) {
 //Now you have to pass the input manager to the window as function parameter for topical usage
 int main(int argc, char* argv[])
 {
+	/*
 	Engine engine;
 
-	engine.add_cube();
-	engine.add_cube();
+	engine.add_cube(1, 500, 25);
+	engine.add_triangle(1, 300, 300, 50);
 	engine.refresh_scene();
 
 	while (engine.update());
+	*/
 
 	for (int i = 1000; i < 80000; ) {
-		rendering_test_run(i, 120, 30);
+		rendering_test_run(i, 120, 20);
 		if (i < 10000) i += 2000;
 		else if (i < 50000) i += 10000;
 		else i += 20000;
 		SDL_Delay(2000);
 	}
-	Timer t;
 
-	std::cin.get();
+	//std::cin.get();
 
 	bool run_tests = 0;
 	if (run_tests) {

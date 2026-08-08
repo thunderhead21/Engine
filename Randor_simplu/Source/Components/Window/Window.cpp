@@ -169,15 +169,18 @@ const FrameStat& Window::update(){
 	handle_events();
 
 #if FRAME_PROFILER
-	spdlog::info( "Event Handling: {} ms", instrument.tick() * 1000);
-	instrument.reset();
+
+	profiling.event_time(instrument.tick());
+	//spdlog::info( "Event Handling: {} ms", instrument.tick() * 1000);
+	instrument.reset(); //superfluous
 #endif
 
 	// Clear screen with a nice color
 	SDL_SetRenderDrawColor(renderer, 20, 25, 35, 255);
 	SDL_RenderClear(renderer);
 #if FRAME_PROFILER
-	spdlog::info("Screen clear: {} ms", instrument.tick() * 1000);
+	profiling.clear_time(instrument.tick());
+	//spdlog::info("Screen clear: {} ms", instrument.tick() * 1000);
 	instrument.reset();
 #endif
 
@@ -185,15 +188,17 @@ const FrameStat& Window::update(){
 	shader();
 	//////////////////
 #if FRAME_PROFILER
-	spdlog::info("Draw: {} ms", instrument.tick() * 1000);
-	instrument.reset();
+	//profiling.draw_time(instrument.tick());
+	//spdlog::info("Draw: {} ms", instrument.tick() * 1000);
+	instrument.reset();    //superfluous
 #endif // FRAME_PROFILER
 
 
 	// Present the frame
 	SDL_RenderPresent(renderer);
 #if FRAME_PROFILER
-	spdlog::info("Presentation: {} ms\n\n", instrument.tick() * 1000);
+	profiling.present_time(instrument.tick());
+	//spdlog::info("Presentation: {} ms\n\n", instrument.tick() * 1000);
 #endif // FRAME_PROFILER
 
 #if FRAME_PACER	//If the frame pacer was enabled
@@ -214,12 +219,17 @@ const FrameStat& Window::update(){
 	timer.reset();
 
 #endif
-
 	profiling.add(elapsed);
 	return profiling;
 }
 
 Window::~Window() {
+
+	profiling.print();
+
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+	SDL_Quit();
+
+
 }

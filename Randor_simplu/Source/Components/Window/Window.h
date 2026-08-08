@@ -3,16 +3,12 @@
 #include <vector>
 #include <iostream>
 
+#include "Core/Global/Macros.h"
 #include "Core/FrameStat/FrameStat.h"
+#include "Core/RenderProfiler/RenderProfile.h"
 
 #include "Components/Scene/Scene.h"
 #include "Components/Input/InputManager/InputManager.h"
-
-#define FRAME_PACER 1		//Smooth busy-waiting for precise frame times
-#define FRAME_PROFILER 0	//Print every render stage timing breakdown
-
-constexpr bool DEBUG = 0;
-constexpr bool INFO = 0;
 
 
 class Entity;
@@ -44,6 +40,8 @@ class Window		//Needs to separate the renderer and window ASAP!
 	//Prevent changing the scene
 	const Scene const* scene;
 	
+	/// @brief Potentially misleading name. This is the code executed each frame by the window
+	void shader();
 
 public:
 	/// @brief Creates a new window
@@ -61,8 +59,6 @@ public:
 	const FrameStat& update();	//parameter dt doesn't belong here, it belongs to the physics affecting the scene.
 	void handle_events(); ///Will have to be moved to a supposed Window Manager	
 	
-	/// @brief Potentially misleading name. This is the code executed each frame by the window
-	void shader();
 	inline const bool get_validity() const noexcept  { return valid; }
 	int set_fps(unsigned int fps) noexcept;
 
@@ -76,4 +72,6 @@ public:
 	/// @param &s - Scene to display
 	/// @return Whether the scene is populated
 	bool set_active_scene(Scene &s);
+
+	const FrameStat& analysis() { return profiling; };
 };

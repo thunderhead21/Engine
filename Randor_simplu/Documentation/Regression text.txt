@@ -32,7 +32,7 @@ WRONG OUTPUT:
 18
 17
 
-
+line count from git-bash: git ls-files '*.h' '*.cpp' '*.hpp' '*.inl' | xargs wc -l 
 
 [29.07.2026, 22:40] There is a good reason why oftentimes the .inl file containing the template class implementation should be excluded from the build process:
 Building without excluding matrix.inl from the build process generates innumerable errors that simply disappear if the file is excluded.

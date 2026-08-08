@@ -13,13 +13,13 @@ private:
 public:
 	Timer();
 
-	//number of milliseconds
+	//number of seconds
 	float tick()
 	{
 
 
 		end = clock.now();
-		float dt = std::chrono::duration<float>(end - start).count();
+		float dt = std::chrono::duration<float>(end - start).count();	//Default for duration is seconds
 
 		start = end;
 

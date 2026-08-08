@@ -15,6 +15,7 @@ void Engine::refresh_scene()
 /// @return float frame time in seconds
 float Engine::update()
 {
+	if (renderer.get_validity() == 0) return 0;
 	float dt = timer.tick();
 	return renderer.update().last() + world.update(dt);
 }
@@ -28,22 +29,22 @@ float Engine::update(float dt)
 void Engine::add_cube(bool phys_enabled, unsigned int side, size_t count)
 {
 
-	if (phys_enabled) for (int i = 0; i < count; i++) world.add_entity(RigidBody::Cube(side))->transform() = Transform({ pos(rng) }, { pos(rng) }, { pos(rng) });
+	if (phys_enabled) for (int i = 0; i < count; i++) world.add_entity(RigidBody::Cube(side))->transform() = Transform({ pos(rng), pos(rng), pos(rng) + 2300}, { pos(rng), pos(rng), pos(rng)}, { pos(rng) });
 
-	else for (int i = 0; i < count; i++) world.add_entity(Entity::Cube(side))->transform() = Transform({ pos(rng) }, { pos(rng) }, { pos(rng) });
+	else for (int i = 0; i < count; i++) world.add_entity(Entity::Cube(side))->transform() = Transform({ pos(rng),pos(rng), pos(rng)}, { pos(rng), pos(rng), pos(rng)}, { pos(rng) });
 }
 
 void Engine::add_rectangle(bool phys_enabled, unsigned int width, unsigned int height, size_t count)
 {
 
-	if (phys_enabled) for (int i = 0; i < count; i++) world.add_entity(RigidBody::Rectangle(width, height))->transform() = Transform({pos(rng)}, {pos(rng)}, {pos(rng)});
-	else for (int i = 0; i < count; i++) world.add_entity(Entity::Rectangle(width, height))->transform() = Transform({ pos(rng) }, { pos(rng) }, { pos(rng) });
+	if (phys_enabled) for (int i = 0; i < count; i++) world.add_entity(RigidBody::Rectangle(width, height))->transform() = Transform({pos(rng),pos(rng) ,pos(rng) + 2300 }, {pos(rng),pos(rng),pos(rng) }, {pos(rng)});
+	else for (int i = 0; i < count; i++) world.add_entity(Entity::Rectangle(width, height))->transform() = Transform({ pos(rng),pos(rng),pos(rng) }, { pos(rng),pos(rng),pos(rng) }, { pos(rng) });
 
 	
 }
 
 void Engine::add_triangle(bool phys_enabled, unsigned int width, unsigned int height, size_t count)
 {
-	if (phys_enabled) for (int i = 0; i < count; i++) world.add_entity(RigidBody::Triangle(width, height))->transform() = Transform({ pos(rng) }, { pos(rng) }, { pos(rng) });
-	else for (int i = 0; i < count; i++) world.add_entity(Entity::Triangle(width, height))->transform() = Transform({ pos(rng) }, { pos(rng) }, { pos(rng) });
+	if (phys_enabled) for (int i = 0; i < count; i++) world.add_entity(RigidBody::Triangle(width, height))->transform() = Transform({ pos(rng), pos(rng), pos(rng), }, { pos(rng),pos(rng), pos(rng)}, { pos(rng) });
+	else for (int i = 0; i < count; i++) world.add_entity(Entity::Triangle(width, height))->transform() = Transform({ pos(rng), pos(rng), pos(rng)}, { pos(rng), pos(rng), pos(rng)}, { pos(rng) });
 }

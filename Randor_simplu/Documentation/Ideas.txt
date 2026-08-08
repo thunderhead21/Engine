@@ -4,5 +4,7 @@ Remember what you learned from TopGear
 Heroes-style game with treaties and diplomacy (Hearts of Iron 4 inspired)
 Total world control strategy game, aka Israel simulator
 Radical Aces clone
+Race the Sun clone
+Overtorque Stunt Racing clone
 
 Branch this project to create a VM project.

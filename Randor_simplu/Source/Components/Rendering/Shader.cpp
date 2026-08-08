@@ -49,6 +49,7 @@ void Window::shader() {
 #if FRAME_PROFILER
 
 	rendering = 0, tform = 0, projection = 0;	//Reset Timing variables
+	shader_timer.reset();
 #endif
 	if (scene == NULL) {
 		spdlog::warn("\"{}\" has no scene to render", SDL_GetWindowTitle(this->window));
@@ -57,17 +58,17 @@ void Window::shader() {
 	//Changes scale by pressing < or >
 	if(controller.is_active(SDL_SCANCODE_PERIOD)) {
 			
-		sx += 0.9f * profiling.last();
-		sy += 0.9f * profiling.last();
-		sz += 0.9f * profiling.last();
+		sx += 0.9f * profiling.last() + (sx / 50);
+		sy += 0.9f * profiling.last() + (sy / 50);
+		sz += 0.9f * profiling.last() + (sz / 52);
 			
 	}
 
-	if (controller.is_active(SDL_SCANCODE_COMMA)) {
+	if (controller.is_active(SDL_SCANCODE_COMMA) && sx + sy + sz > 0) {
 			
-		sx -= 0.9f * profiling.last();
-		sy -= 0.9f * profiling.last();
-		sz -= 0.9f * profiling.last();
+		sx -= 0.9f * profiling.last() + (sx / 50);
+		sy -= 0.9f * profiling.last() + (sy / 50);
+		sz -= 0.9f * profiling.last() + (sz / 52);
 		
 	}
 
@@ -90,7 +91,7 @@ void Window::shader() {
 			entity->transform().transform_mesh(entity->mesh(), entity->world_buffer());	//This is the result of operator*() in the middle!. It is good the two functions return a reference
 
 #if FRAME_PROFILER
-			tform += shader_timer.tick() * 1000;
+			tform += shader_timer.tick();
 #endif // FRAME_PROFILER
 
 			// [DESIGN]
@@ -100,7 +101,7 @@ void Window::shader() {
 			// Transform converts local geometry into world space
 			// immediately before rendering.
 
-			//Projected vertices onto the screen. Test reserve vs resize.
+			//Projected vertices onto the screen.
 			entity->projection_buffer().reserve(entity->world_buffer().size());	//Naturally, we already know how many of them we are going to have
 			for (const auto& vertex : entity->world_buffer()) {		//Take each one and project it!
 
@@ -116,7 +117,8 @@ void Window::shader() {
 			}
 			entity->clean();
 #if FRAME_PROFILER
-			projection += shader_timer.tick() * 1000;
+
+			projection += shader_timer.tick();
 #endif // FRAME_PROFILER
 		}
 		//And finally, render what we have!
@@ -131,15 +133,23 @@ void Window::shader() {
 		};
 
 #if FRAME_PROFILER
-		rendering += shader_timer.tick() * 1000;
+		rendering += shader_timer.tick();
 #endif // FRAME_PROFILER
 
 	}
 
 #if FRAME_PROFILER
+	profiling.render_tform_time(tform);
+	profiling.projection_time(projection);
+	profiling.render_time(rendering);
+
+	/*
 	spdlog::info("TForm: {}ms", tform);
 	spdlog::info("Projection: {}ms", projection);
-	spdlog::info("rendering: {}ms", rendering);
+	spdlog::info("rendering: {}ms\n", rendering);
+	*/
+	
+
 #endif // FRAME_PROFILER
 
 }

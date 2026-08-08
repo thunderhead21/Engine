@@ -14,6 +14,7 @@ Names ✅
 Layers ✅
 Tags ✅
 Make Window::update(dt) return RendererProfiler
+Off-load the test function data to FrameStat
 Engine object encapsulation (Engine.h / .cpp) 🚧
 RendererProfiler class expose transform, projection and presentation times
 Transform::_locked
