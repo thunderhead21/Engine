@@ -3,27 +3,68 @@
 Engine::Engine(std::string window_name, unsigned int res_x, unsigned int res_y, bool VSync, bool fullscreen) : 
 	controller(), renderer(controller, window_name, res_x, res_y, VSync, fullscreen)
 {
+	on_create();
 	renderer.set_active_scene(world);
 }
+
+Engine::~Engine()
+{
+	on_quit();
+}
+
+
+void Engine::on_create() {
+	std::cout << "ENGINE on_create()" << std::endl;
+}
+
+void Engine::on_update() {
+	static unsigned short count = 0;
+	if (count < 5) {
+		std::cout << "ENGINE on_update()" << std::endl;
+		count++;
+	}
+}
+
+void Engine::on_quit() {
+	std::cout << "ENGINE on_quit()" << std::endl;
+
+	renderer.analysis().print();
+}
+
 
 void Engine::refresh_scene()
 {
 	world.rebuild_queues();
 }
 
-/// @brief Updates the entire scene
+/// @brief Updates the entire scene.
 /// @return float frame time in seconds
-float Engine::update()
+float Engine::update(float dt)
 {
-	if (renderer.get_validity() == 0) return 0;
-	float dt = timer.tick();
+	if (renderer.get_validity() == 0){
+		valid = 0;
+		quit();
+		return 0;
+	}
+	if (dt < 0) dt = timer.tick();
+
+	renderer.handle_events();
+
+	on_update();
+
 	return renderer.update().last() + world.update(dt);
 }
 
-float Engine::update(float dt)
+
+bool Engine::running()
 {
-	renderer.handle_events();
-	return renderer.update().last() + world.update(dt);
+	return renderer.get_validity();
+}
+
+void Engine::quit()
+{
+	renderer.quit();
+	on_quit();
 }
 
 void Engine::add_cube(bool phys_enabled, unsigned int side, size_t count)

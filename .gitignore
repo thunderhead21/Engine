@@ -27,3 +27,9 @@ CMakeCache.txt
 # Windows
 Thumbs.db
 Desktop.ini
+
+# Archives
+*.zip
+*.rar
+*.tar
+*.gz

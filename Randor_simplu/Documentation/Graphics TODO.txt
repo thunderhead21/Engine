@@ -20,18 +20,6 @@ Observations:
 
 
 
-TASK:
-Implement operator[] for vecXd and, if useful, matX
-
-Current problem:
-Vector has no array-like syntax, and as such cannot be directly iterated through
-
-Goal:
-Access vecXd using char or const char index specifying dimension - v['x'], v['y'], v['z'], v['w'], v['n']
-
-Observations:
-[04.07.2026, 6:25] - Math.h was changed to Vector.h to separate mathematical concepts. Process required 30 minutes
-
 
 
 TASK:
@@ -91,7 +79,7 @@ Perspective Projection should take vec4d
 
 
 
-TASK: Vec4d - > [? Vec3d ?] - > SDL_Vertex
+TASK: Vec4d - > [? Vec3d ?] - > SDL_Vertex [COMPLETED]
 
 Current Problem:
 There is no current use to the vec4d class
@@ -101,6 +89,7 @@ Have a meaningful use for vec4d
 
 Observations:
 It part of the World Transform
+
 
 
 
@@ -222,6 +211,18 @@ SDL_Vertex
 
 
 ======================================================== Finished Tasks ========================================================
+
+TASK:
+Implement operator[] for vecXd and, if useful, matX [COMPLETED]
+
+Current problem:
+Vector has no array-like syntax, and as such cannot be directly iterated through
+
+Goal:
+Access vecXd using char or const char index specifying dimension - v['x'], v['y'], v['z'], v['w'], v['n']
+
+Observations:
+[04.07.2026, 6:25] - Math.h was changed to Vector.h to separate mathematical concepts. Process required 30 minutes
 
 TASK:
 Use the new keybinding system [COMPLETED]

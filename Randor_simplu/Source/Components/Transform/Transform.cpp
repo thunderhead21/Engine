@@ -11,7 +11,7 @@ mat4 Transform::matrix() const
 void Transform::position(const vec3d& position)
 {
 	if (position == _position) return;
-	else {
+	else if (!_locked){
 		_position = position;
 		_outdated = 1;
 	}
@@ -20,7 +20,7 @@ void Transform::position(const vec3d& position)
 void Transform::rotation(const vec3d& rotation)
 {
 	if (rotation == _rotation) return;
-	else {
+	else if (!_locked) {
 		_rotation = rotation;
 		_outdated = 1;
 	}
@@ -73,6 +73,8 @@ void Transform::transform_mesh_batch(const Mesh* mesh_array, size_t& count, std:
 /////////////////////////////////////////////////////////////////////////////////
 Transform& Transform::operator=(const Transform& other)
 {
+	if (_locked) throw "invalid operator=() call on locked TForm";
+
 	_outdated = 1;
 
 	_position = other._position;
@@ -90,14 +92,8 @@ Transform Transform::operator-(const Transform& other) const {
 	return Transform({ _position - other._position }, { _rotation - other._rotation }, { _scale - other._scale });
 }
 
-/*
-Transform& Transform::operator+=(Transform& other)
-{
-	return *this = *this + other;
-}
-*/
-
 Transform& Transform::operator+=(const Transform& other) {
+
 	_outdated = 1;
 	return *this = *this + other;
 }
@@ -107,7 +103,7 @@ Transform& Transform::operator-=(const Transform& other) {
 	return *this = *this - other;
 }
 
-Transform Transform::operator*(const float coefficient)
+Transform Transform::operator*(const float coefficient) const 
 {
 
 	return Transform(_position * coefficient, _rotation * coefficient, _scale * coefficient);;
@@ -115,6 +111,7 @@ Transform Transform::operator*(const float coefficient)
 
 void Transform::operator*=(const float coefficient)
 {
+	if (_locked) throw "invalid operator*=() call on locked TForm";
 	_rotation *= coefficient;
 	_position *= coefficient;
 	_scale    *= coefficient;

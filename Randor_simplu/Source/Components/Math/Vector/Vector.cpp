@@ -93,6 +93,7 @@ void vec3d::operator-=(const vec3d& other)
 
 void vec3d::operator*=(const vec3d& other)
 {
+
 	x *= other.x;
 	y *= other.y;
 	z *= other.z;

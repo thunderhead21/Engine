@@ -46,6 +46,8 @@ private:
 	mutable mat4 _matrix;
 	mutable bool _outdated{1};	//Rebuild Matrix cache ASAP flag
 
+	mutable bool _locked;
+
 public:
 
 	Transform() : _position({ 0,0,0 }), _rotation({ 0,0,0 }), _scale({1,1,1}) {};
@@ -101,7 +103,7 @@ public:
 	Transform& operator+=(const Transform& other);
 	Transform& operator-=(const Transform& other);
 
-	Transform operator*(const float coefficient);
+	Transform operator*(const float coefficient) const;
 	void operator*=(const float coefficient);
 
 };

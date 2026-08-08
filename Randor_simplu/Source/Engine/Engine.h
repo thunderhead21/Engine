@@ -24,6 +24,8 @@ class Engine
 {
 protected:
 
+	bool valid = 1;
+
 	std::mt19937 rng{ (unsigned int)time(nullptr) };
 	std::uniform_real_distribution<float> pos{ -2000.f, 2000.f };
 	std::uniform_real_distribution<float> size{1.f, 500.f};
@@ -35,16 +37,23 @@ protected:
 
 	void create_default_keybindings();
 	void initialize_keybindings(std::string filename);
+	
 
 public:
 
 	Engine(std::string window_name = "New Vigineer Window", unsigned int res_x = 1280, unsigned int res_y = 960, bool VSync = 1, bool fullscreen = 0);
-	~Engine() = default;
+	~Engine();
 	
 	void refresh_scene();
 
-	float update();
-	float update(float dt);
+	float update(float dt = -1);
+	bool running();
+	void quit();
+
+	///////////   EVENTS  ///////////
+	void on_create();
+	void on_update();
+	void on_quit();
 
 	/////////// FACTORIES ///////////
 	void add_cube(bool phys_enabled = 1, unsigned int side = 400, size_t count = 1);

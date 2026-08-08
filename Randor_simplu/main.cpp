@@ -12,20 +12,7 @@
 #include <Psapi.h>
 #include <Windows.h>
 
-std::size_t get_ram_usage_mb()
-{
-	PROCESS_MEMORY_COUNTERS_EX pmc{};
 
-	if (GetProcessMemoryInfo(
-		GetCurrentProcess(),
-		reinterpret_cast<PROCESS_MEMORY_COUNTERS*>(&pmc),
-		sizeof(pmc)))
-	{
-		return pmc.WorkingSetSize / (1024 * 1024);
-	}
-
-	return 0;
-}
 
 /*
 NEXT STEP - Create pipeline :
@@ -115,16 +102,13 @@ void rendering_test_run(unsigned int entities = 10000, unsigned int fps = 60, fl
 			//std::cout << dt << '\n';
 			probe++;
 		}
-
-		fs.add(dt);
 	}
-	sim_dt = (sim_dt / (fs.runtime() * fs.average_fps())) * 1000;
+	sim_dt = (sim_dt / (w.analysis().runtime() * w.analysis().average_fps())) * 1000;
 
 	std::ofstream f("Benchmark_history.log", std::ios::app | std::ios::out);
 	spdlog::info("{} entities", s.get_entities().size());
 	spdlog::info("Average physics time: {}ms", sim_dt);
-
-//	fs.print();
+	std::cout << w.analysis().str() << std::endl;
 	f << s.get_entities().size() << " entities simulated.\n";
 	f << "Average physics time:" << sim_dt << "ms";
 	f <<w.analysis().str();
@@ -186,23 +170,32 @@ void print_mat(mat<T>& m) {
 //Now you have to pass the input manager to the window as function parameter for topical usage
 int main(int argc, char* argv[])
 {
-	/*
+	
+	{
+
 	Engine engine;
 
 	engine.add_cube(1, 500, 25);
 	engine.add_triangle(1, 300, 300, 50);
 	engine.refresh_scene();
 
-	while (engine.update());
-	*/
+	while (engine.running()) {
+		engine.update();
+	}
+	engine.quit();
+	}
 
-	for (int i = 1000; i < 80000; ) {
+
+	
+
+	for (int i = 1000; i < 120000; ) {
 		rendering_test_run(i, 120, 20);
 		if (i < 10000) i += 2000;
 		else if (i < 50000) i += 10000;
 		else i += 20000;
 		SDL_Delay(2000);
 	}
+	
 
 	//std::cin.get();
 
@@ -279,7 +272,7 @@ int main(int argc, char* argv[])
 	FrameStat fs;
 	SDL_Event event;
 	while (w.get_validity()) {
-		SDL_PollEvent(&event);													///Event is the hooker you pass around O.O
+		SDL_PollEvent(&event);
 
 		float dt = w.update().last();
 		world.update(dt);
@@ -291,7 +284,7 @@ int main(int argc, char* argv[])
 
 	}
 
-	fs.print();
+	//fs.print();
 	SDL_Quit();
 	return 0;
 }

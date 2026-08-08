@@ -6,14 +6,14 @@ bool Window::init_success = 0;
 
 
 bool Window::init() {
-	{
-		if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) {
-			SDL_Log("SDL_Init failed: %s", SDL_GetError());
-			if (DEBUG) throw "SDL_Init failed";
-			return 1;
-		}
-		else return 0;
+	
+	if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) {
+		SDL_Log("SDL_Init failed: %s", SDL_GetError());
+		if (DEBUG) throw "SDL_Init failed";
+		return 1;
 	}
+	else return 0;
+	
 }
 
 /// REMEMBER! ALL keybindings must be of void return value
@@ -131,6 +131,7 @@ void Window::handle_events() {	// Window related event handling
 		case SDL_EVENT_QUIT:
 			valid = 0;
 			spdlog::warn("X pressed. Quitting.");
+			quit();
 
 			break;
 
@@ -167,7 +168,7 @@ const FrameStat& Window::update(){
 #endif // FRAME_PROFILER
 
 	handle_events();
-
+	if (!valid) return profiling;
 #if FRAME_PROFILER
 
 	profiling.event_time(instrument.tick());
@@ -224,12 +225,12 @@ const FrameStat& Window::update(){
 }
 
 Window::~Window() {
+	SDL_Quit();
+};
 
-	profiling.print();
-
+void Window::quit()
+{
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
-	SDL_Quit();
-
-
+	
 }

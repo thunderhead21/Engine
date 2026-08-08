@@ -53,6 +53,8 @@ public:
 	Window(InputManager& controller, int w = 1280, int h = 960, bool VSync = 1, bool fullscreen = 0);
 	Window(InputManager& controller, std::string window_name = "New Vigineer Window", int w = 1280, int h = 960, bool VSync = 1, bool fullscreen = 0);	//Reserved for Engine. Specialized CTOR
 	~Window();
+	
+	void quit();
 
 	/// @brief  updates the window screen with the current scene state
 	/// @return const FrameStat& - Constant reference to the frame profiling object of the frame.
