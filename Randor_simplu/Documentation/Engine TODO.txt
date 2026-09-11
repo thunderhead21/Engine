@@ -20,7 +20,7 @@ RendererProfiler class expose transform, projection and presentation times✅
 Transform::_locked✅
 Hierarchical transforms
 Hierarchical transform caching
-Event system - OnCreation,onDestroy, onUpdate...
+Event system - OnCreation,onDestroy, onUpdate...✅
 Create a proper unit testing framework
 
 -Graphics Pipeline-
