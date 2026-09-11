@@ -1,5 +1,8 @@
 #include "Engine.h"
 
+void Engine::on_create() {
+	std::cout << "ENGINE on_create()" << std::endl;
+}
 Engine::Engine(std::string window_name, unsigned int res_x, unsigned int res_y, bool VSync, bool fullscreen) : 
 	controller(), renderer(controller, window_name, res_x, res_y, VSync, fullscreen)
 {
@@ -7,14 +10,24 @@ Engine::Engine(std::string window_name, unsigned int res_x, unsigned int res_y, 
 	renderer.set_active_scene(world);
 }
 
+void Engine::on_destroy()
+{
+	std::cout << "Engine instance destroyed" << std::endl;
+}
 Engine::~Engine()
 {
-	on_quit();
+	on_destroy();
 }
 
 
-void Engine::on_create() {
-	std::cout << "ENGINE on_create()" << std::endl;
+
+
+
+
+
+void Engine::refresh_scene()
+{
+	world.rebuild_queues();
 }
 
 void Engine::on_update() {
@@ -24,19 +37,6 @@ void Engine::on_update() {
 		count++;
 	}
 }
-
-void Engine::on_quit() {
-	std::cout << "ENGINE on_quit()" << std::endl;
-
-	renderer.analysis().print();
-}
-
-
-void Engine::refresh_scene()
-{
-	world.rebuild_queues();
-}
-
 /// @brief Updates the entire scene.
 /// @return float frame time in seconds
 float Engine::update(float dt)
@@ -59,6 +59,11 @@ float Engine::update(float dt)
 bool Engine::running()
 {
 	return renderer.get_validity();
+}
+
+void Engine::on_quit() {
+	std::cout << "ENGINE on_quit()" << std::endl;
+
 }
 
 void Engine::quit()

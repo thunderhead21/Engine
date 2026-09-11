@@ -54,6 +54,7 @@ public:
 	void on_create();
 	void on_update();
 	void on_quit();
+	void on_destroy();
 
 	/////////// FACTORIES ///////////
 	void add_cube(bool phys_enabled = 1, unsigned int side = 400, size_t count = 1);
