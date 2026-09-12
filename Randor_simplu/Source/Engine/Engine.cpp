@@ -10,6 +10,9 @@ Engine::Engine(std::string window_name, unsigned int res_x, unsigned int res_y, 
 	renderer.set_active_scene(world);
 }
 
+
+
+
 void Engine::on_destroy()
 {
 	std::cout << "Engine instance destroyed" << std::endl;

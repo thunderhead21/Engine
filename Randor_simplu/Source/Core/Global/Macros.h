@@ -1,7 +1,7 @@
 #pragma once
 
 #define FRAME_PACER 1				//Smooth busy-waiting for precise frame times
-#define FRAME_PROFILER 0			//Print every render stage timing breakdown
+#define FRAME_PROFILER 1			//Print every render stage timing breakdown
 
 
 constexpr bool DEBUG = 0;

@@ -44,10 +44,19 @@ public:
 	Engine(std::string window_name = "New Vigineer Window", unsigned int res_x = 1280, unsigned int res_y = 960, bool VSync = 1, bool fullscreen = 0);
 	~Engine();
 	
+	/// @brief Rebuilds the scene queues.
 	void refresh_scene();
 
+	/// @brief Produces a new frame
+	/// @param dt Specifies a custom simulation step. calculated automaticaly otherwise
+	/// @return frame time in seconds.
 	float update(float dt = -1);
+
+	/// @brief Gets the validity state of the engine
+	/// @return true if it is usable
 	bool running();
+
+	/// @brief Invalidates the engine.
 	void quit();
 
 	///////////   EVENTS  ///////////

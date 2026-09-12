@@ -18,8 +18,8 @@ Off-load the test function data to FrameStat✅
 Engine object encapsulation (Engine.h / .cpp) ✅
 RendererProfiler class expose transform, projection and presentation times✅
 Transform::_locked✅
-Hierarchical transforms
-Hierarchical transform caching
+Hierarchical transforms - transform composition
+Hierarchical transform caching - composition cache
 Event system - OnCreation,onDestroy, onUpdate...✅
 Create a proper unit testing framework
 
