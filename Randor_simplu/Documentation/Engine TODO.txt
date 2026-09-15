@@ -18,14 +18,16 @@ Off-load the test function data to FrameStat✅
 Engine object encapsulation (Engine.h / .cpp) ✅
 RendererProfiler class expose transform, projection and presentation times✅
 Transform::_locked✅
+Event system - OnCreation,onDestroy, onUpdate...✅
 Hierarchical transforms - transform composition
 Hierarchical transform caching - composition cache
-Event system - OnCreation,onDestroy, onUpdate...✅
 Create a proper unit testing framework
+OnCreate - add keybindings for movement
 
 -Graphics Pipeline-
-Camera
-View matrix
+Camera - introduce in shader()
+View matrix - Multiply vertices by it
+Is Camera an entity?
 Perspective projection
 Back-face culling
 Clipping

@@ -103,6 +103,9 @@ public:
 	Transform& operator+=(const Transform& other);
 	Transform& operator-=(const Transform& other);
 
+	bool operator==(const Transform& other) const;
+	bool operator!=(const Transform& other) const;
+
 	Transform operator*(const float coefficient) const;
 	void operator*=(const float coefficient);
 

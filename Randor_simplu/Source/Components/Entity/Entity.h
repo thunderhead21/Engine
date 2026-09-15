@@ -114,8 +114,15 @@ public:
 	Entity(Mesh m) noexcept;
 	virtual ~Entity();
 
-
-
+	///////////////// MOBILITY ////////////////
+	/*
+	void up() { _transform + vec3d(0, 0, 1); }
+	void down();
+	void left();
+	void right();
+	void forward();
+	void backward();
+	*/
 
 	/////////////////FACTORIES/////////////////
 	

@@ -245,6 +245,7 @@
     <ClInclude Include="Source\Components\Geometry\Primitives\Triangle.h" />
     <ClInclude Include="Source\Components\Input\InputManager\InputManager.h" />
     <ClInclude Include="Source\Components\Input\InputManager\Keybind\Keybind.h" />
+    <ClInclude Include="Source\Components\Math\Math.h" />
     <ClInclude Include="Source\Components\Math\Matrix\Matrix.hpp" />
     <ClInclude Include="Source\Components\Math\Vector\Vector.h" />
     <ClInclude Include="Source\Components\Physics\Physics.h" />

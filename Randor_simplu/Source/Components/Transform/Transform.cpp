@@ -109,6 +109,17 @@ Transform& Transform::operator-=(const Transform& other) {
 	return *this = *this - other;
 }
 
+bool Transform::operator==(const Transform& other) const
+{
+	if (_position == other._position && _rotation == other._rotation && _scale == other._scale) return true;
+	return false;
+}
+
+bool Transform::operator!=(const Transform& other) const
+{
+	return !((*this) == other);
+}
+
 Transform Transform::operator*(const float coefficient) const 
 {
 

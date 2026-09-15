@@ -4,8 +4,9 @@
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/fmt.h>
 
-#include "../Entity/Entity.h"
-#include "../Physics/Physics.h"
+#include "Components/Entity/Entity.h"
+#include "Components/Physics/Physics.h"
+#include "Components/Camera/Camera.h"
 
 /// @brief Scene object. Affected by physics and input.
 /// @brief Owns a physics solver which affects the physics-enabled objects
@@ -14,6 +15,7 @@ class Scene
 protected:
 	Physics simulator;
 	Timer timer;	//Used to compute simulation times, not dt
+	Camera* active_cam = new Camera;
 
 	std::vector<Entity*> entities;		//ALL entities
 	

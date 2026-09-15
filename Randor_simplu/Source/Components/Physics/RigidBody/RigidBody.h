@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Entity/Entity.h"
+#include <Components/Entity/Entity.h>
 
 /// @brief A physics-enabled entity in the world. Updated by the Physics engine
 class RigidBody : public Entity

@@ -259,6 +259,9 @@
     <ClInclude Include="Source\Components\Camera\Camera.h">
       <Filter>Components\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Components\Math\Math.h">
+      <Filter>Components\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Randor_simplu.rc">

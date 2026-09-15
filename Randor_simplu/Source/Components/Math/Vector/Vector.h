@@ -145,7 +145,8 @@ struct vec3d {
 	vec3d operator+(const vec3d& other) const;
 	vec3d operator-(const vec3d& other) const;
 	vec3d operator*(float scalar) const;
-	inline bool operator==(vec3d& other) const { return equal(*this, other); };
+	inline bool operator==(const vec3d& other) const { return equal(*this, other); };
+	inline bool operator!=(const vec3d& other) const { return !equal(*this, other); };
 	void operator+=(const vec3d& other);
 	void operator-=(const vec3d& other);
 	void operator*=(const vec3d& other);
