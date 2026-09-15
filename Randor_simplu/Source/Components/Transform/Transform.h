@@ -75,7 +75,7 @@ public:
 	void rotation(const vec3d& rotation);
 	void scale(const vec3d& scale);
 
-	void clean() { _outdated = 0; };
+	void clean() const { _outdated = 0; };
 
 
 	/// @brief Transform the mesh from local coordinates to world coordinates coordinates.
