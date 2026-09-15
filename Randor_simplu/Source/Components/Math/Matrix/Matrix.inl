@@ -28,6 +28,20 @@ inline mat<T>::~mat()
 	delete[] data;
 }
 
+template<typename T>
+inline mat<T> mat<T>::transpose()
+{
+	mat<T> tpose(columns, rows);
+
+	for (int i = 0; i < columns; i++) {
+		for (int j = 0; j < rows; j++) {
+			tpose[j][i] = (*this)[i][j];
+		}
+	}
+
+	return tpose;
+}
+
 /////////////////// OPERATORS ///////////////////
 template <typename T>
 inline T& mat<T>::operator[](size_t index) { 
@@ -385,6 +399,29 @@ inline mat<T> mat<T>::rotation(const vec4d& v)
 {
 	return rotation(v.x, v.y, v.z);
 }
+
+/// INVERSE ROTATIONS
+	
+template<typename T>
+inline mat<T> mat<T>::inverse_rotation(T x_degs, T y_degs, T z_degs)
+{
+	return ( rotation_x(-x_degs) * rotation_y(-y_degs) * rotation_z(-z_degs));
+}
+
+template<typename T>
+inline mat<T> mat<T>::inverse_rotation(const vec3d& v)
+{
+	return inverse_rotation(v.x, v.y, v.z);
+}
+
+template<typename T>
+inline mat<T> mat<T>::inverse_rotation(const vec4d& v)
+{
+	return inverse_rotation(v.x, v.y, v.z);
+}
+	
+///
+
 
 template<typename T>
 inline mat<T> mat<T>::scale(T x, T y, T z)

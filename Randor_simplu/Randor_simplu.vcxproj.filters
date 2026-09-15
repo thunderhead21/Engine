@@ -89,6 +89,9 @@
     <Filter Include="Core\RendererProfiler">
       <UniqueIdentifier>{15d25d4b-f53b-4a49-a05f-04e25c6cfe17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Camera">
+      <UniqueIdentifier>{cfb92fbe-cffc-4a30-b000-413844b21aa2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -163,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Engine.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\Camera\Camera.cpp">
+      <Filter>Components\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +255,9 @@
     </ClInclude>
     <ClInclude Include="Source\Core\Global\Macros.h">
       <Filter>Core\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Camera\Camera.h">
+      <Filter>Components\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

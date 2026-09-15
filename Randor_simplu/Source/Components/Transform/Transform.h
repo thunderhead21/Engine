@@ -46,7 +46,7 @@ private:
 	mutable mat4 _matrix;
 	mutable bool _outdated{1};	//Rebuild Matrix cache ASAP flag
 
-	mutable bool _locked;
+	mutable bool _locked = 0;
 
 public:
 
@@ -58,6 +58,7 @@ public:
 	vec3d& rotation() { return _rotation; _outdated = 1; };
 	vec3d& scale() { return _scale; _outdated = 1; };
 	mat4 matrix() const;
+	mat4 inverse_matrix() const;
 
 	const vec3d& position() const { return _position; };
 	const vec3d& rotation() const { return _rotation; };
@@ -69,13 +70,13 @@ public:
 	void translate(const vec3d& amount) { _position += amount; _outdated = 1; };
 	void rotate(const vec3d& amount) { _rotation += amount; _outdated = 1; };
 
-	//void translate(vec3d amount) { _position += amount; };
-	//void rotate(vec3d amount) { _rotation += amount; };
-
 	//Setters
 	void position(const vec3d& position);
 	void rotation(const vec3d& rotation);
 	void scale(const vec3d& scale);
+
+	void clean() { _outdated = 0; };
+
 
 	/// @brief Transform the mesh from local coordinates to world coordinates coordinates.
 	/// @brief That means it places the entity's representation in the world
@@ -97,9 +98,8 @@ public:
 
 
 	Transform& operator=(const Transform& other);
-
-	Transform operator+(const Transform& other) const;
-	Transform operator-(const Transform& other) const;
+	Transform  operator+(const Transform& other) const;
+	Transform  operator-(const Transform& other) const;
 	Transform& operator+=(const Transform& other);
 	Transform& operator-=(const Transform& other);
 

@@ -138,6 +138,10 @@ struct vec3d {
 	float& operator[](size_t dimension);
 	const float& operator[](size_t dimension) const;
 
+	//unary operator-()
+	vec3d operator-();
+	vec3d operator-() const;
+
 	vec3d operator+(const vec3d& other) const;
 	vec3d operator-(const vec3d& other) const;
 	vec3d operator*(float scalar) const;
@@ -187,6 +191,10 @@ struct vec4d {
 	const float& operator[](char dimension) const;
 	float& operator[](int dimension);
 	const float& operator[](int dimension) const;
+
+	//unary operator-()
+	vec4d operator-();
+	vec4d operator-() const;
 
 	vec4d operator+(const vec4d& other) const;
 	vec4d operator-(const vec4d& other) const;

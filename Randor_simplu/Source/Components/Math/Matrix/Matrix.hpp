@@ -46,6 +46,10 @@ public:
 	static mat<T> rotation_z(T degs);	///Return rotation matrix around Z axis
 	static mat<T> rotation(T x_degs, T y_degs, T z_degs);		///Return rotation matrix around X Y Z axis
 
+	static mat<T> inverse_rotation(T x_degs, T y_degs, T z_degs);
+	static mat<T> inverse_rotation(const vec3d& v);
+	static mat<T> inverse_rotation(const vec4d& v);
+
 	static mat<T> rotation(const vec3d& v);		///Return rotation matrix around X Y Z axis
 	static mat<T> rotation(const vec4d& v);		///Return rotation matrix around X Y Z axis
 
@@ -57,7 +61,7 @@ public:
 	mat<T> perspective();	///Returns perspective projection matrix
 	mat<T> ortographic();	
 	mat<T> look_at();		
-	mat<T> transpose();	///Inverts the columns and rows
+	mat<T> transpose();		///Inverts the columns and rows
 	mat<T> inverse();		///Returns the inverse matrix, where A * inverse(A) = Identity
 	mat<T> trs();			///Returns the matrix that applies the given translation, rotation and scaling
 

@@ -65,6 +65,16 @@ float& vec2d::operator[](Axis axis) {
 }
 */
 
+vec3d vec3d::operator-()
+{
+	return vec3d(-x, -y, -z);
+}
+
+vec3d vec3d::operator-() const
+{
+	return vec3d(-x, -y, -z);
+}
+
 vec3d vec3d::operator+(const vec3d& other) const
 {
 	return { x + other.x, y + other.y, z + other.z};
@@ -171,6 +181,16 @@ float& vec3d::operator[](Axis axis) {
 	}
 }
 */
+vec4d vec4d::operator-()
+{
+	return vec4d(-x, -y, -z, -w);
+}
+
+vec4d vec4d::operator-() const
+{
+	return vec4d(-x, -y, -z, -w);
+}
+
 vec4d vec4d::operator+(const vec4d& other) const
 {
 	return { x + other.x, y + other.y, z + other.z, w};

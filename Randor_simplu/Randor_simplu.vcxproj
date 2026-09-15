@@ -206,6 +206,7 @@
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
       <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EditAndContinue</DebugInformationFormat>
     </ClCompile>
+    <ClCompile Include="Source\Components\Camera\Camera.cpp" />
     <ClCompile Include="Source\Components\Entity\Entity.cpp" />
     <ClCompile Include="Source\Components\Geometry\Mesh\Mesh.cpp" />
     <ClCompile Include="Source\Components\Geometry\Primitives\Cube.cpp" />
@@ -233,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Source\Components\Camera\Camera.h" />
     <ClInclude Include="Source\Components\Components.h" />
     <ClInclude Include="Source\Components\Entity\Entity.h" />
     <ClInclude Include="Source\Components\Entity\Entity_Data\Entity_Data.h" />

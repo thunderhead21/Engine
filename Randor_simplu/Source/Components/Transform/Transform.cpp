@@ -8,6 +8,12 @@ mat4 Transform::matrix() const
 	return _matrix;
 }
 
+mat4 Transform::inverse_matrix() const
+{
+	
+	return mat4::inverse_rotation(_rotation) * mat4::translation(-_position);
+}
+
 void Transform::position(const vec3d& position)
 {
 	if (position == _position) return;
