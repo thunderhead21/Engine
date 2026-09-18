@@ -33,16 +33,22 @@ SDL_Vertex weak_projection(vec2d window_dimensions, const vec3d& v) {
 	return vertex;
 }
 
+float focal = 500.0f;
+float camera = 2000.0f;
+
 void weak_projection(vec2d window_dimensions, const vec3d& v, std::vector<SDL_Vertex>& out) {
 
 
-
+	/*
 	float camera = 2000.0f;
 	float focal = 500.0f;
+	*/
+
+	
 
 	SDL_Vertex vertex{ 0 };
-	vertex.position.x = fabs(v.z - 0) <= 0.00001 ? v.x : v.x / v.z;
-	vertex.position.y = fabs(v.z - 0) <= 0.00001 ? v.y : v.y / v.z;
+	///vertex.position.x = fabs(v.z - 0) <= 0.00001 ? v.x : v.x / v.z;
+	///vertex.position.y = fabs(v.z - 0) <= 0.00001 ? v.y : v.y / v.z;
 	
 
 	float z = v.z + camera;

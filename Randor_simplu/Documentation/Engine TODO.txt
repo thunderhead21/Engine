@@ -19,15 +19,16 @@ Engine object encapsulation (Engine.h / .cpp) ✅
 RendererProfiler class expose transform, projection and presentation times✅
 Transform::_locked✅
 Event system - OnCreation,onDestroy, onUpdate...✅
+OnCreate - add keybindings for movement✅
 Hierarchical transforms - transform composition
 Hierarchical transform caching - composition cache
 Create a proper unit testing framework
-OnCreate - add keybindings for movement
+Move event ownership out of Window
 
 -Graphics Pipeline-
-Camera - introduce in shader()
-View matrix - Multiply vertices by it
-Is Camera an entity?
+Camera - introduce in shader()✅
+View matrix - Multiply vertices by it✅
+Is Camera an entity? ❌
 Perspective projection
 Back-face culling
 Clipping

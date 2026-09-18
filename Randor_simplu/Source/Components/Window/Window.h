@@ -42,6 +42,8 @@ class Window		//Needs to separate the renderer and window ASAP!
 	
 	/// @brief Potentially misleading name. This is the code executed each frame by the window
 	void shader();
+	void view_from(const Camera* camera, vec4d& vertex);
+	void view_from_batch(const Camera* camera, std::vector<vec4d>& vertices);
 
 public:
 	/// @brief Creates a new window

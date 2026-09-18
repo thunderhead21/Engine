@@ -114,6 +114,8 @@ Window::Window(InputManager& controller, std::string window_name, int w, int h, 
 	timer.reset();	//Prime the timer, discard the startup time.... or not!
 }
 
+
+
 //Keep only internals here. Delegate controls
 void Window::handle_events() {	// Window related event handling
 
@@ -125,7 +127,11 @@ void Window::handle_events() {	// Window related event handling
 	* Therefore, processing those locally is mandatory
 	*/
 
+	controller.update(event);
+
 	while (SDL_PollEvent(&event)) {
+
+		controller.update(event);
 
 		switch (event.type) {
 		case SDL_EVENT_QUIT:
@@ -155,7 +161,16 @@ void Window::handle_events() {	// Window related event handling
 	}
 }
 
+void Window::view_from(const Camera* camera, vec4d& vertex)
+{
+		vertex = camera->view_matrix() * vertex;
+	
+}
 
+void Window::view_from_batch(const Camera* camera, std::vector<vec4d>& vertices)
+{
+	for (auto& i : vertices) i = camera->view_matrix() * i;
+}
 
 
 #if FRAME_PROFILER

@@ -122,6 +122,8 @@ void Scene::rebuild_physics()
 float Scene::update(float dt)
 {
 
+
+
 	(simulator).update(dt);
 	
 	return timer.tick();

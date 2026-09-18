@@ -74,6 +74,7 @@ void Window::shader() {
 
 
 
+
 	for (const auto &entity : scene->get_visible_entities()) {
 		
 
@@ -103,7 +104,10 @@ void Window::shader() {
 
 			//Projected vertices onto the screen.
 			entity->projection_buffer().reserve(entity->world_buffer().size());	//Naturally, we already know how many of them we are going to have
+			view_from_batch(scene->get_active_camera(), entity->world_buffer());
+			
 			for (const auto& vertex : entity->world_buffer()) {		//Take each one and project it!
+
 
 				//Pass the screen size so we know to center them
 				weak_projection(this->get_size(), { vertex.x, vertex.y, vertex.z }, entity->projection_buffer());
@@ -153,4 +157,3 @@ void Window::shader() {
 #endif // FRAME_PROFILER
 
 }
-

@@ -2,6 +2,14 @@
 
 void Engine::on_create() {
 	std::cout << "ENGINE on_create()" << std::endl;
+
+	controller.register_keybind(SDL_SCANCODE_W, [&] {world.get_active_camera()->transform().translate(vec3d{  0,100,0 });});
+	controller.register_keybind(SDL_SCANCODE_A, [&] {world.get_active_camera()->transform().translate(vec3d{ -100,0,0 });});
+	controller.register_keybind(SDL_SCANCODE_S, [&] {world.get_active_camera()->transform().translate(vec3d{ 0,-100,0 });});
+	controller.register_keybind(SDL_SCANCODE_D, [&] {world.get_active_camera()->transform().translate(vec3d{  100,0,0 });});
+	controller.register_keybind(SDL_SCANCODE_UP, [&] {world.get_active_camera()->transform().translate(vec3d{ 0,0,100 });});
+	controller.register_keybind(SDL_SCANCODE_DOWN, [&] {world.get_active_camera()->transform().translate(vec3d{ 0,0,-100 });});
+
 }
 Engine::Engine(std::string window_name, unsigned int res_x, unsigned int res_y, bool VSync, bool fullscreen) : 
 	controller(), renderer(controller, window_name, res_x, res_y, VSync, fullscreen)
@@ -51,6 +59,7 @@ float Engine::update(float dt)
 	}
 	if (dt < 0) dt = timer.tick();
 
+	//Coupled with controller
 	renderer.handle_events();
 
 	on_update();

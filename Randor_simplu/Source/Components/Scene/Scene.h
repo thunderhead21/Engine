@@ -65,6 +65,11 @@ public:
 	/// @brief Render queue getter
 	/// @return Reference to the entities which are physics-enabled within the Scene
 	const std::vector<Entity*>& get_physics_entities() const noexcept { return visible; };
+	
+	/// @brief 
+	/// @return Pointer to the active camera in the scene 
+	Camera* get_active_camera() { return active_cam; };
+	const Camera* get_active_camera() const { return active_cam; };
 
 	void enable_eol_print() { print_entity_destruction = 1; }
 	void disable_eol_print() { print_entity_destruction = 0; }
