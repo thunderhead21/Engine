@@ -41,6 +41,7 @@ Geometric primitives
 Compare overdraw vs frame time
 Benchmark after every optimization
 Introduce VertexBufferObject class
+Add contour to the geometric primitives
 
 -Simulation-
 Collision detection

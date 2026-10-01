@@ -133,8 +133,47 @@ void Window::shader() {
 			entity->projection_buffer().size(),
 			(const int*)entity->mesh().indices().data(), 
 			entity->mesh().indices().size()) == false) {
+
 			std::cout << SDL_GetError() << '\n';
+		
 		};
+
+
+
+
+		std::vector<SDL_FPoint> points;
+		// Code for edge drawing. Contour, outline
+		/*
+		for (auto const& i : entity->mesh().vertices()) {
+			points.push_back(&(i.vertex().position));
+		
+		}
+
+		if (SDL_RenderLines(renderer, *points.data(), points.size())) {
+			std::cout << SDL_GetError() << '\n';
+		}
+		*/
+		
+		///////////////////////
+		/*
+		for (int i = 1; i < entity->projection_buffer().size(); i++) {
+			points.push_back(entity->projection_buffer().at( (size_t) i-1).position);
+			points.push_back(entity->projection_buffer().at( (size_t) i).position);
+		}
+		*/
+		
+#if DRAW_WIREFRAME
+
+		unsigned int indices_count = entity->mesh().indices().size();
+		auto& projection_buffer = entity->projection_buffer();
+
+		for (int i = 0; i < indices_count; i++) {
+			uint32_t current_index = entity->mesh().indices().at(i);
+			points.push_back(projection_buffer.at( current_index ).position);
+		}
+
+		SDL_RenderLines(renderer, points.data(), points.size());
+#endif //DRAW_WIREFRAME
 
 #if FRAME_PROFILER
 		rendering += shader_timer.tick();
