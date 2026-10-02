@@ -28,7 +28,6 @@ Move event ownership out of Window
 -Graphics Pipeline-
 Camera - introduce in shader()✅
 View matrix - Multiply vertices by it✅
-Is Camera an entity? ❌
 Perspective projection
 Back-face culling
 Clipping

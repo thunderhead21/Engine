@@ -92,6 +92,9 @@
     <Filter Include="Components\Camera">
       <UniqueIdentifier>{cfb92fbe-cffc-4a30-b000-413844b21aa2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\VBO">
+      <UniqueIdentifier>{70149bc1-5187-4c1e-a93c-63f898d232c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -261,6 +264,12 @@
     </ClInclude>
     <ClInclude Include="Source\Components\Math\Math.h">
       <Filter>Components\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\VBO\VBO.h">
+      <Filter>Components\VBO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\VBO\VBO.cpp">
+      <Filter>Components\VBO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

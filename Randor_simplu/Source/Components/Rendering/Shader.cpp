@@ -173,6 +173,7 @@ void Window::shader() {
 		}
 
 		SDL_RenderLines(renderer, points.data(), points.size());
+
 #endif //DRAW_WIREFRAME
 
 #if FRAME_PROFILER
@@ -186,11 +187,6 @@ void Window::shader() {
 	profiling.projection_time(projection);
 	profiling.render_time(rendering);
 
-	/*
-	spdlog::info("TForm: {}ms", tform);
-	spdlog::info("Projection: {}ms", projection);
-	spdlog::info("rendering: {}ms\n", rendering);
-	*/
 	
 
 #endif // FRAME_PROFILER

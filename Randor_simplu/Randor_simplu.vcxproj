@@ -222,6 +222,7 @@
     <ClCompile Include="Source\Components\Rendering\Shader.cpp" />
     <ClCompile Include="Source\Components\Scene\Scene.cpp" />
     <ClCompile Include="Source\Components\Transform\Transform.cpp" />
+    <ClInclude Include="Source\Components\VBO\VBO.cpp" />
     <ClCompile Include="Source\Components\Window\Window.cpp" />
     <ClCompile Include="Source\Core\FrameStat\FrameStat.cpp" />
     <ClCompile Include="Source\Core\Timer\Timer.cpp" />
@@ -253,6 +254,7 @@
     <ClInclude Include="Source\Components\Rendering\Projection\Projection.h" />
     <ClInclude Include="Source\Components\Scene\Scene.h" />
     <ClInclude Include="Source\Components\Transform\Transform.h" />
+    <ClInclude Include="Source\Components\VBO\VBO.h" />
     <ClInclude Include="Source\Components\Window\Window.h" />
     <ClInclude Include="Source\Core\Conversions\Conversion.hpp" />
     <ClInclude Include="Source\Core\Core.h" />

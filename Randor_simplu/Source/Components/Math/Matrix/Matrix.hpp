@@ -2,9 +2,9 @@
 
 #include <math.h>
 #include <iostream>
-#include "../Vector/Vector.h"
 
-#include "../../../Core/Core.h"
+#include "Core/Core.h"
+#include "Components/Math/Vector/Vector.h"
 
 /// @brief Column-major order. Solves to array. Transforms vertices.
 /// @brief Column-major means as you progress, you advance through the columns, then lines

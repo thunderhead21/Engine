@@ -2,6 +2,7 @@
 
 #include "Core/Global/Macros.h"
 /// @brief Provides per-frame timing breakdown. DESTROY - MOVE TO FRAMESTAT!
+/*
 class RenderProfiler {
 private:
 	friend class Window;
@@ -43,3 +44,4 @@ public:
 	void print();
 
 };
+*/

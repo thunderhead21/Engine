@@ -7,6 +7,7 @@
 #include "Components/Geometry/Geometry.h"
 #include "Entity_Data/Entity_Data.h"
 
+#include "Components/VBO/VBO.h"
 
 
 
@@ -38,8 +39,7 @@ protected:
 	Tags tags{Tags::None};	//Not needed now. Useful for gameplay and categorisation
 	Layers layers{Layers::Renderable};		//Subsystem responsible for the entity. Inheritors modify it in CTORs
 
-	mutable std::vector<vec4d> _world_cache;
-	mutable std::vector<SDL_Vertex> _projection_cache;
+	mutable VBO vbo;
 	mutable bool _dirty = 1;
 
 public:
@@ -47,7 +47,7 @@ public:
 	/// @param mesh - Mesh object to copy into the mesh member
 	void set_mesh(const Mesh& mesh) { _mesh = mesh;  }
 
-	/// @brief Changes the entity's transform (Postion, Rotation, Scale)
+	/// @brief Changes the entity's transform (Position, Rotation, Scale)
 	/// @param &t to the transform to copy from
 	void transform(Transform& t ) { _transform = t; }
 
@@ -59,8 +59,8 @@ public:
 	Transform& transform() { return _transform; };
 	const Transform& transform() const { return _transform; };
 	
-	std::vector<SDL_Vertex>& projection_buffer() { return _projection_cache; }
-	std::vector<vec4d>& world_buffer() { return _world_cache; }
+	std::vector<SDL_Vertex>& projection_buffer() { return vbo.projection_buffer(); }
+	std::vector<vec4d>& world_buffer() { return vbo.world_buffer(); }
 
 	/**
 	* @brief Gets the Mesh object.

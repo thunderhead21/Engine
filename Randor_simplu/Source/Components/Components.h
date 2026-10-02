@@ -23,3 +23,5 @@
 #include "Window/Window.h"
 
 #include "Scene/Scene.h"
+
+#include "VBO/VBO.h"
