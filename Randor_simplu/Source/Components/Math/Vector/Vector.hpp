@@ -115,7 +115,7 @@ public:
 	vec(size_t size = 4);
 	vec(size_t size, T data);
 	vec(std::initializer_list<T> init);
-	vec(const vec<T>& other);
+	inline vec(const vec<T>& other);
 	
 	//Does not exist
 	//T& operator[](char dimension);
@@ -125,14 +125,31 @@ public:
 	vec<T> operator+(const vec& other) const;
 	vec<T> operator-(const vec& other) const;
 	vec<T> operator*(const vec& other) const;
-	vec<T>& operator=(const vec<T> other);
-
 	vec<T> operator*(float scalar) const;
+	vec<T>& operator=(const vec<T>& other);
+	vec<T> operator-() const ;
+
 	inline bool operator==(vec& other) const;
+	inline bool operator!=(vec& other) const { return !(*this == other); };
 
+	double length();
+	vec<T> normalized() const;
+	vec<T> normalized(double epsilon) const;
 
+	size_t append(const T& elem);
+	//size_t append(T elem);
+	size_t pop();
 
 	~vec();
+
+	const T* begin() const { return data; }
+	T* begin()	{ return data; }
+
+	T* end(){ return data + size; }
+	const T* end() const { return data + size; }
+
+	T* cbegin() const { return data; }
+	T* cend() const { return data+size; }
 
 };
 /////////////////////

@@ -38,9 +38,14 @@ inline T& vec<T>::operator[](char dimension)
 */
 
 template<class T>
-inline vec<T>& vec<T>::operator=(const vec<T> other)
+inline vec<T>& vec<T>::operator=(const vec<T>& other)
 {
-	size = other.size;
+	if (this == &other) return *this;
+	if(data != nullptr) delete[] data;
+
+	size = other.size;		
+	data = new T[size];
+
 	std::copy(other.data, other.data + size, data);
 
 	return *this;
@@ -67,88 +72,37 @@ inline const T& vec<T>::operator[](size_t position) const
 template<class T>
 vec<T> vec<T>::operator+(const vec& other) const {
 	
-	vec<T> r(size < other.size ? other.size : size);
+	const size_t result_size = std::max(size, other.size);
+	vec<T> r(result_size);
 	size_t i = 0;
 
-	if (other.size > size) {	//If the other vector is greater
+	for (int i = 0; i < result_size; i++) {
+		const T lhs = i < size ? data[i] : T{};
+		const T rhs = i < other.size ? other[i] : T{};
 
-		for ( ; i < size; i++) {		//Perform addition on the common elements
-			r[i] = data[i] + other[i];
-		}
-		
-		for (; i < other.size; i++) {		//Copy the remaining ones
-			r[i] = other[i];
-		}
-
-		return r;
+		r[i] = lhs + rhs;
 	}
 
-	else if (other.size < size) {	//If this vector is greater
-
-		for (; i < other.size; i++) {		//Perform addition on the common elements
-			r[i] = other[i] + data[i];
-		}
-
-		for (; i < size; i++) {		//Copy the remaining ones
-			r[i] = data[i];
-		}
-
-		return r;
-	}
-	else if (other.size == size) {	//If the two sizes are equal
-		
-		for (; i < size; i++){	//Perform addition
-			r[i] = data[i] + other[i];
-		}
-
-		return r;
-
-	}	
-
-	return 0;
+	return r;
 	
 }
 
 template<class T>
 inline vec<T> vec<T>::operator-(const vec& other) const
 {
-	vec<T> r(size < other.size ? other.size : size);
+	const size_t result_size = std::max(size, other.size);
+	vec<T> r(result_size);
 	size_t i = 0;
-
-	if (other.size > size) {	//If the other vector is greater
-
-		for (; i < size; i++) {		//Perform subtraction on the common elements
-			r[i] = data[i] - other[i];
-		}
-
-		for (; i < other.size; i++) {		//Copy the remaining ones
-			r[i] = other[i];
-		}
-
-		return r;
-	}
-
-	else if (other.size < size) {	//If this vector is greater
-
-		for (; i < other.size; i++) {		//Perform subtraction on the common elements
-			r[i] = other[i] - data[i];
-		}
-
-		for (; i < size; i++) {		//Copy the remaining ones
-			r[i] = data[i];
-		}
-
-		return r;
-	}
-	else if (other.size == size) {	//If the two sizes are equal
-
-		for (; i < size; i++) {	//Perform subtraction
-			r[i] = data[i] - other[i];
-		}
-		return r;
-	}
 	
-	return 0;
+	for (int i = 0; i < result_size; i++) {
+		const T lhs = i < size ? data[i] : T{};
+		const T rhs = i < other.size ? other[i] : T{};
+
+		r[i] = lhs - rhs;
+	}
+
+	return r;
+	
 }
 
 template<class T>
@@ -166,44 +120,31 @@ inline vec<T> vec<T>::operator*(float scalar) const {
 template<class T>
 inline vec<T> vec<T>::operator*(const vec& other) const
 {
-	vec<T> r(size < other.size ? other.size : size);
+	const size_t result_size = std::max(size, other.size);
+	vec<T> r(result_size);
 	size_t i = 0;
 
-	if (other.size > size) {	//If the other vector is greater
+	for (int i = 0; i < result_size; i++) {
+		const T lhs = i < size ? data[i] : T{};
+		const T rhs = i < other.size ? other[i] : T{};
 
-		for (; i < size; i++) {		//Perform multiplication on the common elements
-			r[i] = data[i] * other[i];
-		}
-
-		for (; i < other.size; i++) {		//Copy the remaining ones
-			r[i] = other[i];
-		}
-
-		return r;
+		r[i] = lhs * rhs;
 	}
 
-	else if (other.size < size) {	//If this vector is greater
-
-		for (; i < other.size; i++) {		//Perform multiplication on the common elements
-			r[i] = other[i] * data[i];
-		}
-
-		for (; i < size; i++) {		//Copy the remaining ones
-			r[i] = data[i];
-		}
-
-		return r;
-	}
-	else if (other.size == size) {	//If the two sizes are equal
-
-		for (; i < size; i++) {	//Perform multiplication
-			r[i] = data[i] * other[i];
-		}
-		return r;
-	}
-
-	return 0;
+	return r;
 }
+
+template <class T>
+vec<T> vec<T>::operator-() const {
+
+	vec<T> r;
+
+	for (size_t i = 0; i < size; i++) {
+		r[i] = -data[i];
+	}
+
+	return r;
+};
 
 template<class T>
 inline bool vec<T>::operator==(vec& other) const {
@@ -220,3 +161,99 @@ inline bool vec<T>::operator==(vec& other) const {
 
 	return 1;
 }
+
+
+template<class T>
+double vec<T>::length() {
+
+	double squares = 0.0;
+
+	for (auto& i : *this) {
+		squares += i * i;
+	}
+
+	return sqrt(squares);
+
+};
+
+
+template<class T>
+vec<T> vec<T>::normalized() const {
+	vec<T> r{ data };
+	double epsilon = 0.000001f;
+
+	if (length() <= epsilon) return vec<T>(size);
+	for (auto& i : r) {
+
+		i *= 1 / length();
+	}
+
+
+};
+
+template<class T>
+vec<T> vec<T>::normalized(double epsilon) const {
+
+	vec<T> r{ data };
+
+	if (length() <= epsilon) return vec<T>(size);
+	for (auto& i : r) {
+
+		i *= 1 / length();
+	}
+
+}
+
+template<class T>
+size_t vec<T>::append(const T& elem) {
+	size = size + 1;
+	T* container = new T[size];
+
+	for (size_t i = 0; i < size - 1; i++) {
+		container[i] = data[i];
+	}
+
+	container[size - 1] = elem;
+	delete[] data;
+
+	data = container;
+
+	return size;
+
+}
+
+/*
+template<class T>
+size_t vec<T>::append(T elem) {
+	size = size + 1;
+	T* container = new T[size];
+
+	for (size_t i = 0; i < size - 1; i++) {
+		container[i] = data[i];
+	}
+
+	container[size-1] = elem;
+	delete[] data;
+	
+	data = container;
+
+	return size;
+
+}
+*/
+
+template<class T>
+size_t vec<T>::pop() {
+	
+	size = size - 1;
+	T* container = new T[size];
+
+	for (size_t i = 0; i < size; i++) {
+		container[i] = data[i];
+	}
+	data = container;
+
+	return size;
+
+}
+

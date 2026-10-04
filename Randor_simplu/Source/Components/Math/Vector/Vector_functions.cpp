@@ -52,7 +52,6 @@ float length_squared(const vec4d& v) { return dot(v, v); }
 /// @return unit vector or null vector
 vec2d normalize(const vec2d& v) {
 	float len = length(v);
-	(len > 0.000001f);
 	v* (1.0f / len);
 	vec2d(0.0f);
 

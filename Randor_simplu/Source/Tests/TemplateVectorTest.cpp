@@ -20,7 +20,7 @@ bool TEST_tpt_vector_access_operator()
 bool TEST_tpt_vector_add()
 {
 	std::cout << "Testing vector<int> arithmetic..." << std::endl;
-	vec<int> a{ 1 }, b{ 1, 2 }, c{ 1, 2, 3 }, r;
+	vec<long long int> a{ 1 }, b{ 1, 2 }, c{ 1, 2, 3 }, r;
 
 	auto ab = a + b;
 	assert(ab[0] == 2 && ab[1] == 2);
@@ -44,24 +44,61 @@ bool TEST_tpt_vector_add()
 
 			c = a + b;
 			if(c[0] == i + j && c[1] == i + j) passes++;
-			else fails++;
+			else {
+				static bool add = 0;
+				if (!add) std::cout << "addition failures\n";
+				add++;
+				fails++;
+			}
 
 			c = a - b;
 			if (c[0] == i - j && c[1] == j - i) passes++;
-			else fails++;
+			else {
+				static bool sub = 0;
+				if (!sub) std::cout << "Subtraction failures\n";
+				sub++;
+				fails++;
+			}
 
 			c = a * b;
 			if (c[0] == i * j && c[1] == j * i) passes++;
+			else {
+				static bool mul = 0;
+				if (!mul) std::cout << "Multiplication failures\n";
+				mul++;
+				fails++;
+			}
+
+			a = -c;
+			if (a[0] == -c[0] && a[1] == -c[1]) passes++;
+			else {
+				static bool inv = 0;
+				if (!inv) std::cout << "Inversion failures\n";
+				inv++;
+				fails++;
+			}
+			//a = {-i, 2*j+1};
+			c.append(18);
+
+			/*
+			std::cout << c.length() << " - ";
+			std::cout << std::sqrt(c[0] * c[0] + c[1] * c[1] + c[2] * c[2]);
+			std::cout <<" = " << std::abs(c.length() - std::sqrt(c[0] * c[0] + c[1] * c[1] + c[2] * c[2]))<<'\n';
+			*/
+
+			assert(std::abs(a.length() - std::sqrt(a[0] * a[0] + a[1] * a[1])) < 0.000001);
+			assert(std::abs(b.length() - std::sqrt(b[0] * b[0] + b[1] * b[1])) < 0.000001);
+			assert(std::abs(c.length() - std::sqrt(c[0] * c[0] + c[1] * c[1] + c[2] * c[2])) < 0.000001);
+			if (a[0] == -c[0] && a[1] == -c[1]) passes++;
 			else fails++;
 
-
-
-			tests+=3;
+			tests+=5;
 		}
 	}
 
 	auto runtime = t.tick();
 
+	std::cout << '\n';
 	std::cout << tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
 	std::cout << runtime << "s elapsed" << '\n' << (tests / runtime) / 1000000 << "Mln tests/sec\n\n";
 
