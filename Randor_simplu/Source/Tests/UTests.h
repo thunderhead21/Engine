@@ -7,8 +7,8 @@
 #include <iomanip>
 #include <math.h>
 
-#include "../Components/Math/Vector/Vector.h"
-#include "../Core/Timer/Timer.h"
+#include "Components/Math/Vector/Vector.hpp"
+#include "Core/Timer/Timer.h"
 
 using Watch = std::chrono::steady_clock;
 const float EPS = std::numeric_limits<float>::epsilon();
@@ -31,5 +31,8 @@ bool TEST_vec4d_square();
 bool TEST_vec2d_vertex();
 bool TEST_vec3d_vertex();
 bool TEST_vec4d_vertex();
+
+bool TEST_tpt_vector_add();
+bool TEST_tpt_vector_access_operator();
 
 void TEST_platform_scheduler_precision(unsigned int duration, unsigned int iterations);

@@ -167,9 +167,53 @@ void print_mat(mat<T>& m) {
 // Mesh never owns position, rotation or scale.
 // Rendering always consumes Entity::Transform.
 
+#include <initializer_list>
+class foo {
+	int arr[10] {0};
+
+public:
+
+	int& operator[](uint32_t pos) { return arr[pos]; }
+	foo() = default;
+
+	foo(std::initializer_list<int> a) {
+		for (int i = 0; i < a.size() && i < 10; i++) {
+			arr[i] = *(a.begin() + i);
+		}
+	}
+
+
+
+};
+
 //Now you have to pass the input manager to the window as function parameter for topical usage
 int main(int argc, char* argv[])
 {
+
+	foo a{ 1,2,3,4 };
+
+	bool run_tests = 1;
+	if (run_tests) {
+		TEST_tpt_vector_access_operator();
+		TEST_tpt_vector_add();
+
+		TEST_vec2d_length();
+		TEST_vec3d_length();
+		TEST_vec4d_length();
+
+		TEST_vec2d_square();
+		TEST_vec3d_square();
+		TEST_vec4d_square();
+
+		TEST_vec2d_vertex();
+		TEST_vec3d_vertex();
+		TEST_vec4d_vertex();
+
+
+		//TEST_platform_scheduler_precision(10, 1000);
+
+		std::cin.get();
+	}
 	
 	{
 
@@ -199,24 +243,6 @@ int main(int argc, char* argv[])
 
 	//std::cin.get();
 
-	bool run_tests = 0;
-	if (run_tests) {
-		TEST_vec2d_length();
-		TEST_vec3d_length();
-		TEST_vec4d_length();
-
-		TEST_vec2d_square();
-		TEST_vec3d_square();
-		TEST_vec4d_square();
-
-		TEST_vec2d_vertex();
-		TEST_vec3d_vertex();
-		TEST_vec4d_vertex();
-
-		TEST_platform_scheduler_precision(10, 1000);
-
-		//std::cin.get();
-	}
 
 	InputManager i;
 

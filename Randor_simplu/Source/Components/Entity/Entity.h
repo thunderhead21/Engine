@@ -5,11 +5,8 @@
 
 #include "Components/Transform/Transform.h"
 #include "Components/Geometry/Geometry.h"
-#include "Entity_Data/Entity_Data.h"
-
 #include "Components/VBO/VBO.h"
-
-
+#include "Entity_Data/Entity_Data.h"
 
 ///////////////////////////////   IDENTITY   ///////////////////////////////
 /*
@@ -25,6 +22,7 @@
 class Entity
 {
 	friend class Scene;		//Modify the ID and Name upon entering Scene
+
 protected:
 	
 

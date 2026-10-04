@@ -15,7 +15,7 @@
 
 //////////// - MATH - ////////////
 #include "Math/Matrix/Matrix.hpp"
-#include "Math/Vector/Vector.h"
+#include "Math/Vector/Vector.hpp"
 //////////////////////////////////
 
 #include "Physics/Physics.h"

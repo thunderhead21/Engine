@@ -125,3 +125,4 @@ bool TEST_vec4d_vertex() {
 
 	return fails > 0 ? 1 : 0;
 }
+

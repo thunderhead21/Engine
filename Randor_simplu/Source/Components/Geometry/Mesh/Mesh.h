@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "../../Math/Vector/Vector.h"
+#include "../../Math/Vector/Vector.hpp"
 
 // [ARCHITECTURE]
 // Transform is the single source of truth for spatial state.

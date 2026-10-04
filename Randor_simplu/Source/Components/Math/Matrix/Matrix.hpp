@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "Core/Core.h"
-#include "Components/Math/Vector/Vector.h"
+#include "Components/Math/Vector/Vector.hpp"
 
 /// @brief Column-major order. Solves to array. Transforms vertices.
 /// @brief Column-major means as you progress, you advance through the columns, then lines

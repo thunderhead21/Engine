@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Components/Math/Vector/Vector.h"
+#include "Components/Math/Vector/Vector.hpp"
 
 /// @brief Vertex Buffer Object
 class VBO {

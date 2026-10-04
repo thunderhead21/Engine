@@ -228,6 +228,7 @@
     <ClCompile Include="Source\Core\Timer\Timer.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
     <ClCompile Include="Source\Tests\MatrixTest.cpp" />
+    <ClCompile Include="Source\Tests\TemplateVectorTest.cpp" />
     <ClCompile Include="Source\Tests\TimerTest.cpp" />
     <ClCompile Include="Source\Tests\Vec2dTest.cpp" />
     <ClCompile Include="Source\Tests\Vec3dTest.cpp" />
@@ -248,7 +249,7 @@
     <ClInclude Include="Source\Components\Input\InputManager\Keybind\Keybind.h" />
     <ClInclude Include="Source\Components\Math\Math.h" />
     <ClInclude Include="Source\Components\Math\Matrix\Matrix.hpp" />
-    <ClInclude Include="Source\Components\Math\Vector\Vector.h" />
+    <ClInclude Include="Source\Components\Math\Vector\Vector.hpp" />
     <ClInclude Include="Source\Components\Physics\Physics.h" />
     <ClInclude Include="Source\Components\Physics\RigidBody\RigidBody.h" />
     <ClInclude Include="Source\Components\Rendering\Projection\Projection.h" />

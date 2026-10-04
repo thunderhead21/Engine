@@ -173,6 +173,9 @@
     <ClCompile Include="Source\Components\Camera\Camera.cpp">
       <Filter>Components\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Tests\TemplateVectorTest.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -211,7 +214,7 @@
     <ClInclude Include="Source\Components\Math\Matrix\Matrix.hpp">
       <Filter>Components\Math\Matrix</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Components\Math\Vector\Vector.h">
+    <ClInclude Include="Source\Components\Math\Vector\Vector.hpp">
       <Filter>Components\Math\Vector</Filter>
     </ClInclude>
     <ClInclude Include="Source\Components\Transform\Transform.h">

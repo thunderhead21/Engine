@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Math/Vector/Vector.h"
+#include "../../Math/Vector/Vector.hpp"
 #include "../Mesh/Mesh.h"
 
 class Triangle : public Mesh {

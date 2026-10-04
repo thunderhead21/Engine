@@ -2,12 +2,12 @@
 
 #include <immintrin.h>
 #include <ostream>
+#include <initializer_list>
 
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_ttf/SDL_textengine.h>
 #include <spdlog/spdlog.h>
-
 
 ///////////////////////////////////////////// DISAMBIGUATION /////////////////////////////////////////////
 //
@@ -102,13 +102,47 @@ struct alignas(64) vec4_simd {		//Float
 */
 
 /// @brief 2 Dimensional vector with float X Y members
+
+template<class T>
+struct vec {
+private:
+	
+	size_t size;
+	T* data;
+
+public:
+
+	vec(size_t size = 4);
+	vec(size_t size, T data);
+	vec(std::initializer_list<T> init);
+	vec(const vec<T>& other);
+	
+	//Does not exist
+	//T& operator[](char dimension);
+	T& operator[](size_t position);
+	const T& operator[](size_t position) const;
+
+	vec<T> operator+(const vec& other) const;
+	vec<T> operator-(const vec& other) const;
+	vec<T> operator*(const vec& other) const;
+	vec<T>& operator=(const vec<T> other);
+
+	vec<T> operator*(float scalar) const;
+	inline bool operator==(vec& other) const;
+
+
+
+	~vec();
+
+};
+/////////////////////
 struct vec2d {
 	float x, y;	
 
 	float& operator[](char dimension);
 	vec2d operator+(const vec2d& other) const;
 	vec2d operator-(const vec2d& other) const;
-	vec2d operator*(float scalar) const;
+	vec2d operator*(float scalar) const; 
 	inline bool operator==(vec2d& other) const { return equal(*this, other); };
 
 
@@ -240,3 +274,8 @@ float				32				4
 double				64				8
 bool				8				1
 */
+
+
+#include "Vector.inl"
+
+
