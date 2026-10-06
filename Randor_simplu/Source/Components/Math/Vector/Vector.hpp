@@ -44,6 +44,8 @@
 
 /////////////////////////// PROTOTYPES ///////////////////////////
 
+#if POD_VECTOR
+
 struct vec2d; ///
 struct vec3d; ///	Necessary for function prototypes
 struct vec4d; ///
@@ -72,9 +74,7 @@ vec4d normalize(const vec4d& v);
 SDL_Vertex make_vertex(const vec2d& v);
 SDL_Vertex make_vertex(const vec3d& v);
 
-
-
-
+#endif //POD_VECTOR
 
 /*		--SIMD optimized vector classes. As per YAGNI, they are not needed (yet)
 struct alignas(16) vec2_simd {		//2 x double
@@ -105,7 +105,7 @@ struct alignas(64) vec4_simd {		//Float
 
 template<class T>
 struct vec {
-private:
+protected:
 	
 	size_t size;
 	T* data;
@@ -126,11 +126,11 @@ public:
 	vec<T> operator-(const vec& other) const;
 	vec<T> operator*(const vec& other) const;
 	vec<T> operator*(float scalar) const;
-	vec<T>& operator=(const vec<T>& other);
-	vec<T> operator-() const ;
+	vec<T>& operator=(const vec& other);
+	vec<T> operator-() const;
 
-	inline bool operator==(vec& other) const;
-	inline bool operator!=(vec& other) const { return !(*this == other); };
+	bool operator==(const vec<T>& other) const;
+	bool operator!=(const vec<T>& other) const { return !(*this == other); };
 
 	double length();
 	vec<T> normalized() const;
@@ -152,6 +152,9 @@ public:
 	T* cend() const { return data+size; }
 
 };
+
+#if POD_VECTOR
+
 /////////////////////
 struct vec2d {
 	float x, y;	
@@ -182,9 +185,11 @@ struct vec2d {
 /// @brief 0 Initialized
 struct vec3d {
 	float x, y, z;
-
+	
+	/*	UNUSED
 	float& component(char component);
 	const float& component(char component) const;
+	*/
 	
 	float& operator[](size_t dimension);
 	const float& operator[](size_t dimension) const;
@@ -278,6 +283,74 @@ inline vec3d from(const vec2d& v, const float& z) { return { v.x, v.y, z }; };
 inline vec4d from(const vec2d& v, const float& z, const float& w) { return { v.x, v.y, z, w }; };
 inline vec4d from(const vec3d& v, const float& w) { return { v.x, v.y, v.z, w }; };
 
+#elif POD_VECTOR == 0
+
+template <class T>
+class vec2 : public vec<T> {
+public:
+
+	vec2() : vec<T>(2) {};
+	vec2(T x, T y) : vec<T>(2, {x, y}) {};
+	
+	/*	UNUSED
+	T& component();
+	const T& component();
+	*/
+
+	vec2 operator-() const;
+	vec2 operator-();
+	
+	T& x() { return vec<T>::data[0]; };
+	const T& x() const { return vec<T>::data[0]; };
+
+	T& y() { return vec<T>::data[1]; };
+	const T& y() const { return vec<T>::data[1]; };
+
+};
+
+template <class T>
+class vec3 : public vec<T> {
+public:
+
+	vec3() : vec<T>(3) {};
+	vec3(T x, T y) : vec<T>(3, { x, y }) {};
+
+	vec3 operator-() const;
+	vec3 operator-();
+
+	T& x() { return vec<T>::data[0]; };
+	const T& x() const { return vec<T>::data[0]; };
+
+	T& y() { return vec<T>::data[1]; };
+	const T& y() const { return vec<T>::data[1]; };
+
+	T& z() { return vec<T>::data[2]; };
+	const T& z() const { return vec<T>::data[2]; };
+
+};
+
+template <class T>
+class vec4 : public vec<T> {
+public:
+
+	vec4() : vec<T>(4) {};
+	vec4(T x, T y) : vec<T>(4, { x, y }) {};
+
+	vec4 operator-() const;
+	vec4 operator-();
+
+	T& x() { return vec<T>::data[0]; };
+	const T& x() const { return vec<T>::data[0]; };
+
+	T& y() { return vec<T>::data[1]; };
+	const T& y() const { return vec<T>::data[1]; };
+
+	T& z() { return vec<T>::data[2]; };
+	const T& z() const { return vec<T>::data[2]; };
+
+};
+
+#endif //!POD_VECTOR == 0
 
 
 /*

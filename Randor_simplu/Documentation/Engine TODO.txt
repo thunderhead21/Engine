@@ -20,9 +20,10 @@ RendererProfiler class expose transform, projection and presentation times✅
 Transform::_locked✅
 Event system - OnCreation,onDestroy, onUpdate...✅
 OnCreate - add keybindings for movement✅
+Create a proper unit testing framework✅
+Vector class refactoring 🔄
 Hierarchical transforms - transform composition
 Hierarchical transform caching - composition cache
-Create a proper unit testing framework
 Move event ownership out of Window
 
 -Graphics Pipeline-

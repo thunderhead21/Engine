@@ -292,7 +292,7 @@ question the ownership model first.
 
 ## Engine
 
-* Vector class refactoring
+* ✅ Vector class refactoring
 * SIMD math class
 * Engine wraper class
 
@@ -300,8 +300,8 @@ question the ownership model first.
 
 ## Graphics
 
-* Camera
-* View matrix
+* ✅ Camera
+* ✅ View matrix
 * Perspective projection
 * Back-face culling
 * Clipping

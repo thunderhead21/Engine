@@ -61,10 +61,10 @@ Do not change the .vcxproj file ! When time comes, CMake will be useful.
 |                        300k |       ~5 |  ☠ Extreme  | Correct rendering, practical only as a stress test.                                                                    |
 | Major bottleneck discovered |        — |      🔍     | `rebuild_queues()` was executed after every `add_entity()`. Eliminating this significantly improved scalability.       |
 | Current renderer bottleneck |        — |      🎯     | CPU transform stage (`Transform::transform_mesh`) dominates animated scenes.                                           |
-|   Static-scene optimization |        — |      ✅      | Dirty flags skip transform and projection entirely (`TForm = 0 ms`, `Projection = 0 ms`).                             |
-|       Fill-rate observation |        — |     🖥️     | Large overlapping cubes become GPU/fill-rate limited. Performance scales with covered pixels rather than entity count.  |
-|        Blend mode discovery |        — |      ⚡      | `SDL_BLENDMODE_NONE` dramatically improves performance for opaque geometry.                                           |
-|           Benchmark tooling |        — |      ✅      | `FrameStat`, `rendering_test_run()`, stage timing instrumentation, automated stress scenes.                           |
+|   Static-scene optimization |        — |      ✅     | Dirty flags skip transform and projection entirely (`TForm = 0 ms`, `Projection = 0 ms`).                             |
+|       Fill-rate observation |        — |      🖥️     | Large overlapping cubes become GPU/fill-rate limited. Performance scales with covered pixels rather than entity count.  |
+|        Blend mode discovery |        — |      ⚡     | `SDL_BLENDMODE_NONE` dramatically improves performance for opaque geometry.                                           |
+|           Benchmark tooling |        — |      ✅     | `FrameStat`, `rendering_test_run()`, stage timing instrumentation, automated stress scenes.                           |
 |              Next milestone |        — |      📌     | GPU renderer (OpenGL/Vulkan/Direct3D) and batched rendering.                                                           |
 
 *Static scenes are amost free thanks to caching

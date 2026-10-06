@@ -35,7 +35,7 @@ bool TEST_vec3d_length() {
 	auto end = Watch::now();
 	auto runtime = std::chrono::duration<double>(end - start);
 
-	std::cout <<  tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
+	if (fails) std::cout <<  tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
 	std::cout << runtime.count() << "s elapsed" << '\n' << (tests / runtime.count()) / 1000000 << "Mln tests/sec\n\n";
 
 	return fails > 0 ? 1 : 0;
@@ -78,7 +78,7 @@ bool TEST_vec3d_square() {
 	auto end = Watch::now();
 	auto runtime = std::chrono::duration<double>(end - start);
 
-	std::cout << tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
+	if (fails) std::cout << tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
 	std::cout << runtime.count() << "s elapsed" << '\n' << (tests / runtime.count()) / 1000000 << "Mln tests/sec\n\n";
 
 	return fails > 0 ? 1 : 0;
@@ -116,7 +116,7 @@ bool TEST_vec3d_vertex() {
 	auto end = Watch::now();
 	auto runtime = std::chrono::duration<double>(end - start);
 
-	std::cout << tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
+	if (fails) std::cout << tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
 	std::cout << runtime.count() << "s elapsed" << '\n' << (tests / runtime.count()) / 1000000 << "Mln tests/sec\n\n";
 
 	return fails > 0 ? 1 : 0;

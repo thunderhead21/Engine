@@ -1,6 +1,6 @@
 #pragma once
 
-
+#if POD_VECTOR == 0
 /*	Default 0-initializing CTOR
 */
 template<class T>
@@ -70,7 +70,7 @@ inline const T& vec<T>::operator[](size_t position) const
 }
 
 template<class T>
-vec<T> vec<T>::operator+(const vec& other) const {
+inline vec<T> vec<T>::operator+(const vec& other) const {
 	
 	const size_t result_size = std::max(size, other.size);
 	vec<T> r(result_size);
@@ -135,7 +135,7 @@ inline vec<T> vec<T>::operator*(const vec& other) const
 }
 
 template <class T>
-vec<T> vec<T>::operator-() const {
+inline vec<T> vec<T>::operator-() const {
 
 	vec<T> r;
 
@@ -147,9 +147,9 @@ vec<T> vec<T>::operator-() const {
 };
 
 template<class T>
-inline bool vec<T>::operator==(vec& other) const {
+inline bool vec<T>::operator==(const vec<T>& other) const {
 
-	if (size != other.size()) return 0;
+	if (size != other.size) return 0;
 	else {
 		for (size_t i = 0; i < size; i++) {
 
@@ -164,7 +164,7 @@ inline bool vec<T>::operator==(vec& other) const {
 
 
 template<class T>
-double vec<T>::length() {
+inline double vec<T>::length() {
 
 	double squares = 0.0;
 
@@ -178,7 +178,7 @@ double vec<T>::length() {
 
 
 template<class T>
-vec<T> vec<T>::normalized() const {
+inline vec<T> vec<T>::normalized() const {
 	vec<T> r{ data };
 	double epsilon = 0.000001f;
 
@@ -192,7 +192,7 @@ vec<T> vec<T>::normalized() const {
 };
 
 template<class T>
-vec<T> vec<T>::normalized(double epsilon) const {
+inline vec<T> vec<T>::normalized(double epsilon) const {
 
 	vec<T> r{ data };
 
@@ -205,7 +205,7 @@ vec<T> vec<T>::normalized(double epsilon) const {
 }
 
 template<class T>
-size_t vec<T>::append(const T& elem) {
+inline size_t vec<T>::append(const T& elem) {
 	size = size + 1;
 	T* container = new T[size];
 
@@ -243,7 +243,7 @@ size_t vec<T>::append(T elem) {
 */
 
 template<class T>
-size_t vec<T>::pop() {
+inline size_t vec<T>::pop() {
 	
 	size = size - 1;
 	T* container = new T[size];
@@ -257,3 +257,5 @@ size_t vec<T>::pop() {
 
 }
 
+
+#endif	//POD_VECTOR == 0

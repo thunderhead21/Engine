@@ -193,6 +193,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -281,6 +282,7 @@
   <ItemGroup>
     <None Include="Documentation\Performance Review.xlsx" />
     <None Include="Source\Components\Math\Matrix\Matrix.inl" />
+    <None Include="Source\Components\Math\Vector\Vector.inl" />
     <None Include="Source\Core\Conversions\Conversion.inl" />
   </ItemGroup>
   <ItemGroup>

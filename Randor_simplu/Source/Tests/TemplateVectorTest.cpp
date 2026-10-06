@@ -19,7 +19,7 @@ bool TEST_tpt_vector_access_operator()
 
 bool TEST_tpt_vector_add()
 {
-	std::cout << "Testing vector<int> arithmetic..." << std::endl;
+	std::cout << "Testing vec<long long int> arithmetic..." << std::endl;
 	vec<long long int> a{ 1 }, b{ 1, 2 }, c{ 1, 2, 3 }, r;
 
 	auto ab = a + b;
@@ -37,8 +37,8 @@ bool TEST_tpt_vector_add()
 
 	Timer t;
 	size_t tests = 0, fails = 0, passes = 0;
-	for (int i = -1000; i < 2000; i++) {
-		for (int j = -2000; j < 1000; j++) {
+	for (int i = -2000; i < 2000; i++) {
+		for (int j = -2000; j < 2000; j++) {
 			a = { i, j };
 			b = { j, i };
 
@@ -77,7 +77,13 @@ bool TEST_tpt_vector_add()
 				inv++;
 				fails++;
 			}
-			//a = {-i, 2*j+1};
+			if (a == a && a != c && -c == -c) passes++;
+			else {
+				static bool cmp = 0;
+				if (!cmp) std::cout << "Comparison failures\n";
+				cmp++;
+				fails++;
+			}
 			c.append(18);
 
 			/*
@@ -92,14 +98,13 @@ bool TEST_tpt_vector_add()
 			if (a[0] == -c[0] && a[1] == -c[1]) passes++;
 			else fails++;
 
-			tests+=5;
+			tests+=6;
 		}
 	}
 
 	auto runtime = t.tick();
 
-	std::cout << '\n';
-	std::cout << tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
+	if (fails) std::cout << tests << " tests executed. " << '\n' << passes << " passed" << '\n' << fails << " failed\n";
 	std::cout << runtime << "s elapsed" << '\n' << (tests / runtime) / 1000000 << "Mln tests/sec\n\n";
 
 	return 0;

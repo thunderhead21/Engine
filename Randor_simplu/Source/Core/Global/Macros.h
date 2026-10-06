@@ -3,6 +3,7 @@
 #define FRAME_PACER 1				//Smooth busy-waiting for precise frame times
 #define FRAME_PROFILER 0			//Print every render stage timing breakdown
 #define DRAW_WIREFRAME 0			//Draws wireframe of each mesh. Big performance impact
+#define POD_VECTOR 1				//Toggles between POD vector or templatized vector 
 
 
 constexpr bool DEBUG = 0;

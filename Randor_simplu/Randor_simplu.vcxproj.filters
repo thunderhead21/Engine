@@ -295,6 +295,9 @@
     <None Include="Documentation\Performance Review.xlsx">
       <Filter>Documentation</Filter>
     </None>
+    <None Include="Source\Components\Math\Vector\Vector.inl">
+      <Filter>Components\Math\Vector</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Documentation\Ideas.txt">
