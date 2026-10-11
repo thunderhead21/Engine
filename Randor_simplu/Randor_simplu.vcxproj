@@ -223,6 +223,8 @@
     <ClCompile Include="Source\Components\Rendering\Shader.cpp" />
     <ClCompile Include="Source\Components\Scene\Scene.cpp" />
     <ClCompile Include="Source\Components\Transform\Transform.cpp" />
+    <ClInclude Include="Source\Components\Geometry\Mesh\Mesh.h" />
+    <ClInclude Include="Source\Components\Math\Vector\Vector.hpp" />
     <ClInclude Include="Source\Components\VBO\VBO.cpp" />
     <ClCompile Include="Source\Components\Window\Window.cpp" />
     <ClCompile Include="Source\Core\FrameStat\FrameStat.cpp" />
@@ -242,7 +244,6 @@
     <ClInclude Include="Source\Components\Entity\Entity.h" />
     <ClInclude Include="Source\Components\Entity\Entity_Data\Entity_Data.h" />
     <ClInclude Include="Source\Components\Geometry\Geometry.h" />
-    <ClInclude Include="Source\Components\Geometry\Mesh\Mesh.h" />
     <ClInclude Include="Source\Components\Geometry\Primitives\Cube.h" />
     <ClInclude Include="Source\Components\Geometry\Primitives\Rectangle.h" />
     <ClInclude Include="Source\Components\Geometry\Primitives\Triangle.h" />
@@ -250,7 +251,6 @@
     <ClInclude Include="Source\Components\Input\InputManager\Keybind\Keybind.h" />
     <ClInclude Include="Source\Components\Math\Math.h" />
     <ClInclude Include="Source\Components\Math\Matrix\Matrix.hpp" />
-    <ClInclude Include="Source\Components\Math\Vector\Vector.hpp" />
     <ClInclude Include="Source\Components\Physics\Physics.h" />
     <ClInclude Include="Source\Components\Physics\RigidBody\RigidBody.h" />
     <ClInclude Include="Source\Components\Rendering\Projection\Projection.h" />
@@ -282,7 +282,10 @@
   <ItemGroup>
     <None Include="Documentation\Performance Review.xlsx" />
     <None Include="Source\Components\Math\Matrix\Matrix.inl" />
-    <None Include="Source\Components\Math\Vector\Vector.inl" />
+    <None Include="Source\Components\Math\Vector\Vector.inl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
     <None Include="Source\Core\Conversions\Conversion.inl" />
   </ItemGroup>
   <ItemGroup>

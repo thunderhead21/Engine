@@ -1,6 +1,8 @@
 #pragma once
 
-#include "../../Window/Window.h"
+#include "Components/Window/Window.h"
+#include "Components/Math/Vector/Vector.hpp"
+
 //This is the real deal. You need matrix and vector multiplications
 vec4d perspective_projection();
 

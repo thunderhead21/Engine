@@ -32,7 +32,6 @@ vec2_simd vec2_simd::operator*(const float& scalar) const
 }
 */
 
-#if POD_VECTOR
 
 vec2d vec2d::operator+(const vec2d& other) const
 {
@@ -270,6 +269,3 @@ std::ostream& operator<<(std::ostream& os, const vec2d& v) {
 	os << v.x << " " << v.y << " ";
 	return os;
 }
-
-
-#endif //POD_VECTOR

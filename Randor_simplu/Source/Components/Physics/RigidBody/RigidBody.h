@@ -1,4 +1,5 @@
 #pragma once
+
 #include <Components/Entity/Entity.h>
 
 /// @brief A physics-enabled entity in the world. Updated by the Physics engine
@@ -23,7 +24,7 @@ public:
 	~RigidBody() = default;
 
 	//Setters
-	void set_mass(float mass) { mass = mass; }
+	void set_mass(float mass) { this->mass = mass; }
 	void set_velocity(vec3d speed) { velocity = speed; };
 	void set_angular_velocity(vec3d ang_speed) { angular_velocity = ang_speed; };
 

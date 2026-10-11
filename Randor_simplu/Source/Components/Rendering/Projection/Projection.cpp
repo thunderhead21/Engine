@@ -3,6 +3,7 @@
 
 SDL_Vertex flat_projection(const vec3d& v) {
 	SDL_Vertex vertex;
+	;
 
 	vertex.position.x = v.x;
 	vertex.position.y = v.y;

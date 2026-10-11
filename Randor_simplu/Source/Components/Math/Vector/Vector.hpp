@@ -1,4 +1,14 @@
 #pragma once
+#include "Core/Global/Macros.h"	//Fetch the relevant macros for use
+
+#pragma message("========== VECTOR.HPP IS BEING INCLUDED ==========")
+#if POD_VECTOR == 1
+#pragma message("POD_VECTOR == 1")
+#elif POD_VECTOR == 0
+#pragma message("POD_VECTOR == 0")
+#else
+#pragma message("POD_VECTOR HAS SOME OTHER VALUE")
+#endif
 
 #include <immintrin.h>
 #include <ostream>
@@ -44,8 +54,58 @@
 
 /////////////////////////// PROTOTYPES ///////////////////////////
 
-#if POD_VECTOR
+template<class T>
+struct vec {
+protected:
 
+	size_t size;
+	T* data;
+
+public:
+
+	vec(size_t size = 4);
+	vec(size_t size, T data);
+	vec(std::initializer_list<T> init);
+	inline vec(const vec<T>& other);
+	~vec();
+
+	//Does not exist
+	//T& operator[](char dimension);
+	T& operator[](size_t position);
+	const T& operator[](size_t position) const;
+
+	vec<T> operator+(const vec& other) const;
+	vec<T> operator-(const vec& other) const;
+	vec<T> operator*(const vec& other) const;
+	vec<T> operator*(float scalar) const;
+	vec<T>& operator=(const vec& other);
+	vec<T> operator-() const;
+
+	bool operator==(const vec<T>& other) const;
+	bool operator!=(const vec<T>& other) const { return !(*this == other); };
+
+	double length();
+	vec<T> normalized() const;
+	vec<T> normalized(double epsilon) const;
+
+	size_t append(const T& elem);
+	//size_t append(T elem);
+	size_t pop();
+
+
+	const T* begin() const { return data; }
+	T* begin() { return data; }
+
+	T* end() { return data + size; }
+	const T* end() const { return data + size; }
+
+	T* cbegin() const { return data; }
+	T* cend() const { return data + size; }
+
+};
+
+/*
+*/
 struct vec2d; ///
 struct vec3d; ///	Necessary for function prototypes
 struct vec4d; ///
@@ -74,8 +134,6 @@ vec4d normalize(const vec4d& v);
 SDL_Vertex make_vertex(const vec2d& v);
 SDL_Vertex make_vertex(const vec3d& v);
 
-#endif //POD_VECTOR
-
 /*		--SIMD optimized vector classes. As per YAGNI, they are not needed (yet)
 struct alignas(16) vec2_simd {		//2 x double
 	__m128 data;
@@ -103,57 +161,6 @@ struct alignas(64) vec4_simd {		//Float
 
 /// @brief 2 Dimensional vector with float X Y members
 
-template<class T>
-struct vec {
-protected:
-	
-	size_t size;
-	T* data;
-
-public:
-
-	vec(size_t size = 4);
-	vec(size_t size, T data);
-	vec(std::initializer_list<T> init);
-	inline vec(const vec<T>& other);
-	
-	//Does not exist
-	//T& operator[](char dimension);
-	T& operator[](size_t position);
-	const T& operator[](size_t position) const;
-
-	vec<T> operator+(const vec& other) const;
-	vec<T> operator-(const vec& other) const;
-	vec<T> operator*(const vec& other) const;
-	vec<T> operator*(float scalar) const;
-	vec<T>& operator=(const vec& other);
-	vec<T> operator-() const;
-
-	bool operator==(const vec<T>& other) const;
-	bool operator!=(const vec<T>& other) const { return !(*this == other); };
-
-	double length();
-	vec<T> normalized() const;
-	vec<T> normalized(double epsilon) const;
-
-	size_t append(const T& elem);
-	//size_t append(T elem);
-	size_t pop();
-
-	~vec();
-
-	const T* begin() const { return data; }
-	T* begin()	{ return data; }
-
-	T* end(){ return data + size; }
-	const T* end() const { return data + size; }
-
-	T* cbegin() const { return data; }
-	T* cend() const { return data+size; }
-
-};
-
-#if POD_VECTOR
 
 /////////////////////
 struct vec2d {
@@ -186,10 +193,10 @@ struct vec2d {
 struct vec3d {
 	float x, y, z;
 	
-	/*	UNUSED
+	
 	float& component(char component);
 	const float& component(char component) const;
-	*/
+	
 	
 	float& operator[](size_t dimension);
 	const float& operator[](size_t dimension) const;
@@ -283,78 +290,11 @@ inline vec3d from(const vec2d& v, const float& z) { return { v.x, v.y, z }; };
 inline vec4d from(const vec2d& v, const float& z, const float& w) { return { v.x, v.y, z, w }; };
 inline vec4d from(const vec3d& v, const float& w) { return { v.x, v.y, v.z, w }; };
 
-#elif POD_VECTOR == 0
-
-template <class T>
-class vec2 : public vec<T> {
-public:
-
-	vec2() : vec<T>(2) {};
-	vec2(T x, T y) : vec<T>(2, {x, y}) {};
-	
-	/*	UNUSED
-	T& component();
-	const T& component();
-	*/
-
-	vec2 operator-() const;
-	vec2 operator-();
-	
-	T& x() { return vec<T>::data[0]; };
-	const T& x() const { return vec<T>::data[0]; };
-
-	T& y() { return vec<T>::data[1]; };
-	const T& y() const { return vec<T>::data[1]; };
-
-};
-
-template <class T>
-class vec3 : public vec<T> {
-public:
-
-	vec3() : vec<T>(3) {};
-	vec3(T x, T y) : vec<T>(3, { x, y }) {};
-
-	vec3 operator-() const;
-	vec3 operator-();
-
-	T& x() { return vec<T>::data[0]; };
-	const T& x() const { return vec<T>::data[0]; };
-
-	T& y() { return vec<T>::data[1]; };
-	const T& y() const { return vec<T>::data[1]; };
-
-	T& z() { return vec<T>::data[2]; };
-	const T& z() const { return vec<T>::data[2]; };
-
-};
-
-template <class T>
-class vec4 : public vec<T> {
-public:
-
-	vec4() : vec<T>(4) {};
-	vec4(T x, T y) : vec<T>(4, { x, y }) {};
-
-	vec4 operator-() const;
-	vec4 operator-();
-
-	T& x() { return vec<T>::data[0]; };
-	const T& x() const { return vec<T>::data[0]; };
-
-	T& y() { return vec<T>::data[1]; };
-	const T& y() const { return vec<T>::data[1]; };
-
-	T& z() { return vec<T>::data[2]; };
-	const T& z() const { return vec<T>::data[2]; };
-
-};
-
-#endif //!POD_VECTOR == 0
 
 
 /*
 Data Type	Minimum Size (Bits)	Typical Size (Bytes)
+bool				8				1
 char				8				1
 short				16				2
 int					16				4
@@ -362,7 +302,6 @@ long				32				4 (32-bit) or 8 (64-bit Linux/macOS)
 long long			64				8
 float				32				4
 double				64				8
-bool				8				1
 */
 
 

@@ -2,7 +2,6 @@
 
 //PROVIDES IMPLEMENTATIONS OF THE MATHEMATICAL OPERATIONS
 
-#if POD_VECTOR
 
 /// @brief Calculates dot product of 2 vectors
 /// @param a First vector
@@ -127,4 +126,5 @@ SDL_Vertex make_vertex(const vec4d& v)
 }
 
 
+#if POD_VECTOR
 #endif //POD_VECTOR

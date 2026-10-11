@@ -1,6 +1,5 @@
 #pragma once
 
-#if POD_VECTOR == 0
 /*	Default 0-initializing CTOR
 */
 template<class T>
@@ -257,5 +256,3 @@ inline size_t vec<T>::pop() {
 
 }
 
-
-#endif	//POD_VECTOR == 0
