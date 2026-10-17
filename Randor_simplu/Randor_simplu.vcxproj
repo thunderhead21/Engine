@@ -75,7 +75,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)D:\SDL_LIBS\SDL3-3.2.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>$(ProjectDir)\Backend\SDL3-3.4.10\include\SDL3_ttf;$(ProjectDir)\Backend\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)D:\SDL_LIBS\SDL3-3.2.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x64;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)Source;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
     <LinkIncremental>true</LinkIncremental>
@@ -83,20 +83,20 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)D:\SDL_LIBS\SDL3-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>$(ProjectDir)\Backend\SDL3-3.4.10\include\SDL3_ttf;$(ProjectDir)\Backend\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)D:\SDL_LIBS\SDL3-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x64;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)Source;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
     <SourcePath>$(ProjectPath)Source\;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>$(ProjectDir)\Backend\SDL3-3.4.10\include\SDL3_ttf;$(ProjectDir)\Backend\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x86;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)Source;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
     <LinkIncremental>true</LinkIncremental>
     <SourcePath>$(ProjectPath)Source\;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ExternalIncludePath>D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>$(ProjectDir)\Backend\SDL3-3.4.10\include\SDL3_ttf;$(ProjectDir)\Backend\SDL_rtf-main\include;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3_image-3.4.10\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>D:\SDL_LIBS\SDL3-3.4.10\lib\x86;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)Source;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_ttf;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\SDL3-3.4.10\SDL_ttf-main\include;$(IncludePath)</IncludePath>
     <SourcePath>$(ProjectPath)Source\;$(VC_SourcePath);</SourcePath>
@@ -107,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source;$(ProjectDir)\Backend\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
@@ -121,7 +121,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_ttf.lib;  SDL3main.lib$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\SDL_LIBS\SDL3-3.4.10\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\Backend\SDL3-3.4.10\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateMapFile>true</GenerateMapFile>
       <AdditionalOptions>/VERBOSE %(AdditionalOptions)</AdditionalOptions>
       <UseDynamicDebugging>false</UseDynamicDebugging>
@@ -138,7 +138,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source;$(ProjectDir)\Backend\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
@@ -148,7 +148,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_ttf.lib;  SDL3main.lib$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\SDL_LIBS\SDL3-3.4.10\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\Backend\SDL3-3.4.10\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -157,7 +157,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source;$(ProjectDir)\Backend\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include\SDL3_image;D:\SDL_LIBS\SDL_ttf-main\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
@@ -171,7 +171,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_ttf.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\SDL_LIBS\SDL3-3.4.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\Backend\SDL3-3.4.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateMapFile>true</GenerateMapFile>
       <AdditionalOptions>/VERBOSE %(AdditionalOptions)</AdditionalOptions>
       <UseDynamicDebugging>false</UseDynamicDebugging>
@@ -188,7 +188,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;D:\SDL_LIBS\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL_image-main\SDL_image-main\include;D:\SDL_LIBS\SDL_ttf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source;$(ProjectDir)\Backend\SDL3-3.4.10\include;D:\SDL_LIBS\spdlog-1.x\include;D:\SDL_LIBS\SDL_rtf-main\include\;D:\SDL_LIBS\SDL_image-main\SDL_image-main\include;D:\SDL_LIBS\SDL_ttf-main\include\;D:\SDL_LIBS\SDL3-3.4.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
@@ -199,7 +199,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_ttf.lib;%(AdditionalDependencies);</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\SDL_LIBS\SDL3-3.4.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\Backend\SDL3-3.4.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

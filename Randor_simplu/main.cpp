@@ -72,7 +72,7 @@ void rendering_test_run(unsigned int entities = 10000, unsigned int fps = 60, fl
 
 		if (RigidBody* body = dynamic_cast<RigidBody*>(entity)) {
 
-			body->set_angular_velocity({ size(rng), size(rng), size(rng) });
+			body->set_angular_velocity(vec3d{ size(rng), size(rng), size(rng) });
 
 			body->set_velocity({ pos(rng), pos(rng) , pos(rng)+1000.0f});
 

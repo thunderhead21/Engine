@@ -53,67 +53,20 @@
 */
 
 /////////////////////////// PROTOTYPES ///////////////////////////
+/// @brief 2 Dimensional vector with float X Y members
 
-template<class T>
-struct vec {
-protected:
+/////////////////////
 
-	size_t size;
-	T* data;
-
-public:
-
-	vec(size_t size = 4);
-	vec(size_t size, T data);
-	vec(std::initializer_list<T> init);
-	inline vec(const vec<T>& other);
-	~vec();
-
-	//Does not exist
-	//T& operator[](char dimension);
-	T& operator[](size_t position);
-	const T& operator[](size_t position) const;
-
-	vec<T> operator+(const vec& other) const;
-	vec<T> operator-(const vec& other) const;
-	vec<T> operator*(const vec& other) const;
-	vec<T> operator*(float scalar) const;
-	vec<T>& operator=(const vec& other);
-	vec<T> operator-() const;
-
-	bool operator==(const vec<T>& other) const;
-	bool operator!=(const vec<T>& other) const { return !(*this == other); };
-
-	double length();
-	vec<T> normalized() const;
-	vec<T> normalized(double epsilon) const;
-
-	size_t append(const T& elem);
-	//size_t append(T elem);
-	size_t pop();
-
-
-	const T* begin() const { return data; }
-	T* begin() { return data; }
-
-	T* end() { return data + size; }
-	const T* end() const { return data + size; }
-
-	T* cbegin() const { return data; }
-	T* cend() const { return data + size; }
-
-};
-
-/*
-*/
 struct vec2d; ///
 struct vec3d; ///	Necessary for function prototypes
 struct vec4d; ///
+
 
 float dot(const vec2d& a, const vec2d& b);
 float dot(const vec3d& a, const vec3d& b);
 float dot(const vec4d& a, const vec4d& b);
 float dot_XYZ(const vec4d& a, const vec4d& b);
+
 
 float length(const vec2d& v);
 float length(const vec3d& v);
@@ -134,35 +87,7 @@ vec4d normalize(const vec4d& v);
 SDL_Vertex make_vertex(const vec2d& v);
 SDL_Vertex make_vertex(const vec3d& v);
 
-/*		--SIMD optimized vector classes. As per YAGNI, they are not needed (yet)
-struct alignas(16) vec2_simd {		//2 x double
-	__m128 data;
-
-	vec2_simd() : data(_mm_setzero_ps()) {}
-	vec2_simd(__m128 v) : data(v) {}
-
-	
-	float& operator[](char dimension);
-	const float& operator[](char dimension) const;
-
-	vec2_simd operator+(const vec2_simd& other) const;
-	vec2_simd operator-(const vec2_simd& other) const;
-	vec2_simd operator*(__m128 scalar) const;
-	vec2_simd operator*(const float& scalar) const;
-
-};
-
-struct alignas(64) vec4_simd {		//Float 
-	__m128 data;
-
-	vec4_simd() : data(_mm_setzero_ps()) {}
-};
-*/
-
-/// @brief 2 Dimensional vector with float X Y members
-
-
-/////////////////////
+#if POD_VECTOR == 1
 struct vec2d {
 	float x, y;	
 
@@ -286,10 +211,275 @@ struct vec4d {
 	
 };
 
+struct vec2d; ///
+struct vec3d; ///	Necessary for function prototypes
+struct vec4d; ///
+
+
+float dot(const vec2d& a, const vec2d& b);
+float dot(const vec3d& a, const vec3d& b);
+float dot(const vec4d& a, const vec4d& b);
+float dot_XYZ(const vec4d& a, const vec4d& b);
+
+
+float length(const vec2d& v);
+float length(const vec3d& v);
+float length(const vec4d& v);
+
+float length_squared(const vec2d& v);
+float length_squared(const vec3d& v);
+float length_squared(const vec4d& v);
+
+bool equal(const vec2d& a, const vec2d& b);
+bool equal(const vec3d& a, const vec3d& b);
+bool equal(const vec4d& a, const vec4d& b);
+
+vec2d normalize(const vec2d& v);
+vec3d normalize(const vec3d& v);
+vec4d normalize(const vec4d& v);
+
+SDL_Vertex make_vertex(const vec2d& v);
+SDL_Vertex make_vertex(const vec3d& v);
+
+/*		--SIMD optimized vector classes. As per YAGNI, they are not needed (yet)
+struct alignas(16) vec2_simd {		//2 x double
+	__m128 data;
+
+	vec2_simd() : data(_mm_setzero_ps()) {}
+	vec2_simd(__m128 v) : data(v) {}
+
+	
+	float& operator[](char dimension);
+	const float& operator[](char dimension) const;
+
+	vec2_simd operator+(const vec2_simd& other) const;
+	vec2_simd operator-(const vec2_simd& other) const;
+	vec2_simd operator*(__m128 scalar) const;
+	vec2_simd operator*(const float& scalar) const;
+
+};
+
+struct alignas(64) vec4_simd {		//Float 
+	__m128 data;
+
+	vec4_simd() : data(_mm_setzero_ps()) {}
+};
+*/
+
+
+#endif //POD_VECTOR == 1
+#if POD_VECTOR == 0
+template <class T>
+struct vec2 {
+	T x, y;
+
+	T& operator[](char dimension);
+	vec2 operator+(const vec2& other) const;
+	vec2 operator-(const vec2& other) const;
+	vec2 operator*(float scalar) const;
+	inline bool operator==(vec2& other) const { return equal(*this, other); };
+
+
+	inline float magnitude() const { return length(*this); }
+	inline float magnitude_square() const { return length_squared(*this); }
+	inline vec2d normalized()const { return normalize(*this); }
+	SDL_Vertex vertex() const;
+
+
+	vec2d() = default;
+	vec2d(const T& xy) : x(xy), y(xy) {};
+	vec2d(T x, T y) : x(x), y(y) {};
+	vec2d(T vec2d& other) : x(other.x), y(other.y) {};
+
+	friend std::ostream& operator<<(std::ostream& os, const vec2d& v);
+
+};
+
+#define vec2d = vec<T>
+
+/// @brief 3 Dimensional vector with float X Y Z members
+/// @brief 0 Initialized
+struct vec3d {
+	float x, y, z;
+
+
+	float& component(char component);
+	const float& component(char component) const;
+
+
+	float& operator[](size_t dimension);
+	const float& operator[](size_t dimension) const;
+
+	//unary operator-()
+	vec3d operator-();
+	vec3d operator-() const;
+
+	vec3d operator+(const vec3d& other) const;
+	vec3d operator-(const vec3d& other) const;
+	vec3d operator*(float scalar) const;
+	inline bool operator==(const vec3d& other) const { return equal(*this, other); };
+	inline bool operator!=(const vec3d& other) const { return !equal(*this, other); };
+	void operator+=(const vec3d& other);
+	void operator-=(const vec3d& other);
+	void operator*=(const vec3d& other);
+
+	inline float magnitude() const { return length(*this); }
+	inline float magnitude_square() const { return length_squared(*this); }
+	inline vec3d normalized() const { return normalize(*this); }
+	SDL_Vertex vertex() const;
+
+	/// @brief Default constructor
+	vec3d() :x(0), y(0), z(0) {};
+
+	/// @brief Constructor for the entire vector
+	/// @param x component to initialize the vector
+	/// @param y component to initialize the vector
+	/// @param z component to initialize the vector
+	vec3d(const float& x, const float& y, const float& z) :x(x), y(y), z(z) {};
+
+	/// @brief Uniform constructor
+	/// @param xyz Value to initialize all the components with
+	vec3d(const float& xyz) : x(xyz), y(xyz), z(xyz) {};
+
+	/// @brief Copy constructor
+	/// @param other vector to copy
+	vec3d(const vec3d& other) : x(other.x), y(other.y), z(other.z) {};
+
+	/// @brief Obtain the X and Y components of the vector
+	/// @return vec2d populated with the X and Y components
+	inline vec2d xy() const { return { x, y }; };
+
+	/// @brief Obtain the X, Y and Z components of the vector
+	/// @return vec2d populated with the X, Y and Z components 
+	inline vec3d xyz() const { return { x,y,z }; };
+
+	friend std::ostream& operator<<(std::ostream& os, const vec3d& v);
+};
+
+/// @brief 4 Dimensional vector with float X Y Z W members. W = 0 if the vector represents a direction. W = 1 if the vector represents a position.
+struct vec4d {
+	float x, y, z, w;
+
+	float& operator[](char dimension);
+	const float& operator[](char dimension) const;
+	float& operator[](int dimension);
+	const float& operator[](int dimension) const;
+
+	//unary operator-()
+	vec4d operator-();
+	vec4d operator-() const;
+
+	vec4d operator+(const vec4d& other) const;
+	vec4d operator-(const vec4d& other) const;
+	vec4d operator*(float scalar) const;
+	inline bool operator==(vec4d& other) const { return equal(*this, other); };
+	vec4d& operator=(const vec4d& other);
+
+	inline float magnitude() const { return length(*this); }
+	inline float magnitude_square() const { return length_squared(*this); }
+	inline vec4d normalized() const { return normalize(*this); }
+	SDL_Vertex vertex() const;
+
+	inline vec4d() = default;
+	//Only initializer list is needed
+	inline vec4d(const float& xyzw) : x(xyzw), y(xyzw), z(xyzw), w(xyzw) {};
+	inline vec4d(const float& x, const float& y, const float& z, const float& w) :x(x), y(y), z(z), w(w) {};
+	inline vec4d(const vec4d& other) : x(other.x), y(other.y), z(other.z), w(other.w) {};
+
+	inline vec2d xy() const { return { x, y }; };
+	inline vec3d xyz() const { return { x, y, z }; }
+	///////////////////////////WORKSPACE///////////////////////////////
+	//inline void print() const { std::cout << x << ', ' << y << ', ' << z << ', ' << w << ', ' ; };
+	friend std::ostream& operator<<(std::ostream& os, const vec4d& v);
+
+
+};
+
+
+
+
+float dot(const vec2d& a, const vec2d& b);
+float dot(const vec3d& a, const vec3d& b);
+float dot(const vec4d& a, const vec4d& b);
+float dot_XYZ(const vec4d& a, const vec4d& b);
+
+
+float length(const vec2d& v);
+float length(const vec3d& v);
+float length(const vec4d& v);
+
+float length_squared(const vec2d& v);
+float length_squared(const vec3d& v);
+float length_squared(const vec4d& v);
+
+bool equal(const vec2d& a, const vec2d& b);
+bool equal(const vec3d& a, const vec3d& b);
+bool equal(const vec4d& a, const vec4d& b);
+
+vec2d normalize(const vec2d& v);
+vec3d normalize(const vec3d& v);
+vec4d normalize(const vec4d& v);
+
+SDL_Vertex make_vertex(const vec2d& v);
+SDL_Vertex make_vertex(const vec3d& v);
+
+#endif //POD_VECTOR == 0
+
+
 inline vec3d from(const vec2d& v, const float& z) { return { v.x, v.y, z }; };
 inline vec4d from(const vec2d& v, const float& z, const float& w) { return { v.x, v.y, z, w }; };
 inline vec4d from(const vec3d& v, const float& w) { return { v.x, v.y, v.z, w }; };
 
+
+template<class T>
+struct vec {
+protected:
+
+	size_t size;
+	T* data;
+
+public:
+
+	vec(size_t size = 4);
+	vec(size_t size, T data);
+	vec(std::initializer_list<T> init);
+	inline vec(const vec<T>& other);
+	~vec();
+
+	//Does not exist
+	//T& operator[](char dimension);
+	T& operator[](size_t position);
+	const T& operator[](size_t position) const;
+
+	vec<T> operator+(const vec& other) const;
+	vec<T> operator-(const vec& other) const;
+	vec<T> operator*(const vec& other) const;
+	vec<T> operator*(float scalar) const;
+	vec<T>& operator=(const vec& other);
+	vec<T> operator-() const;
+
+	bool operator==(const vec<T>& other) const;
+	bool operator!=(const vec<T>& other) const { return !(*this == other); };
+
+	double length();
+	vec<T> normalized() const;
+	vec<T> normalized(double epsilon) const;
+
+	size_t append(const T& elem);
+	//size_t append(T elem);
+	size_t pop();
+
+
+	const T* begin() const { return data; }
+	T* begin() { return data; }
+
+	T* end() { return data + size; }
+	const T* end() const { return data + size; }
+
+	T* cbegin() const { return data; }
+	T* cend() const { return data + size; }
+
+};
 
 
 /*

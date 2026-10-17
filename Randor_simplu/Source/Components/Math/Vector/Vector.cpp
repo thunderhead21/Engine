@@ -30,8 +30,20 @@ vec2_simd vec2_simd::operator*(const float& scalar) const
 
 	return { _mm_mul_ps(data, s) };
 }
+
+OBSOLETE - Prefer Character index over enum class Axis
+float& vec2d::operator[](Axis axis) {
+	switch (axis) {
+	case Axis::X: return x;
+	case Axis::Y: return y;
+	case Axis::Z: throw "Invalid axis requested! No Z in Vec2D";
+	case Axis::W: throw "Invalid axis requested! No Z in Vec2D";
+
+	}
+}
 */
 
+#if POD_VECTOR == 1
 
 vec2d vec2d::operator+(const vec2d& other) const
 {
@@ -54,17 +66,6 @@ float& vec2d::operator[](char dimension)
 
 	}
 }
-/* OBSOLETE - Prefer Character index over enum class Axis
-float& vec2d::operator[](Axis axis) {
-	switch (axis) {
-	case Axis::X: return x;
-	case Axis::Y: return y;
-	case Axis::Z: throw "Invalid axis requested! No Z in Vec2D";
-	case Axis::W: throw "Invalid axis requested! No Z in Vec2D";
-
-	}
-}
-*/
 
 vec3d vec3d::operator-()
 {
@@ -108,25 +109,6 @@ void vec3d::operator*=(const vec3d& other)
 	x *= other.x;
 	y *= other.y;
 	z *= other.z;
-}
-
-float& vec3d::component(char component){
-	switch (SDL_tolower(component)) {
-	case 'x': return x;
-	case 'y': return y;
-	case 'z': return z;
-	default: throw "invalid component: " + component;
-
-	}
-}
-const float& vec3d::component(char component) const {
-	switch (SDL_tolower(component)) {
-	case 'x': return x;
-	case 'y': return y;
-	case 'z': return z;
-	default: throw "invalid component: " + component;
-
-	}
 }
 
 float& vec3d::operator[](size_t dimension)
@@ -269,3 +251,5 @@ std::ostream& operator<<(std::ostream& os, const vec2d& v) {
 	os << v.x << " " << v.y << " ";
 	return os;
 }
+
+#endif //POD_VECTOR == 1
