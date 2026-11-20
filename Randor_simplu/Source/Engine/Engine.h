@@ -19,7 +19,6 @@
 // Event processing, simulation and rendering are coordinated
 // from a single update path to avoid duplicated execution.
 
-
 class Engine
 {
 protected:
@@ -28,6 +27,7 @@ protected:
 
 	std::mt19937 rng{ (unsigned int)time(nullptr) };
 	std::uniform_real_distribution<float> pos{ -2000.f, 2000.f };
+	
 	std::uniform_real_distribution<float> size{1.f, 500.f};
 
 	Timer timer;

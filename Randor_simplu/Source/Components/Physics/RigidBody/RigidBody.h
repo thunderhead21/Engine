@@ -33,7 +33,7 @@ public:
 	vec3d get_angular_velocity() { return angular_velocity; };
 
 	bool is_simulated() const { return physics_enabled; };
-	bool toggle_physics() { physics_enabled = physics_enabled; return physics_enabled; };
+	bool toggle_physics() { physics_enabled = !physics_enabled; return physics_enabled; };
 
 	void disable_physics() { physics_enabled = false; };
 	void enable_physics() { physics_enabled = true; };

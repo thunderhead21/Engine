@@ -53,7 +53,10 @@ void Scene::add_entity(const std::vector<Entity*>& to_add)
 
 void Scene::delete_entity(Entity*& e)    //Treat e as key, not as target. Scene's vector is the source of truth!
 {
+	if (e == nullptr) return;
+
 	auto it = std::find(entities.begin(), entities.end(), e);
+	auto rb = std::find(physics.begin(), physics.end(), dynamic_cast<RigidBody*>(e));
 
 	if (it != entities.end()) { //If we found the entity in the the scene
 		delete* it;             //We invalidate it 
@@ -61,10 +64,8 @@ void Scene::delete_entity(Entity*& e)    //Treat e as key, not as target. Scene'
 	}
 
 	it = std::find(visible.begin(), visible.end(), e);
-	if (it != visible.end()) { //If we found the entity in the the scene
-		delete* it;             //We invalidate it 
-		visible.erase(it);     //And remove it
-	}
+	if (it != visible.end()) visible.erase(it);
+	if (rb != physics.end()) physics.erase(rb);
 
 
 	e = nullptr;
@@ -76,7 +77,6 @@ void Scene::delete_entity(const std::vector<Entity*>& e)   //Treat e as key, not
 
    
 	for (auto* ptr : e) {   //For each element we want to remove
-
 		delete_entity(ptr); //Call the function that does it
 		
 	}

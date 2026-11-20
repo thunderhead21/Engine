@@ -64,7 +64,7 @@ public:
 	const std::vector<Entity*>& get_visible_entities() const noexcept { return visible; };
 	/// @brief Render queue getter
 	/// @return Reference to the entities which are physics-enabled within the Scene
-	const std::vector<Entity*>& get_physics_entities() const noexcept { return visible; };
+	const std::vector<RigidBody*>& get_physics_entities() const noexcept { return physics; };
 	
 	/// @brief 
 	/// @return Pointer to the active camera in the scene 

@@ -39,7 +39,7 @@ bool Window::set_active_scene(Scene& s)
 }
 
 Window::Window(InputManager& controller, int w, int h, bool VSync, bool fullscreen):
-	window(nullptr), renderer(nullptr), w(w), h(h), vsync(VSync), mouse(0), aspect_ratio(w / h), event({}), valid(1), controller(controller)
+	window(nullptr), renderer(nullptr), w(w), h(h), vsync(VSync), mouse(0), aspect_ratio((double)w / (double)h), event({}), valid(1), controller(controller)
 {
 	if (init_attempted == 0) {
 		init_success = !init();
@@ -77,7 +77,7 @@ Window::Window(InputManager& controller, int w, int h, bool VSync, bool fullscre
 }
 
 Window::Window(InputManager& controller, std::string window_name, int w, int h, bool VSync, bool fullscreen): 
-	window(nullptr), renderer(nullptr), w(w), h(h), vsync(VSync), mouse(0), aspect_ratio(w / h), event({}), valid(1), controller(controller)
+	window(nullptr), renderer(nullptr), w(w), h(h), vsync(VSync), mouse(0), aspect_ratio((double)w / (double)h), event({}), valid(1), controller(controller)
 {
 	if (init_attempted == 0) {
 		init_success = !init();

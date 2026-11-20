@@ -1,15 +1,22 @@
 #include "Engine.h"
 
 void Engine::on_create() {
+
+	const float amount = 5;
 	std::cout << "ENGINE on_create()" << std::endl;
 
-	controller.register_keybind(SDL_SCANCODE_W, [&] {world.get_active_camera()->transform().translate(vec3d{  0,100,0 });});
-	controller.register_keybind(SDL_SCANCODE_A, [&] {world.get_active_camera()->transform().translate(vec3d{ -100,0,0 });});
-	controller.register_keybind(SDL_SCANCODE_S, [&] {world.get_active_camera()->transform().translate(vec3d{ 0,-100,0 });});
-	controller.register_keybind(SDL_SCANCODE_D, [&] {world.get_active_camera()->transform().translate(vec3d{  100,0,0 });});
-	controller.register_keybind(SDL_SCANCODE_UP, [&] {world.get_active_camera()->transform().translate(vec3d{ 0,0,100 });});
-	controller.register_keybind(SDL_SCANCODE_DOWN, [&] {world.get_active_camera()->transform().translate(vec3d{ 0,0,-100 });});
+	controller.register_keybind(SDL_SCANCODE_W, [&] {world.get_active_camera()->transform().translate(vec3d{  0,50.0f,0 });});
+	controller.register_keybind(SDL_SCANCODE_S, [&] {world.get_active_camera()->transform().translate(vec3d{ 0,-50.0f,0 });});
+	controller.register_keybind(SDL_SCANCODE_LEFT, [&] {world.get_active_camera()->transform().translate(vec3d{ -50.0f,0,0 });});
+	controller.register_keybind(SDL_SCANCODE_RIGHT, [&] {world.get_active_camera()->transform().translate(vec3d{  50.0f,0,0 });});
+	controller.register_keybind(SDL_SCANCODE_UP, [&] {world.get_active_camera()->transform().translate(vec3d{ 0,0,50.0f });});
+	controller.register_keybind(SDL_SCANCODE_DOWN, [&] {world.get_active_camera()->transform().translate(vec3d{ 0,0,-50.0f });});
 
+
+	controller.register_keybind(SDL_SCANCODE_Q, [&] {world.get_active_camera()->transform().rotate(vec3d{ -50.0f,0,0 });});
+	controller.register_keybind(SDL_SCANCODE_E, [&] {world.get_active_camera()->transform().rotate(vec3d{ 50.0f,0,0 });});
+	controller.register_keybind(SDL_SCANCODE_R, [&] {world.get_active_camera()->transform().rotate(vec3d{ 0,0,50.0f });});
+	controller.register_keybind(SDL_SCANCODE_F, [&] {world.get_active_camera()->transform().rotate(vec3d{ 0,0,-50.0f });});
 }
 Engine::Engine(std::string window_name, unsigned int res_x, unsigned int res_y, bool VSync, bool fullscreen) : 
 	controller(), renderer(controller, window_name, res_x, res_y, VSync, fullscreen)
